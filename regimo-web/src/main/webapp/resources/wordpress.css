@@ -1,0 +1,14 @@
+.alignright {
+	float: right;
+	margin: 0 0 1em 1em;
+}
+
+.wp-caption img {
+margin: 0;
+padding: 0;
+border: none;
+}
+
+.TrueNotes {
+white-space: pre-line;
+}

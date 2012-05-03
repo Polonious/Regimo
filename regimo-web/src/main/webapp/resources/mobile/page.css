@@ -1,0 +1,62 @@
+@import url("../messages/messages.css");
+@import url("form.css");
+
+a img, frameset, fieldset { 
+	border: 0;
+}
+
+body {
+	margin: 0px;
+	margin-bottom: 10px;
+	font-family: "lucida grande", lucida, tahoma, helvetica, arial, sans-serif !important;
+	font-size: 1em;
+	color: #666666;
+	background: url("../background-body.png") repeat-x scroll 0 0 #EEEEEE;
+}
+
+#header {
+	height:70px;
+	
+background: #42b4d1; /* Old browsers */
+background: -moz-linear-gradient(top,  #42b4d1 0%, #3299bb 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#42b4d1), color-stop(100%,#3299bb)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #42b4d1 0%,#3299bb 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #42b4d1 0%,#3299bb 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #42b4d1 0%,#3299bb 100%); /* IE10+ */
+background: linear-gradient(top,  #42b4d1 0%,#3299bb 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#42b4d1', endColorstr='#3299bb',GradientType=0 ); /* IE6-9 */
+
+	
+	border-bottom:1px solid #49aed0;
+	/* -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.7); */
+	padding-top: 5px;
+}
+
+#content {
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+#footer {
+	font-size: .625em;
+	text-align: center;	
+}
+
+h2 {
+	font-size: 1.075em; 
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+ul {
+	padding: 0px;
+}
+
+li {
+	list-style-type: none;
+	margin-bottom: 2px;
+}
+
+#nav ul {
+	padding: 5px;
+}

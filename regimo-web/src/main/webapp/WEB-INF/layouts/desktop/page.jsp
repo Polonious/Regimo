@@ -1,0 +1,27 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html>
+<head>
+	<title><tiles:insertAttribute name="title" defaultValue="Polonious" /></title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />	
+	<link rel="stylesheet" href="<c:url value="/resources/wordpress.css" />" type="text/css" media="screen" />
+	<link rel="stylesheet" href="<c:url value="/resources/css/style.css" />" type="text/css" />
+	<link rel="stylesheet" href="<c:url value="/resources/css/dropdown-menu.css" />" type="text/css" />
+	<link rel="stylesheet" href="<c:url value="/resources/css/waterwheel-carousel.css" />" type="text/css" />
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="<c:url value="/resources/waterwheelCarousel/jquery.waterwheelCarousel.min.js" />"></script>
+</head>
+<body>
+  	<div id="header-container">
+		<tiles:insertAttribute name="header" />
+	</div>
+	<div id="content-container">
+		<tiles:insertAttribute name="content" />
+	</div>
+	<div id="footer">
+		<tiles:insertAttribute name="footer" />
+	</div>
+</body>
+</html>
