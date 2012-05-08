@@ -67,9 +67,10 @@ public class SignupController {
 		ModelMap map = new ModelMap();
 		map.addAttribute("user", user);
 		
-		String emailBody = TextGenerator.generateText(textTemplate.getContent(), map);
-		System.out.println("email body" + emailBody);
-		emailService.sendEmail("admin@poloniouslive.com", "will@mail.poloniouslive.com", "Regimo registration confirmation ", 
+		String emailBody = "Regimo registration confirmation -- Can not find email text template";
+		if(textTemplate != null)
+			emailBody = TextGenerator.generateText(textTemplate.getContent(), map);
+		emailService.sendEmail("admin@poloniouslive.com", user.getEmail(), "Regimo registration confirmation ", 
 				null, emailBody, null, null);
 		return "redirect:/";
 	}
