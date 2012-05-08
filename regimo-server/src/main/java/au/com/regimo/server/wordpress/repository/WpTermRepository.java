@@ -9,4 +9,5 @@ public interface WpTermRepository {
 	List<WpTerm> findByTaxonomy(String taxonomy);
 	List<WpTerm> findByTaxonomyCategory();
 	
+	
 }
