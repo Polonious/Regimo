@@ -16,6 +16,7 @@ public class DataTablesColumnDef {
 		return mDataProp;
 	}
 
+	
 	public void setmDataProp(String mDataProp) {
 		this.mDataProp = mDataProp;
 	}
