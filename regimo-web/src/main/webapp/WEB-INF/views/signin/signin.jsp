@@ -24,3 +24,15 @@
 	</fieldset>
 	<p><button type="submit">Sign In</button></p>
 </form>
+
+<form id="resetPwd" action="<c:url value="/user/resetForgottenPwd" />" modelAttribute="entity" method="post">
+<div  id="forgetPwd" title="A new password will be sent to:" style=" width:500px;">
+		<table> 
+			<tr><td>Your username	   </td>  <td><input type="text" id="username" 	name="username" /></td></tr>
+	    </table>
+   		<div align="center">
+   			<button type="submit">OK</button>
+   			<button  title='Undo changes and return' onClick="$('forgetPwd').hide();">Cancel</button>
+   		</div>
+</div>
+</form>

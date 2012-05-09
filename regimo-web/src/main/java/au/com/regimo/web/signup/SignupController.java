@@ -6,6 +6,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -16,20 +17,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
 
-import au.com.regimo.core.domain.Dashlet;
 import au.com.regimo.core.domain.Document;
 import au.com.regimo.core.domain.TextTemplate;
 import au.com.regimo.core.domain.User;
-import au.com.regimo.core.domain.UserDashlet;
-import au.com.regimo.core.repository.UserDashletRepository;
-import au.com.regimo.core.service.DashletService;
+import au.com.regimo.core.repository.TextTemplateRepository;
 import au.com.regimo.core.service.DocumentService;
 import au.com.regimo.core.service.EmailService;
-import au.com.regimo.core.service.TextTemplateService;
 import au.com.regimo.core.service.UserService;
 import au.com.regimo.core.utils.BeanUtilsExtend;
 import au.com.regimo.core.utils.SecurityUtils;
 import au.com.regimo.core.utils.TextGenerator;
+
 import au.com.regimo.web.form.UserNewForm;
 
 @Controller
@@ -37,7 +35,9 @@ public class SignupController {
 
 	private UserService userService;
 	private DocumentService documentService;
-	@Inject private TextTemplateService textTemplateService;
+	@Autowired
+	private TextTemplateRepository textTemplateRepository;
+
 	@Inject private EmailService emailService;
 	
 	/**
@@ -63,11 +63,11 @@ public class SignupController {
 		userService.signup(user);
 		SecurityUtils.setAuthentcation(user, form.getPassword());
 		//send a signup confirmation email to the new user
-		TextTemplate textTemplate = textTemplateService.findOne(1L);
+		TextTemplate textTemplate = textTemplateRepository.findByName("WelcomeNewUser");
 		ModelMap map = new ModelMap();
 		map.addAttribute("user", user);
 		
-		String emailBody = "Regimo registration confirmation -- Can not find email text template";
+		String emailBody = "Regimo registration confirmation (Can not find email text template)";
 		if(textTemplate != null)
 			emailBody = TextGenerator.generateText(textTemplate.getContent(), map);
 		emailService.sendEmail("admin@poloniouslive.com", user.getEmail(), "Regimo registration confirmation ", 
