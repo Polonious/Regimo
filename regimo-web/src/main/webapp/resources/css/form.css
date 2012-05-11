@@ -1,5 +1,4 @@
 form {
-	font-size: 1em;
 	width: 40em;
 	color: #1b1b1b;
 	text-align: left;
@@ -8,14 +7,14 @@ form {
 }
 
 /* Elements */
-form label, form legend {
-	padding: 0;
-	margin: 0.3em 0;
+form input, form label {
+	font-size: 1.5em;
 }
 
-form fieldset {
-	padding: 0.7em;
-	margin: 0 0 0.5em 0;
+form label {
+	padding: 0;
+	margin: 0.3em 0;
+	text-shadow: 1px 1px 0 rgba(100, 100, 100, 0.2);
 }
 
 div .checkbox {
@@ -23,23 +22,22 @@ div .checkbox {
 	margin: 0 0 0.5em 0;
 }
 
-form label {
-	font-weight: bold;
-}
-
 form input {
-	width: 70%;
-	line-height: 1.5em;
-	padding: 0.15em;
+	width: 100%;
+	height: 1.5em;
+	
+	-moz-box-shadow: 1px 1px 1px #ddd inset;
+	-webkit-box-shadow: 1px 1px 1px #ddd inset;
+	box-shadow: 1px 1px 1px #ddd inset;
 }
 
 form input, form textarea, form select {
 	display: block;
+	margin-top: 0.4em;
 	margin-bottom: 1em;
-	font-size: 1em;
-	border: 1px solid #bbb;
+	border: 1px solid #BCBCBC;
+	border-radius: 3px;
 	padding: 0.15em;
-	margin-right: 1em
 }
 
 form .radio input, form .checkbox input {
@@ -78,42 +76,107 @@ form .multiple select {
 
 /* Button */
 form button {
-	margin: 0.3em 0;
-	border: 1px solid #ccc;
-	background-color: #eee;
-	font-size: 1em;
-	cursor: pointer;
-	padding: 0.5em
+	/* background-color: #FFA900; */
+background: #ffba25; /* Old browsers */
+background: -moz-linear-gradient(top,  #ffba25 0%, #f89500 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffba25), color-stop(100%,#f89500)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #ffba25 0%,#f89500 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #ffba25 0%,#f89500 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #ffba25 0%,#f89500 100%); /* IE10+ */
+background: linear-gradient(top,  #ffba25 0%,#f89500 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffba25', endColorstr='#f89500',GradientType=0 ); /* IE6-9 */
+
+    border: 1px solid #bcbcbc;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 0.5em;
+    text-shadow: 1px 1px 0 #424242;
+    box-shadow: 0 1px 4px #bcbcbc;
+    width: 80px;
+    margin-top:1em;
 }
 
 form button:hover {
-	background-color: #E6EFC2;
-	border: 1px solid #C6D880;
-	color: #529214;
+	/* background-color: #E6EFC2; */
+	background: #42b4d1; /* Old browsers */
+background: -moz-linear-gradient(top,  #42b4d1 0%, #3299bb 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#42b4d1), color-stop(100%,#3299bb)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #42b4d1 0%,#3299bb 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #42b4d1 0%,#3299bb 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #42b4d1 0%,#3299bb 100%); /* IE10+ */
+background: linear-gradient(top,  #42b4d1 0%,#3299bb 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#42b4d1', endColorstr='#3299bb',GradientType=0 ); /* IE6-9 */
+	
+	color: #474747;
+	text-shadow: 1px 1px 0 #e9e9e9;
 }
 
-form button:active {
-	background-color: #333;
-	color: white;
-	border: 1px solid #000;
+
+
+.button-cancel {
+background: #ffffff; /* Old browsers */
+background: -moz-linear-gradient(top,  #ffffff 0%, #e9e9e9 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e9e9e9)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #ffffff 0%,#e9e9e9 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #ffffff 0%,#e9e9e9 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #ffffff 0%,#e9e9e9 100%); /* IE10+ */
+background: linear-gradient(top,  #ffffff 0%,#e9e9e9 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e9e9e9',GradientType=0 ); /* IE6-9 */
+
+	margin-left: 1em;
+	margin-top: 1em;
+	color: #474747;
+	text-shadow: 1px 1px 0 #e9e9e9;
 }
+
 
 /* information */
 form .formInfo {
-	margin-bottom: 1em;
-	padding-bottom: 0.5em;
-	border-bottom: 0.1em solid #ddd;
+	margin-top:2em;
+	padding-bottom: 1em;
+	border-bottom: 0.1em solid #bcbcbc;
 }
 
 form .formInfo h2 {
-	color: #6DB33F;
+	color: #474747;
 	font-weight: bold;
-	font-size: 1.2em;
-	margin-bottom: 1em
+	font-size: 1.8em;
+	text-shadow: 1px 1px 0 #FFFFFF;
 }
 
 form .formInfo p {
 	text-align: justify
+}
+
+form .formBody {
+	border-top: 0.1em solid #fafafa;	
+	padding-top: 2em;
+}
+
+form .formBody td {
+	color: #474747;
+	font-size: 1.5em;
+	text-shadow: 1px 1px 0 rgba(100, 100, 100, 0.2);
+	padding-right: 1em;
+	height: 2.5em;
+}
+
+form .formBody td input {
+	color: #474747;
+	font-size: 1em;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.profile-value {
+	/* background-color:#d1d1d1; */
+    background: #E3E3E3;
+    border: 1px solid #D3D3D3;
+    border-radius: 3px 3px 3px 3px;
+    box-shadow: 1px 1px 0 #FAFAFA;
 }
 
 form .required {

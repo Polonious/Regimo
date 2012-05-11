@@ -18,14 +18,14 @@ import org.springframework.web.context.request.WebRequest;
 
 import au.com.regimo.core.domain.Dashlet;
 import au.com.regimo.core.domain.Document;
-import au.com.regimo.core.domain.TextTemplate;
+//import au.com.regimo.core.domain.TextTemplate;
 import au.com.regimo.core.domain.User;
 import au.com.regimo.core.domain.UserDashlet;
 import au.com.regimo.core.repository.UserDashletRepository;
 import au.com.regimo.core.service.DashletService;
 import au.com.regimo.core.service.DocumentService;
 import au.com.regimo.core.service.EmailService;
-import au.com.regimo.core.service.TextTemplateService;
+//import au.com.regimo.core.service.TextTemplateService;
 import au.com.regimo.core.service.UserService;
 import au.com.regimo.core.utils.BeanUtilsExtend;
 import au.com.regimo.core.utils.SecurityUtils;
@@ -37,7 +37,7 @@ public class SignupController {
 
 	private UserService userService;
 	private DocumentService documentService;
-	@Inject private TextTemplateService textTemplateService;
+//	@Inject private TextTemplateService textTemplateService;
 	@Inject private EmailService emailService;
 	
 	/**
@@ -63,14 +63,14 @@ public class SignupController {
 		userService.signup(user);
 		SecurityUtils.setAuthentcation(user, form.getPassword());
 		//send a signup confirmation email to the new user
-		TextTemplate textTemplate = textTemplateService.findOne(1L);
+//		TextTemplate textTemplate = textTemplateService.findOne(1L);
 		ModelMap map = new ModelMap();
 		map.addAttribute("user", user);
 		
-		String emailBody = TextGenerator.generateText(textTemplate.getContent(), map);
-		System.out.println("email body" + emailBody);
-		emailService.sendEmail("admin@poloniouslive.com", "will@mail.poloniouslive.com", "Regimo registration confirmation ", 
-				null, emailBody, null, null);
+//		String emailBody = TextGenerator.generateText(textTemplate.getContent(), map);
+//		System.out.println("email body" + emailBody);
+//		emailService.sendEmail("admin@poloniouslive.com", "will@mail.poloniouslive.com", "Regimo registration confirmation ", 
+//				null, emailBody, null, null);
 		return "redirect:/";
 	}
 	

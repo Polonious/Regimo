@@ -10,7 +10,7 @@ public class UserEditForm {
 
 	private Long id;
 	
-	@NotEmpty
+//	@NotEmpty
 	private String username;
 	
 	private String firstName;
