@@ -25,9 +25,17 @@ div.warning {
 }
 
 div.error {
-	color: #D8000C;
-	background-color: #FFBABA;
-	background-image: url('error.png');
+    background-color: #FFDFDF;
+    background-image: url("error.png");
+    border-color: #b90707;
+    color: #474747;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+div.error a {
+	font-size:1em;
+	color: #B90707;
 }
 
 span.success {
@@ -35,5 +43,7 @@ span.success {
 }
 
 span.error {
-	color: #D8000C;
+	color: #b90707;
+	text-shadow: none;
+	font-weight: bold;
 }
