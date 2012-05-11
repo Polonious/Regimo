@@ -5,16 +5,16 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.google.common.collect.Lists;
-
 import au.com.regimo.core.domain.User;
+import au.com.regimo.core.repository.UserRepository;
 import au.com.regimo.core.service.GenericService;
 import au.com.regimo.core.service.UserService;
 import au.com.regimo.core.utils.BeanUtilsExtend;
@@ -23,10 +23,14 @@ import au.com.regimo.web.form.UserEditForm;
 import au.com.regimo.web.form.UserListForm;
 import au.com.regimo.web.form.UserNewForm;
 
+import com.google.common.collect.Lists;
+
 @Controller
 @RequestMapping(value="/user")
 public class UserController extends GenericEntityController<User> {
 
+	@Autowired
+	private UserRepository userRepository;
 	private UserService entityService;
 	
 	@Override
@@ -60,6 +64,17 @@ public class UserController extends GenericEntityController<User> {
 		return "redirect:/user/view/"+form.getId();
 	}
 
+	@Transactional
+	@RequestMapping(value = "/resetForgottenPwd", method = RequestMethod.POST)
+	public String resetForgottenPwd(@ModelAttribute UserListForm form) {
+	
+		User user = userRepository.findByUsername(form.getUsername());
+		if(user != null){
+			entityService.resetPassword(user);
+		}
+		return "redirect:view/"+user.getId();
+	}
+	
 	@Inject
 	public void setUserService(UserService entityService) {
 		this.entityService = entityService;
