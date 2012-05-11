@@ -172,10 +172,11 @@ form .formBody td input {
 }
 
 .profile-value {
-	background-color:#d1d1d1;
-	border-radius:3px;
-	border: none;
-	box-shadow: none;
+	/* background-color:#d1d1d1; */
+    background: #E3E3E3;
+    border: 1px solid #D3D3D3;
+    border-radius: 3px 3px 3px 3px;
+    box-shadow: 1px 1px 0 #FAFAFA;
 }
 
 form .required {
