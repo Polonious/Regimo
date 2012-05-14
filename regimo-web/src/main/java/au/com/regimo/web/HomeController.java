@@ -19,6 +19,7 @@ import au.com.regimo.core.repository.DashboardRepository;
 import au.com.regimo.core.service.UserService;
 import au.com.regimo.core.utils.SecurityUtils;
 import au.com.regimo.web.form.UserEditForm;
+import au.com.regimo.web.form.UserProfileEditForm;
 import au.com.regimo.web.form.UserListForm;
 
 /**
@@ -80,7 +81,7 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/userUpdateCommit", method = RequestMethod.POST)
-	public String updateUser(@Valid @ModelAttribute UserEditForm form,  ModelMap map) {
+	public String updateUser(@Valid @ModelAttribute UserProfileEditForm form,  ModelMap map) {
 		User user = userService.findOne(SecurityUtils.getCurrentUserId());
 		user.setFirstName(form.getFirstName());
 		user.setLastName(form.getLastName());

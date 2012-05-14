@@ -5,7 +5,7 @@
 
 	
 	<s:url var="actionUrl" value="/userUpdateCommit"/>
-<form:form action="${actionUrl}" modelAttribute="UserEditForm" method="post">
+<form:form action="${actionUrl}" modelAttribute="UserProfileEditForm" method="post">
 	<div class="formInfo">
   		<h2>Edit user</h2>
   	</div>
@@ -14,7 +14,7 @@
   			<tr>
 				<td>User Name</td>
 				<td>
-					<input class="profile-value" value="${user.username}" readonly="readonly" />				
+					<input class="profile-value" value="${user.username}" readonly="readonly" />			
 				</td>
 			</tr>
 			<tr>
