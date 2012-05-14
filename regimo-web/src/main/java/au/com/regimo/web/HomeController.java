@@ -38,8 +38,15 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(ModelMap map, Principal user) {
 		logger.info("Welcome home! ");
+	
 		if(user!=null){
-			return "redirect:/profile/view";
+			User currentUser = SecurityUtils.getCurrentUser();
+			if(currentUser.hasRole("Admin")){
+				return "redirect:/adminHome";
+			}
+			else{
+				return "redirect:/profile/view";
+			}
 		}
 		return "redirect:/home";
 	}
@@ -60,11 +67,18 @@ public class HomeController {
 		map.addAttribute("menu", menu);
 	}
 	
-	@RequestMapping(value="/profile/view", method=RequestMethod.GET)
-	public void profile(ModelMap map) {
+	@RequestMapping(value="/adminHome", method=RequestMethod.GET)
+	public String adminHome(ModelMap map) {
 		Dashboard menu = dashboardRepository.findByViewName("HomeMenu");
 		map.addAttribute("menu", menu);
-		map.addAttribute("user", SecurityUtils.getCurrentUser());
+		return "";
+	}
+	
+	@RequestMapping(value="/profile/view", method=RequestMethod.GET)
+	public void profile(ModelMap map) {
+		map.addAttribute("user",  SecurityUtils.getCurrentUser());
+		Dashboard 	menu = dashboardRepository.findByViewName("HomeMenu");	
+		map.addAttribute("menu", menu);
 	}
 	
 	@RequestMapping(value="/profile/edit", method=RequestMethod.GET)
