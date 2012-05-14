@@ -36,19 +36,16 @@
           </div> -->
           <div class="carousel-images">
             <a href="/wp/post/open-source-is-the-answer">
-            	<img border="0" width="460" height="290" src="<c:url value="/resources/images/carousel_image1.png" />" alt="Open Source is the Answer" />
+            	<img border="0" width="460" height="290" src="<c:url value="/resources/images/carousel_image1_5-14.png" />" alt="Open Source is the Answer" />
             </a>
             <a href="/wp/post/single-point-risk">
-            	<img border="0" width="460" height="290" src="<c:url value="/resources/images/carousel_image2.png" />" alt="Single Point Risk" />
+            	<img border="0" width="460" height="290" src="<c:url value="/resources/images/carousel_image2_5-14.png" />" alt="Single Point Risk" />
             </a>
             <a href="/wp/post/now">
-            	<img border="0" width="460" height="290" src="<c:url value="/resources/images/carousel_image3.png" />" alt="Now" />
-            </a>
-            <a href="/wp/post/start-up">
-            	<img border="0" width="460" height="290" src="<c:url value="/resources/images/carousel_image4.png" />" alt="Start Up" />
+            	<img border="0" width="460" height="290" src="<c:url value="/resources/images/carousel_image3_5-14.png" />" alt="Now" />
             </a>
             <a href="/wp/post/regimo">
-            	<img border="0" width="460" height="290" src="<c:url value="/resources/images/carousel_image5.png" />" alt="Regimo" />
+            	<img border="0" width="460" height="290" src="<c:url value="/resources/images/carousel_image5_5-14.png" />" alt="Regimo" />
             </a>
           </div>
         </div>    		
