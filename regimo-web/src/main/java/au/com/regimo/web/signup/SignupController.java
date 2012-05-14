@@ -37,7 +37,6 @@ public class SignupController {
 
 	private UserService userService;
 	private DocumentService documentService;
-//	@Inject private TextTemplateService textTemplateService;
 	@Inject private EmailService emailService;
 	
 	/**
@@ -62,15 +61,9 @@ public class SignupController {
 		BeanUtilsExtend.copyPropertiesWithoutNull(form, user, "image");
 		userService.signup(user);
 		SecurityUtils.setAuthentcation(user, form.getPassword());
-		//send a signup confirmation email to the new user
-//		TextTemplate textTemplate = textTemplateService.findOne(1L);
 		ModelMap map = new ModelMap();
 		map.addAttribute("user", user);
 		
-//		String emailBody = TextGenerator.generateText(textTemplate.getContent(), map);
-//		System.out.println("email body" + emailBody);
-//		emailService.sendEmail("admin@poloniouslive.com", "will@mail.poloniouslive.com", "Regimo registration confirmation ", 
-//				null, emailBody, null, null);
 		return "redirect:/";
 	}
 	
