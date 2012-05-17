@@ -41,5 +41,10 @@ public class WpTermRepositoryImpl implements WpTermRepository {
 	public List<WpTerm> findByTaxonomyCategory() {
 		return findByTaxonomy(WpTermTaxonomy.AXONOMY_CATEGORY);
 	}
-
+	
+	public String getNameBySlug(String slug) {
+		return jdbcTemplate.queryForObject("select * from wp_terms where slug = ?",
+				new Object[]{slug}, mapper).getName();
+		
+	}
 }
