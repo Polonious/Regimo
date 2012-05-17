@@ -18,11 +18,10 @@
             <div class="carousel-next"><a href="#">&gt; next</a></div>
           </div> -->
           <div class="carousel-images">
-            <a href="/wp/post/open-source-is-the-answer"><img src="<c:url value="/resources/images/carousel_image1_m.png" />" alt="Open Source is the Answer" /></a>
-            <a href="/wp/post/single-point-risk"><img src="<c:url value="/resources/images/carousel_image2_m.png" />" alt="Single Point Risk" /></a>
-            <a href="/wp/post/now"><img src="<c:url value="/resources/images/carousel_image3_m.png" />" alt="Now" /></a>
-            <a href="/wp/post/start-up"><img src="<c:url value="/resources/images/carousel_image4_m.png" />" alt="Start Up" /></a>
-            <a href="/wp/post/regimo"><img src="<c:url value="/resources/images/carousel_image5_m.png" />" alt="Regimo" /></a>
+            <a href="/wp/post/open-source-is-the-answer"><img src="<c:url value="/resources/images/carousel_image1_m_5-14.png" />" alt="Open Source is the Answer" /></a>
+            <a href="/wp/post/single-point-risk"><img src="<c:url value="/resources/images/carousel_image2_m_5-14.png" />" alt="Single Point Risk" /></a>
+            <a href="/wp/post/now"><img src="<c:url value="/resources/images/carousel_image3_m_5-14.png" />" alt="Now" /></a>
+            <a href="/wp/post/regimo"><img src="<c:url value="/resources/images/carousel_image5_m_5-14.png" />" alt="Regimo" /></a>
           </div>
         </div>    		
 	</div>

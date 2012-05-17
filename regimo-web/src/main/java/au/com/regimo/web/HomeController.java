@@ -18,6 +18,7 @@ import au.com.regimo.core.domain.User;
 import au.com.regimo.core.repository.DashboardRepository;
 import au.com.regimo.core.service.UserService;
 import au.com.regimo.core.utils.SecurityUtils;
+import au.com.regimo.server.wordpress.repository.WpPostRepository;
 import au.com.regimo.web.form.UserEditForm;
 import au.com.regimo.web.form.UserProfileEditForm;
 import au.com.regimo.web.form.UserListForm;
@@ -32,6 +33,7 @@ public class HomeController {
 	
 	@Inject private UserService userService;
 	private DashboardRepository dashboardRepository;
+	private WpPostRepository wpPostRepository;
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -76,14 +78,21 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/contact-us", method=RequestMethod.GET)
-	public void contactUs(ModelMap map) {
+	public String contactUs(ModelMap map) {
 		Dashboard menu = dashboardRepository.findByViewName("HomeMenu");
+		map.addAttribute("post", wpPostRepository.findByPostName("contact-us"));
 		map.addAttribute("menu", menu);
+		return "post";
 	}
 
 	@Inject
 	public void setDashboardRepository(DashboardRepository dashboardRepository) {
 		this.dashboardRepository = dashboardRepository;
+	}
+	
+	@Inject
+	public void setWpPostRepository(WpPostRepository wpPostRepository) {
+		this.wpPostRepository = wpPostRepository;
 	}
 	
 	@RequestMapping(value = "/userUpdateCommit", method = RequestMethod.POST)
