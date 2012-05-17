@@ -74,6 +74,12 @@ public class HomeController {
 		map.addAttribute("menu", menu);
 		map.addAttribute("user", SecurityUtils.getCurrentUser());
 	}
+	
+	@RequestMapping(value="/contact-us", method=RequestMethod.GET)
+	public void contactUs(ModelMap map) {
+		Dashboard menu = dashboardRepository.findByViewName("HomeMenu");
+		map.addAttribute("menu", menu);
+	}
 
 	@Inject
 	public void setDashboardRepository(DashboardRepository dashboardRepository) {
