@@ -8,6 +8,6 @@ public interface WpTermRepository {
 
 	List<WpTerm> findByTaxonomy(String taxonomy);
 	List<WpTerm> findByTaxonomyCategory();
-	
+	String getNameBySlug(String slug);
 	
 }

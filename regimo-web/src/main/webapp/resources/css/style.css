@@ -175,7 +175,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#828282', end
 	padding-top:20px;
 }
 
-#content-box,#page-content {
+#content-box, #page-content {
 	width:950px;
 	height: 350px;
 	margin:0 auto;
@@ -213,6 +213,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 	margin: 15px auto;
 	
 	padding: 25px 30px 30px;
+	
+	width: 890px;
 }
 
 #page-content h2 {
