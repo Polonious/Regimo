@@ -51,7 +51,7 @@ a:hover {
 	text-decoration: underline;
 }
 
-a, a:visited {
+a, a:visited, .user-name {
 	color:#464646;
 	font-size:1.5em;
 	text-decoration: none;

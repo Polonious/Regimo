@@ -13,7 +13,7 @@
 	float: left;
 }
 
-#nav li a {
+#nav li a, #nav #register, .user-name {
 	line-height:40px;
 	display: block;
 	padding: 0px 15px;
