@@ -60,3 +60,9 @@ li {
 #nav ul {
 	padding: 5px;
 }
+
+img.mobile {
+	display: block;
+    margin-left: auto;
+    margin-right: auto
+}
