@@ -25,6 +25,7 @@
 	<div id="content" data-role="content">
 		<tiles:insertAttribute name="content" />
 	</div>
+	
 	<sec:authorize access="isAuthenticated()">
 	<div id="nav">
 		<ul>
@@ -32,7 +33,7 @@
 		</ul>
 	</div>
 	</sec:authorize>
-	<div id="footer" data-role="footer">
+	<div id="footer">
 		<tiles:insertAttribute name="footer" />	
 	</div>
 </body>

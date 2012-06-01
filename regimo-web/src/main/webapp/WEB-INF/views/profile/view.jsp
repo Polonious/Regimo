@@ -34,11 +34,17 @@
 					<input class="profile-value" value="${user.lastName}" readonly="readonly" />
 				</td>
 			</tr>
+			<tr>
+				<td>Profile Image</td>
+				<td>					
+					<input class="profile-value" value="${user.image}" readonly="readonly" />
+				</td>
+			</tr>
 
 	
 		</table>
 
 	<s:url var="updateUrl" value="/profile/edit"></s:url>
-	<p><button type="button" onclick="location.href='edit'">Edit</button><button class="button-cancel" type="button" onclick="location.href='../home'">Ok</button></p>
+	<p><button type="button" onclick="location.href='../profile/edit'">Edit</button><button class="button-cancel" type="button" onclick="location.href='../home'">Ok</button></p>
 	</div>
 </form>
