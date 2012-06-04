@@ -34,12 +34,6 @@
 					<input class="profile-value" value="${user.lastName}" readonly="readonly" />
 				</td>
 			</tr>
-			<tr>
-				<td>Profile Image</td>
-				<td>					
-					<input class="profile-value" value="${user.image}" readonly="readonly" />
-				</td>
-			</tr>
 
 	
 		</table>
