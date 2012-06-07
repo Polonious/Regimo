@@ -13,7 +13,7 @@
 	float: left;
 }
 
-#nav li a {
+#nav li a, #nav #register, .welcome {
 	line-height:40px;
 	display: block;
 	padding: 0px 15px;
@@ -23,6 +23,19 @@
 	text-shadow: 0 0 2px #222222;
 }
 
+#nav #register a {
+	font-size: 15px;
+	padding: 0;
+	display: inline;
+}
+
+#nav #register a:hover {
+	text-decoration: underline;
+}
+
+#nav #register {
+	padding: 0;
+}
 
 /* apply some styles to the subnavigation section */
 #nav li ul {
