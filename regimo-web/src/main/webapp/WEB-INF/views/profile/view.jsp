@@ -39,6 +39,6 @@
 		</table>
 
 	<s:url var="updateUrl" value="/profile/edit"></s:url>
-	<p><button type="button" onclick="location.href='edit'">Edit</button><button class="button-cancel" type="button" onclick="location.href='../home'">Ok</button></p>
+	<p><button type="button" onclick="location.href='../profile/edit'">Edit</button><button class="button-cancel" type="button" onclick="location.href='../home'">Ok</button></p>
 	</div>
 </form>
