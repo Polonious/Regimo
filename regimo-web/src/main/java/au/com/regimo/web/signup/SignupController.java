@@ -17,12 +17,14 @@ import org.springframework.web.context.request.WebRequest;
 
 import au.com.regimo.core.domain.Document;
 import au.com.regimo.core.domain.User;
+
 import au.com.regimo.core.service.DocumentService;
 import au.com.regimo.core.service.UserService;
 import au.com.regimo.core.utils.BeanUtilsExtend;
 import au.com.regimo.core.utils.SecurityUtils;
-import au.com.regimo.web.form.UserNewForm;
+
 import au.com.regimo.server.service.MessageService;
+import au.com.regimo.web.form.UserNewForm;
 
 @Controller
 public class SignupController {

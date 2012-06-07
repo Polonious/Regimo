@@ -20,7 +20,7 @@
 		<intercept-url pattern="/dashboard/**" access="permitAll" />
 		<intercept-url pattern="/wp/**" access="permitAll" />
 		<intercept-url pattern="/wp.*" access="permitAll" />
-		<!--intercept-url pattern="/**" access="isAuthenticated()" /-->
+		<intercept-url pattern="/**" access="isAuthenticated()" />
 		<form-login login-page="/signin" login-processing-url="/signin/authenticate" 
 			authentication-failure-url="/signin?error=1" 
 			authentication-success-handler-ref="signinSuccessHandler"/>

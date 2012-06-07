@@ -27,6 +27,7 @@
 	<import resource="data-access-config.xml" />
 	<import resource="security-config.xml" />
 	<import resource="data-access-wordpress-config.xml" />
+	<import resource="mvc-dispatcher-servlet.xml" />
 	
 	<aop:aspectj-autoproxy/>
 	<task:annotation-driven />
