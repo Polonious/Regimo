@@ -1,0 +1,160 @@
+@import url("../messages/messages.css");
+@import url("form.css");
+
+a img, frameset, fieldset { 
+	border: 0;
+}
+
+body {
+	margin: 0px;
+	margin-bottom: 10px;
+	font-family: "lucida grande", lucida, tahoma, helvetica, arial, sans-serif !important;
+	font-size: 1em;
+	color: #666666;
+	background: url("../background-body.png") repeat-x scroll 0 0 #EEEEEE;
+}
+
+#header {
+	height:36px;
+	
+background: #61b8cc; /* Old browsers */
+background: -moz-linear-gradient(top, #61b8cc 0%, #2c99ba 68%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#61b8cc), color-stop(68%,#2c99ba)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, #61b8cc 0%,#2c99ba 68%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, #61b8cc 0%,#2c99ba 68%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, #61b8cc 0%,#2c99ba 68%); /* IE10+ */
+background: linear-gradient(top, #61b8cc 0%,#2c99ba 68%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#61b8cc', endColorstr='#2c99ba',GradientType=0 ); /* IE6-9 */
+
+	border-bottom:1px solid #1C5977;
+	padding:7px 7px;
+}
+
+.box {
+	height:36px;
+}
+
+#content {
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+#footer {
+	font-size: 0.625em;
+	font-weight: normal;
+	text-align: center;
+	padding-top:5px;
+	height: 25px;
+	border-top: 1px solid #424242;
+	color:white;
+	text-shadow: 0 1px 0 #424242;
+	
+background: #6b6b6b; /* Old browsers */
+background: -moz-linear-gradient(top, #6b6b6b 0%, #424242 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#6b6b6b), color-stop(100%,#424242)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, #6b6b6b 0%,#424242 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, #6b6b6b 0%,#424242 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, #6b6b6b 0%,#424242 100%); /* IE10+ */
+background: linear-gradient(top, #6b6b6b 0%,#424242 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6b6b6b', endColorstr='#424242',GradientType=0 ); /* IE6-9 */
+}
+
+h2 {
+	font-size: 1.075em; 
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	color: #424242 !important;
+}
+
+h4 strong{
+	color: #424242;
+}
+
+ul {
+	padding: 0px;
+}
+
+li {
+	list-style-type: none;
+	margin-bottom: 2px;
+}
+
+#nav ul {
+	padding: 5px;
+}
+
+img.mobile {
+	width:280px;
+	height:177px;
+	display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.header-signin, .header-signup {
+	display:inline;
+	padding: 5px;
+	float:right;
+	color: white;
+	border: 1px solid #1C5977;
+	box-shadow: 0 1px #7ABDCC, 0 0 2px #046487 inset;
+	height:24px;
+	
+background: #0aa7ce; /* Old browsers */
+background: -moz-linear-gradient(top, #0aa7ce 0%, #047ca0 85%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#0aa7ce), color-stop(85%,#047ca0)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, #0aa7ce 0%,#047ca0 85%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, #0aa7ce 0%,#047ca0 85%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, #0aa7ce 0%,#047ca0 85%); /* IE10+ */
+background: linear-gradient(top, #0aa7ce 0%,#047ca0 85%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0aa7ce', endColorstr='#047ca0',GradientType=0 ); /* IE6-9 */
+}
+
+a {
+	text-decoration: none;
+}
+
+.header-signin span, .header-signup span {
+	font-weight: normal;
+	text-shadow: 0px -1px #046487;
+	text-decoration: none;
+	text-align: center;
+	vertical-align: center;
+}
+
+.header-signup{
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	float:right;
+	border-right:none;
+}
+
+.header-signin {
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+.box img{
+	display:inline;
+}
+
+.content-column li {
+	background:url(../images/link_bullet.png) 3px 6px no-repeat;
+	list-style-type: none;
+	line-height: 1.3em;
+	margin: 0;
+	padding: 0 0 9px 12px;
+	/* vertical-align: top; */
+}
+
+.content-column a {
+	color:#464646;
+	text-decoration: none;
+}
+
+.content-column h4{
+	font-weight:normal;
+}

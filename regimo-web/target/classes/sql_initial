@@ -1,0 +1,5 @@
+insert into menu (id, label, name) values (nextval('seq_menu'), 'Admin Menu', 'ADMIN');
+insert into rolemenu (menuid, roleid) values (1,1);
+insert into menuitem (id, menuid, name, text, hyperlink) values (nextval('seq_menu'), 1, 'User management','User management', 'user/browse');
+insert into menuitem (id, menuid, name, text, hyperlink) values (nextval('seq_menu'), 1, 'dashlet management','dashlet management', 'dashlet/browse');
+insert into userrole (userid, roleid) values (1, 1);
