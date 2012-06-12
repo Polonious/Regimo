@@ -28,6 +28,7 @@ public class WordpressController {
 	public String getPostsByCategory(@PathVariable("slug") String slug, ModelMap map) {
 		map.addAttribute("menu", dashboardRepository.findByViewName("HomeMenu"));
 		map.addAttribute("posts", wpPostRepository.findBySlug(slug));
+		map.addAttribute("name",wpTermRepository.getNameBySlug(slug));
 		return "posts";
 	}
 

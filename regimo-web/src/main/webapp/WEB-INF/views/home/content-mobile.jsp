@@ -18,11 +18,10 @@
             <div class="carousel-next"><a href="#">&gt; next</a></div>
           </div> -->
           <div class="carousel-images">
-            <a href="/wp/post/open-source-is-the-answer"><img src="<c:url value="/resources/images/carousel_image1_m.png" />" alt="Open Source is the Answer" /></a>
-            <a href="/wp/post/single-point-risk"><img src="<c:url value="/resources/images/carousel_image2_m.png" />" alt="Single Point Risk" /></a>
-            <a href="/wp/post/now"><img src="<c:url value="/resources/images/carousel_image3_m.png" />" alt="Now" /></a>
-            <a href="/wp/post/start-up"><img src="<c:url value="/resources/images/carousel_image4_m.png" />" alt="Start Up" /></a>
-            <a href="/wp/post/regimo"><img src="<c:url value="/resources/images/carousel_image5_m.png" />" alt="Regimo" /></a>
+            <a href="/wp/post/open-source-is-the-answer"><img class="mobile" src="<c:url value="/resources/images/carousel_image1_5-14.png" />" alt="Open Source is the Answer" /></a>
+            <a href="/wp/post/single-point-risk"><img class="mobile" src="<c:url value="/resources/images/carousel_image2_5-14.png" />" alt="Single Point Risk" /></a>
+            <a href="/wp/post/now"><img class="mobile" src="<c:url value="/resources/images/carousel_image3_5-14.png" />" alt="Now" /></a>
+            <a href="/wp/post/regimo"><img class="mobile" src="<c:url value="/resources/images/carousel_image5_5-14.png" />" alt="Regimo" /></a>
           </div>
         </div>    		
 	</div>
@@ -33,7 +32,10 @@
     	<div id="content-box">
 
 			<c:forEach var="userDashlet" items="${content.userDashlets}">
-				<div><h3 id="title${rowCounter.count}">${userDashlet.dashlet.title}</h3></div>
+				<div>
+				<c:if test="${userDashlet.dashlet.title!='About us'}"><a href="/wp/category/${userDashlet.dashlet.parameter}"></c:if>
+				<c:if test="${userDashlet.dashlet.title=='About us'}"><a href="/wp/post/${userDashlet.dashlet.parameter}"></c:if>
+				<h3 id="title${rowCounter.count}">${userDashlet.dashlet.title}</h3></a></div>
 				<div class="content-column" id="dashlet_content_${userDashlet.id}"></div>
 					<script type="text/javascript">
 				        $(document).ready(function() { $('#dashlet_content_${userDashlet.id}').load('dashboard/${userDashlet.id}'); });
@@ -41,4 +43,5 @@
 			</c:forEach>
             
 		</div>  
-	</div> 
+	</div>
+	<div class="push"></div>

@@ -32,7 +32,6 @@ public class SignupController {
 	private UserService userService;
 	private DocumentService documentService;
 	@Inject MessageService messageService;
-
 	
 	/**
 	 * Render a signup form to the person as HTML in their web browser.

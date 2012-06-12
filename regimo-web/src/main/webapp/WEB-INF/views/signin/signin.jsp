@@ -1,6 +1,9 @@
 <%@ page session="false" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+
+
 <script type="text/javascript">
 	function toggleForgetPwd(){
 		
@@ -35,13 +38,17 @@
   		</div>
  	 	</c:if>
 	</div>
-	<fieldset>
+	
+	<div class="formBody">
+		<h3><spring:message code="label.welcome"/></h3>
+		${pageContext.response.locale}
+		
 		<label for="login">Username or Email</label>
 		<input id="login" name="j_username" type="text" size="25" autocorrect="off" autocapitalize="off" <c:if test="${not empty signinErrorMessage}">value="${SPRING_SECURITY_LAST_USERNAME}"</c:if> />
 		<label for="password">Password</label>
 		<input id="password" name="j_password" type="password" size="25" />	
-	</fieldset>
-	<p><button type="submit">Sign In</button> <a href="javascript:toggleForgetPwd();">Forget password?</a></p>
+		<p><button type="submit">Sign In</button> <a href="javascript:toggleForgetPwd();">Forget password?</a></p>
+	</div>
 </form>
 
 <form id="resetPwd" action="<c:url value="/user/resetForgottenPwd" />" modelAttribute="entity" method="post">
