@@ -1,0 +1,11 @@
+<project default="copy-resources">
+  <target name="init"/>
+  <target name="copy-resources" depends="init">
+    <copy todir="target/classes/appConfig/default" filtering="false">
+      <fileset dir="src/main/filter/default" includes="" excludes="**/*.java"/>
+    </copy>
+    <copy todir="target/classes/appConfig/profile" filtering="false">
+      <fileset dir="src/main/filter/dev" includes="" excludes="**/*.java"/>
+    </copy>
+  </target>
+</project>
