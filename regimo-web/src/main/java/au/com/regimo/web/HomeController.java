@@ -45,7 +45,6 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(ModelMap map, Principal user) {
-		logger.info("Welcome home!1 ");
 	
 		if(user!=null){
 			User currentUser =SecurityUtils.getCurrentUser();
