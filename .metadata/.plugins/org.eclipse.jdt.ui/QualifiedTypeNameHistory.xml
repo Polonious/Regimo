@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper"/>
+<fullyQualifiedTypeName name="au.com.regimo.core.repository.AuditLogRepository"/>
+<fullyQualifiedTypeName name="org.springframework.mock.web.MockHttpServletRequest"/>
+<fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
+<fullyQualifiedTypeName name="au.com.regimo.core.service.DocumentService"/>
+<fullyQualifiedTypeName name="au.com.regimo.web.form.UserNewForm"/>
+<fullyQualifiedTypeName name="au.com.regimo.core.domain.Role"/>
+<fullyQualifiedTypeName name="au.com.regimo.core.domain.Menu"/>
+<fullyQualifiedTypeName name="java.util.Collection"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+</qualifiedTypeNameHistroy>

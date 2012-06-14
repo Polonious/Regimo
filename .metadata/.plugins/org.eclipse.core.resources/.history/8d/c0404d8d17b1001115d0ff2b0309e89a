@@ -1,0 +1,12 @@
+welcome.springmvc=Happy learning Spring MVC
+label.firstname=Vorname
+label.lastname=Familiename
+label.email=Email
+label.telephone=Telefon
+label.addcontact=Addieren Kontakt 
+
+label.title=Kontakt Manager
+label.menu=Men&#252;
+
+
+label.footer=&copy; ViralPatel.net
