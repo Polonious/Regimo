@@ -14,12 +14,13 @@
 		<intercept-url pattern="${document.resources.path}**" access="permitAll" />
 		<intercept-url pattern="/signup" access="permitAll" />
 		<intercept-url pattern="/signin" access="permitAll" />
-		<intercept-url pattern="/profile" access="permitAll" />
+		<intercept-url pattern="/profile" access="isAuthenticated()" />
 		<intercept-url pattern="/rest/user" access="permitAll" />
 		<intercept-url pattern="/signin/*" access="permitAll" />
 		<intercept-url pattern="/dashboard/**" access="permitAll" />
 		<intercept-url pattern="/wp/**" access="permitAll" />
 		<intercept-url pattern="/wp.*" access="permitAll" />
+		<intercept-url pattern="/user/**" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/**" access="isAuthenticated()" />
 		<form-login login-page="/signin" login-processing-url="/signin/authenticate" 
 			authentication-failure-url="/signin?error=1" 
