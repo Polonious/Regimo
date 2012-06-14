@@ -1,7 +1,6 @@
 package au.com.regimo.web;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import au.com.regimo.core.domain.Dashboard;
 import au.com.regimo.core.domain.Menu;
+import au.com.regimo.core.domain.MenuItem;
 import au.com.regimo.core.domain.Role;
 import au.com.regimo.core.domain.UserDashlet;
 import au.com.regimo.core.repository.DashboardRepository;
@@ -25,8 +25,6 @@ import au.com.regimo.core.utils.TextGenerator;
 import au.com.regimo.server.wordpress.domain.WpTerm;
 import au.com.regimo.server.wordpress.repository.WpPostRepository;
 import au.com.regimo.server.wordpress.repository.WpTermRepository;
-
-import au.com.regimo.core.domain.MenuItem;
 
 @Controller
 @RequestMapping("/dashboard")
