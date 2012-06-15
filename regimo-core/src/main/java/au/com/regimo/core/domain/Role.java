@@ -22,6 +22,17 @@ public class Role extends IdEntity {
     @ManyToMany(mappedBy = "roles", targetEntity = Authority.class)  
     private Set<Authority> authorities;  
     
+    @ManyToMany(mappedBy = "roles", targetEntity = Menu.class)
+    private Set<Menu> menus;
+    
+	public Set<Menu> getMenus() {
+		return menus;
+	}
+
+	public void setMenus(Set<Menu> menus) {
+		this.menus = menus;
+	}
+
 	public Role(String name, String description) {
 		this();
 		this.name = name;

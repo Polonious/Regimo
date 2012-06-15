@@ -1,10 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <div id="browsePage">
-	<h2>User List</h2>
+	<h2><spring:message code="profile.browse.title"/></h2>
 
-	<a href='<s:url value="/user/new"/>'>New</a>
+	<a href='<s:url value="/user/new"/>'><spring:message code="button.new"/></a>
 	
 	<link rel="stylesheet" href="<c:url value="/resources/datatables/css/demo_page.css" />" type="text/css" />
 	<link rel="stylesheet" href="<c:url value="/resources/datatables/css/demo_table.css" />" type="text/css" />
@@ -38,11 +39,11 @@
 		<table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
 			<thead>
 				<tr>
-					<th width="20%">Username</th>
-					<th width="25%">First name</th>
-					<th width="25%">Last name</th>
-					<th width="15%">Email</th>
-					<th width="10%">Action</th>
+					<th width="20%"><spring:message code="profile.edit.username"/></th>
+					<th width="25%"><spring:message code="profile.edit.firstname"/></th>
+					<th width="25%"><spring:message code="profile.edit.lastname"/></th>
+					<th width="15%"><spring:message code="profile.edit.email"/></th>
+					<th width="10%"><spring:message code="button.action"/></th>
 				</tr>
 			</thead>
 			<tbody>

@@ -44,10 +44,10 @@ public class SigninSuccessHandler implements AuthenticationSuccessHandler {
 		target.onAuthenticationSuccess(request, response, authentication);
 	}
 
-/*	public void proceed(HttpServletRequest request,
+	public void proceed(HttpServletRequest request,
 			HttpServletResponse response, Authentication authentication)
 			throws IOException, ServletException {
 		target.onAuthenticationSuccess(request, response, authentication);
-	}*/
+	}
 
 }
