@@ -240,8 +240,8 @@
 		<profile>
 			<id>dev</id>
 			<properties>
-					<profile.name>dev</profile.name>
-					<profile.finalName>dev</profile.finalName>
+				<profile.name>dev</profile.name>
+				<profile.finalName>dev</profile.finalName>
 			</properties>
 			<activation>
 				<activeByDefault>true</activeByDefault>
@@ -265,8 +265,8 @@
 		<profile>
 			<id>live</id>
 			<properties>
-					<profile.name>live</profile.name>
-					<profile.finalName>regimo</profile.finalName>
+				<profile.name>live</profile.name>
+				<profile.finalName>ROOT</profile.finalName>
 			</properties>
 			<build>
 				<resources>
@@ -287,8 +287,8 @@
 		<profile>
 			<id>livestandby</id>
 			<properties>
-					<profile.name>livestandby</profile.name>
-					<profile.finalName>regimo-standby</profile.finalName>
+				<profile.name>livestandby</profile.name>
+				<profile.finalName>ROOT</profile.finalName>
 			</properties>
 			<build>
 				<resources>
@@ -309,8 +309,8 @@
 		<profile>
 			<id>demo</id>
 			<properties>
-					<profile.name>demo</profile.name>
-					<profile.finalName>demo</profile.finalName>
+				<profile.name>demo</profile.name>
+				<profile.finalName>ROOT</profile.finalName>
 			</properties>
 			<build>
 				<resources>
@@ -331,8 +331,8 @@
 		<profile>
 			<id>teststable</id>
 			<properties>
-					<profile.name>teststable</profile.name>
-					<profile.finalName>teststable</profile.finalName>
+				<profile.name>teststable</profile.name>
+				<profile.finalName>teststable</profile.finalName>
 			</properties>
 			<build>
 				<resources>
@@ -353,8 +353,8 @@
 		<profile>
 			<id>testhead</id>
 			<properties>
-					<profile.name>testhead</profile.name>
-					<profile.finalName>testhead</profile.finalName>
+				<profile.name>testhead</profile.name>
+				<profile.finalName>testhead</profile.finalName>
 			</properties>
 			<build>
 				<resources>
@@ -375,8 +375,8 @@
 		<profile>
 			<id>webtest</id>
 			<properties>
-					<profile.name>webtest</profile.name>
-					<profile.finalName>webtest</profile.finalName>
+				<profile.name>webtest</profile.name>
+				<profile.finalName>webtest</profile.finalName>
 			</properties>
 			<build>
 				<resources>
