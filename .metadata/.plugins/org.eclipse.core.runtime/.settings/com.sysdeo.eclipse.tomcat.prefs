@@ -1,8 +1,0 @@
-computeSourcePath=true
-configMode=serverFile
-contextsDir=/home/will/tomcat/conf/Catalina/localhost
-eclipse.preferences.version=1
-fixTomcatHomeBug=fixed
-tomcatConfigFile=/home/will/git/Regimo3/server.xml
-tomcatDir=/home/will/tomcat
-tomcatVersion=tomcatV6

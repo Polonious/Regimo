@@ -1,9 +1,0 @@
-welcome.springmvc=\u5feb\u4e50\u5b66\u4e60 Spring MVC
-label.firstname=First Name
-label.lastname=Last Name
-label.email=Email
-label.telephone=Telephone
-label.addcontact=\u8054\u7CFB\u65B9\u5F0F
-label.menu=Menu
-label.title=Contact Manager
-label.footer=&copy; ViralPatel.net

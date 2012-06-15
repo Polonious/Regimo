@@ -1,5 +1,0 @@
-//BranchProjectTracker__/home/will/git/Regimo3/.git_cd3671a3b9aaaf605a521459d5d8d12a4d022920=<?xml version\="1.0" encoding\="UTF-8"?>\n<projects branch\="cd3671a3b9aaaf605a521459d5d8d12a4d022920">\n<project>/regimo-core</project>\n<project>/regimo-server</project>\n<project>/regimo-web</project>\n</projects>
-//BranchProjectTracker__/home/will/git/Regimo3/.git_master=<?xml version\="1.0" encoding\="UTF-8"?>\n<projects branch\="master">\n<project>/regimo-core</project>\n<project>/regimo-server</project>\n<project>/regimo-web</project>\n</projects>
-commit_dialog_history_messages=<?xml version\="1.0" encoding\="UTF-8"?>\n<messages>\n<message>Merge remote-tracking branch &apos;Jessica/master&apos;&\#x0A;&\#x0A;Conflicts\:&\#x0A;&\#x09;regimo-web/src/main/java/au/com/regimo/web/HomeController.java&\#x0A;</message>\n<message>i18n</message>\n<message>admin menu</message>\n</messages>
-eclipse.preferences.version=1
-merge_mode=0
