@@ -1,0 +1,14 @@
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>au.com.regimo</groupId>
+	<artifactId>regimo</artifactId>
+	<packaging>pom</packaging>
+	<version>1.0.0</version>
+	<name>Regimo</name>
+	<url>http://polonious.github.com/Regimo</url>
+	<modules>
+		<module>regimo-core</module>
+		<module>regimo-server</module>
+		<module>regimo-web</module>
+	</modules>
+</project>
