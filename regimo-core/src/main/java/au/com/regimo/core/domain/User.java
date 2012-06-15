@@ -49,6 +49,17 @@ public class User extends IdEntity implements IRowStatusAllowed, IAuditable {
     @JoinTable(name = "UserRole", joinColumns = @JoinColumn(name = "userId"), inverseJoinColumns = @JoinColumn(name = "roleId"))
     private Set<Role> roles;
 
+    @ManyToMany(mappedBy = "roles", targetEntity = Menu.class)
+    private Set<Menu> menus;
+    
+	public Set<Menu> getMenus() {
+		return menus;
+	}
+
+	public void setMenus(Set<Menu> menus) {
+		this.menus = menus;
+	}
+
 	public String getUsername() {
 		return username;
 	}
@@ -113,4 +124,14 @@ public class User extends IdEntity implements IRowStatusAllowed, IAuditable {
 		this.image = image;
 	}
 	
+	public boolean hasRole(String requiredRoleName){
+		boolean roleExist=false;
+		for(Role role : roles){
+			if(requiredRoleName.equalsIgnoreCase(role.getName())){
+				roleExist=true;
+				break;
+			}
+		}
+		return roleExist;
+	}
 }
