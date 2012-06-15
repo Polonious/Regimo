@@ -5,13 +5,13 @@
 <s:url var="actionUrl" value="/user/edit"/>
 <form:form action="${actionUrl}" modelAttribute="entity" method="post">
 	<div class="formInfo">
-  		<h2>Edit user</h2>
+  		<h2><spring:message code="profile.edit.title"/></h2>
   		<s:bind path="*">
   		<c:if test="${status.error}">
-  		<div class="error">Unable to create. Please fix the errors below and resubmit.</div>
+  		<div class="error"><spring:message code="error.new"/></div>
   		</c:if>
   		</s:bind>
 	</div>
 	<jsp:include page="entry.jsp"/>
-	<p><button type="submit">Save</button></p>
+	<p><button type="submit"><spring:message code="button.save"/></button></p>
 </form:form>
