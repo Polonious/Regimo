@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+	<!-- Configure Spring Security -->
+	<http use-expressions="true">
+		<intercept-url pattern="/" access="permitAll" />
+		<intercept-url pattern="/favicon.ico" access="permitAll" />
+		<intercept-url pattern="/resources/**" access="permitAll" />
+		<intercept-url pattern="${document.resources.path}**" access="permitAll" />
+		<intercept-url pattern="/signup" access="permitAll" />
+		<intercept-url pattern="/signin" access="permitAll" />
+
+		<intercept-url pattern="/profile" access="isAuthenticated()" />
+		<intercept-url pattern="/rest/user" access="permitAll" />
+		<intercept-url pattern="/signin/*" access="permitAll" />
+		<intercept-url pattern="/dashboard/**" access="permitAll" />
+		<intercept-url pattern="/wp/**" access="permitAll" />
+		<intercept-url pattern="/wp.*" access="permitAll" />
+
+		<intercept-url pattern="/user/**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/**" access="isAuthenticated()" />
+		<form-login login-page="/signin" login-processing-url="/signin/authenticate" 
+			authentication-failure-url="/signin?error=1" 
+			authentication-success-handler-ref="signinSuccessHandler"/>
+		<logout logout-url="/signout" delete-cookies="JSESSIONID" 
+			success-handler-ref="signoutSuccessHandler"/>
+	</http>
+    
+	<authentication-manager>
+		<authentication-provider user-service-ref="userDetailsService">
+			<password-encoder ref="passwordEncoder" />
+		</authentication-provider>
+	</authentication-manager>	
+
+    <beans:bean id="passwordEncoder" class="org.springframework.security.crypto.password.StandardPasswordEncoder" c:secret="polonious"/>
+
+</beans:beans>

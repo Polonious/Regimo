@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<typeInfoHistroy>
+<typeInfo handle="=regimo-core/\/usr\/lib\/jvm\/java-1.6.0-openjdk-1.6.0.0.x86_64\/jre\/lib\/netx.jar&lt;net.sourceforge.jnlp.security(SecurityUtil.class[SecurityUtil" modifiers="33" timestamp="1319007478000"/>
+<typeInfo handle="=regimo-core/src\/main\/java&lt;au.com.regimo.core.utils{SecurityUtils.java[SecurityUtils" modifiers="17" timestamp="1338953532000"/>
+<typeInfo handle="=regimo-web/src\/main\/java&lt;au.com.regimo.web{SigninSuccessHandler.java[SigninSuccessHandler" modifiers="1" timestamp="1338874922000"/>
+<typeInfo handle="=regimo-core/src\/main\/java&lt;au.com.regimo.core.domain{User.java[User" modifiers="1" timestamp="1338947751000"/>
+<typeInfo handle="=regimo-core/src\/main\/java&lt;au.com.regimo.core.domain{Dashboard.java[Dashboard" modifiers="1" timestamp="1336955083000"/>
+<typeInfo handle="=regimo-web/src\/main\/java&lt;au.com.regimo.web{DashboardController.java[DashboardController" modifiers="1" timestamp="1339484825000"/>
+<typeInfo handle="=regimo-core/src\/main\/java&lt;au.com.regimo.core.domain{Menu.java[Menu" modifiers="1" timestamp="1337054993000"/>
+<typeInfo handle="=regimo-web/src\/main\/java&lt;au.com.regimo.web{HomeController.java[HomeController" modifiers="1" timestamp="1339484934000"/>
+</typeInfoHistroy>
