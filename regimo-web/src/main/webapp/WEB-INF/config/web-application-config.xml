@@ -28,22 +28,6 @@
 	<import resource="security-config.xml" />
 	<import resource="data-access-wordpress-config.xml" />
 	 
-	 <bean id="messageSource"
-		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-		<property name="basename" value="classpath:messages" />
-		<property name="defaultEncoding" value="UTF-8" />
-	</bean>
-	
-	
-	<bean id="localeResolver"
-    	class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
-    	<property name="defaultLocale" value="en"/>
-	</bean>
-	
-	<bean id="handlerMapping"
-    	class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
-	</bean>
-	
 	<aop:aspectj-autoproxy/>
 	<task:annotation-driven />
 	
