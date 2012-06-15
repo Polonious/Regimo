@@ -1,6 +1,8 @@
 <%@ page session="false" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+
 <script type="text/javascript">
 	function toggleForgetPwd(){
 		
@@ -27,7 +29,7 @@
 
 <form id="signin" action="<c:url value="/signin/authenticate" />" method="post">
 	<div class="formInfo">
-  		<h2>Sign In</h2>
+  		<h2><spring:message code="main.signin.signin"/></h2>
   		<c:if test="${not empty param['error']}">
   		<div class="error">
   			Your sign in information was incorrect.
@@ -37,21 +39,22 @@
 	</div>
 	
 	<div class="formBody">
-		<label for="login">Username or Email</label>
+<!-- 		${pageContext.response.locale} -->
+		<label for="login"><spring:message code="main.signin.username"/></label>
 		<input id="login" name="j_username" type="text" size="25" autocorrect="off" autocapitalize="off" <c:if test="${not empty signinErrorMessage}">value="${SPRING_SECURITY_LAST_USERNAME}"</c:if> />
-		<label for="password">Password</label>
+		<label for="password"><spring:message code="main.signin.password"/></label>
 		<input id="password" name="j_password" type="password" size="25" />	
-		<p><button type="submit">Sign In</button> <a href="javascript:toggleForgetPwd();">Forget password?</a></p>
+		<p><button type="submit"><spring:message code="main.signin.signin"/></button> <a href="javascript:toggleForgetPwd();"><spring:message code="main.forgotPassword.text"/>?</a></p>
 	</div>
 </form>
 
 <form id="resetPwd" action="<c:url value="/user/resetForgottenPwd" />" modelAttribute="entity" method="post">
-<div  id="forgetPwd" title="A new password will be sent to:" style=" width:500px; display:none">
+<div  id="forgetPwd" style=" width:500px; display:none">
 		<table> 
-			<tr><td>Your username	   </td>  <td><input type="text" id="username" 	name="username" /></td></tr>
+			<tr><td><spring:message code="main.forgotPassword.yourUsername"/> </td>  <td><input type="text" id="username" 	name="username" /></td></tr>
 	    </table>
    		<div align="center">
-   			<button type="submit">OK</button>
+   			<button type="submit"><spring:message code="main.forgotPassword.OK"/></button>
    		</div>
 </div>
 </form>
