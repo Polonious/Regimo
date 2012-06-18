@@ -38,6 +38,10 @@ public class UserService extends GenericService<User, Long>{
 		emailService.sendEmail(emailFrom, user.getEmail(), "You have forgot your password, you reset the password  ", 
 				null, ", now reset to new password:" + tmpPwd + "\n Please change it ASAP", null, null);
 	}
+	
+	public User findByUsername(String username){
+		return repository.findByUsername(username);
+	}
 
 	protected GenericRepository<User, Long> getRepository() {
 		return repository;
