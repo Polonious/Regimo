@@ -53,16 +53,11 @@ public class HomeController {
 	
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home1(ModelMap map) {
-		logger.info("Welcome home!2 ");
-		User currentUser =SecurityUtils.getCurrentUser();
-		if(currentUser!=null && currentUser.hasRole("admin")){
-			System.out.println("current user is admin");
-			return "redirect:/manage/main";
-		}
-		else{
-			return "redirect:/profile/view";
-		}
-		
+		Dashboard menu = dashboardRepository.findByViewName("HomeMenu");
+		map.addAttribute("menu", menu);
+		Dashboard content = dashboardRepository.findByViewName("HomeContent");
+		map.addAttribute("content", content);
+		return "home";
 	}
 	
 	@RequestMapping(value="/signin", method=RequestMethod.GET)
