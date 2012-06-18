@@ -28,7 +28,7 @@ public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
-	@Inject private UserService userService;
+	private UserService userService;
 	private DashboardRepository dashboardRepository;
 
 	
@@ -93,6 +93,11 @@ public class HomeController {
 		this.dashboardRepository = dashboardRepository;
 	}
 	
+	@Inject
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
+
 	@RequestMapping(value = "/userUpdateCommit", method = RequestMethod.POST)
 	public String updateUser(@Valid @ModelAttribute UserEditForm form,  ModelMap map) {
 		User user = userService.findOne(SecurityUtils.getCurrentUserId());
