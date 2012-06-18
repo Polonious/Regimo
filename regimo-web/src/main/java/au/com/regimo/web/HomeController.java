@@ -38,8 +38,7 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(ModelMap map, Principal user) {
 		if(user!=null){
-			User currentUser =SecurityUtils.getCurrentUser();
-			if(currentUser.hasRole("admin")){
+			if(SecurityUtils.isUserInRole("ADMIN")){
 				return "redirect:/manage/main";
 			}
 			else{

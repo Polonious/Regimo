@@ -1,5 +1,6 @@
 package au.com.regimo.core.utils;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.Set;
 
@@ -63,6 +64,24 @@ public final class SecurityUtils {
 		return operator;
 	}
 
+	public static boolean isUserInRole(String roleName) {
+		String role = String.format("ROLE_%s", roleName);
+		for (GrantedAuthority authority : getAuthorities()) {
+			if (authority.getAuthority().equals(role)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public static Collection<? extends GrantedAuthority> getAuthorities() {
+		Authentication authentication = getAuthentication();
+		if(authentication!=null) {
+			return authentication.getAuthorities();
+		}
+		return Sets.newHashSet();
+	}
+	
 	public static String getCurrentUserIp() {
 		String remoteAddress = "";
 		

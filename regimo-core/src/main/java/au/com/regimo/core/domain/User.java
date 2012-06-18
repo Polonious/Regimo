@@ -124,14 +124,4 @@ public class User extends IdEntity implements IRowStatusAllowed, IAuditable {
 		this.image = image;
 	}
 	
-	public boolean hasRole(String requiredRoleName){
-		boolean roleExist=false;
-		for(Role role : roles){
-			if(requiredRoleName.equalsIgnoreCase(role.getName())){
-				roleExist=true;
-				break;
-			}
-		}
-		return roleExist;
-	}
 }
