@@ -39,7 +39,6 @@
 	</div>
 	
 	<div class="formBody">
-<!-- 		${pageContext.response.locale} -->
 		<label for="login"><spring:message code="main.signin.username"/></label>
 		<input id="login" name="j_username" type="text" size="25" autocorrect="off" autocapitalize="off" <c:if test="${not empty signinErrorMessage}">value="${SPRING_SECURITY_LAST_USERNAME}"</c:if> />
 		<label for="password"><spring:message code="main.signin.password"/></label>
