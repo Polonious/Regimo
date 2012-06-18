@@ -65,13 +65,11 @@ public class HomeController {
 	
 	@RequestMapping(value="/manage/main", method=RequestMethod.GET)
 	public String manageMain(ModelMap map) {
-
 		Dashboard menu = dashboardRepository.findByViewName("AdminHomeMenu");
 		map.addAttribute("menu", menu);
 		Dashboard content = dashboardRepository.findByViewName("AdminHomeMenuItem");
 		map.addAttribute("content", content);
 		return "home";
-
 	}
 	
 	@RequestMapping(value="/profile/view", method=RequestMethod.GET)
