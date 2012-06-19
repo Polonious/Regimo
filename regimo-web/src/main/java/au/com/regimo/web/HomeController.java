@@ -25,6 +25,7 @@ import au.com.regimo.web.form.UserEditForm;
 public class HomeController {
 	
 	private UserService userService;
+
 	private DashboardRepository dashboardRepository;
 	
 	/**
