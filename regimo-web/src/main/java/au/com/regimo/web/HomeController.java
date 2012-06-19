@@ -5,8 +5,6 @@ import java.security.Principal;
 import javax.inject.Inject;
 import javax.validation.Valid;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -26,11 +24,8 @@ import au.com.regimo.web.form.UserEditForm;
 @Controller
 public class HomeController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
 	private UserService userService;
 	private DashboardRepository dashboardRepository;
-
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -50,17 +45,13 @@ public class HomeController {
 	
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home1(ModelMap map) {
-		Dashboard menu = dashboardRepository.findByViewName("HomeMenu");
-		map.addAttribute("menu", menu);
 		Dashboard content = dashboardRepository.findByViewName("HomeContent");
 		map.addAttribute("content", content);
 		return "home";
 	}
 	
 	@RequestMapping(value="/signin", method=RequestMethod.GET)
-	public void signin(ModelMap map) {
-		Dashboard menu = dashboardRepository.findByViewName("HomeMenu");
-		map.addAttribute("menu", menu);
+	public void signin() {
 	}
 	
 	@RequestMapping(value="/manage/main", method=RequestMethod.GET)
@@ -75,25 +66,11 @@ public class HomeController {
 	@RequestMapping(value="/profile/view", method=RequestMethod.GET)
 	public void profile(ModelMap map) {
 		map.addAttribute("user",  SecurityUtils.getCurrentUser());
-		Dashboard 	menu = dashboardRepository.findByViewName("HomeMenu");	
-		map.addAttribute("menu", menu);
 	}
 	
 	@RequestMapping(value="/profile/edit", method=RequestMethod.GET)
 	public void profile_edit(ModelMap map) {
-		Dashboard menu = dashboardRepository.findByViewName("HomeMenu");
-		map.addAttribute("menu", menu);
 		map.addAttribute("user", SecurityUtils.getCurrentUser());
-	}
-
-	@Inject
-	public void setDashboardRepository(DashboardRepository dashboardRepository) {
-		this.dashboardRepository = dashboardRepository;
-	}
-	
-	@Inject
-	public void setUserService(UserService userService) {
-		this.userService = userService;
 	}
 
 	@RequestMapping(value = "/userUpdateCommit", method = RequestMethod.POST)
@@ -105,4 +82,15 @@ public class HomeController {
 		SecurityUtils.updateCurrentUser(user);
 		return "redirect:/profile/view";
 	}	
+
+	@Inject
+	public void setDashboardRepository(DashboardRepository dashboardRepository) {
+		this.dashboardRepository = dashboardRepository;
+	}
+	
+	@Inject
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
+	
 }
