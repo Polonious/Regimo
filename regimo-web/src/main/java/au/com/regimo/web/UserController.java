@@ -84,6 +84,5 @@ public class UserController extends GenericEntityController<User> {
 	protected GenericService<User, Long> getEntityService() {
 		return entityService;
 	}
-	
 
 }
