@@ -23,7 +23,6 @@ import au.com.regimo.core.service.UserService;
 import au.com.regimo.core.utils.BeanUtilsExtend;
 import au.com.regimo.core.utils.SecurityUtils;
 
-import au.com.regimo.server.service.MessageService;
 import au.com.regimo.web.form.UserNewForm;
 
 @Controller
@@ -31,7 +30,6 @@ public class SignupController {
 
 	private UserService userService;
 	private DocumentService documentService;
-	@Inject MessageService messageService;
 	
 	/**
 	 * Render a signup form to the person as HTML in their web browser.
@@ -55,7 +53,6 @@ public class SignupController {
 		BeanUtilsExtend.copyPropertiesWithoutNull(form, user, "image");
 		userService.signup(user);
 		SecurityUtils.setAuthentcation(user, form.getPassword());
-		messageService.signUpMessage(user);
 		return "redirect:/";
 	}
 	

@@ -3,15 +3,17 @@ package au.com.regimo.core.service;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.ModelMap;
 
+import au.com.regimo.core.domain.TextTemplate;
 import au.com.regimo.core.domain.User;
 import au.com.regimo.core.repository.GenericRepository;
+import au.com.regimo.core.repository.TextTemplateRepository;
 import au.com.regimo.core.repository.UserRepository;
 import au.com.regimo.core.utils.RandomPassword;
-
+import au.com.regimo.core.utils.TextGenerator;
 
 @Named
 public class UserService extends GenericService<User, Long>{
@@ -19,14 +21,21 @@ public class UserService extends GenericService<User, Long>{
 	private UserRepository repository;
 	private PasswordEncoder passwordEncoder;
 	private RowStatusService rowStatusService;
-	@Inject private EmailService emailService;
-	@Value("${emailFrom}")private String emailFrom;
+	private TextTemplateRepository textTemplateRepository;
+	private EmailService emailService;
 	
 	@Transactional
 	public User signup(User user) {
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		rowStatusService.enable(user);
 		repository.save(user);
+
+		TextTemplate textTemplate = textTemplateRepository.findByName("WelcomeNewUser");
+		if(textTemplate != null) {
+			String emailBody = TextGenerator.generateText(textTemplate.getContent(), new ModelMap("user", user));
+			emailService.sendEmail(user.getEmail(), "Regimo registration confirmation ", emailBody);
+		}
+		
 		return user;
 	}
 	
@@ -35,8 +44,8 @@ public class UserService extends GenericService<User, Long>{
 		 String tmpPwd = RandomPassword.getRandomString(6);
 		user.setPassword(passwordEncoder.encode(tmpPwd));
 		repository.save(user);
-		emailService.sendEmail(emailFrom, user.getEmail(), "You have forgot your password, you reset the password  ", 
-				null, ", now reset to new password:" + tmpPwd + "\n Please change it ASAP", null, null);
+		emailService.sendEmail(user.getEmail(), "You have forgot your password, you reset the password  ", 
+				", now reset to new password:" + tmpPwd + "\n Please change it ASAP");
 	}
 	
 	public User findByUsername(String username){
@@ -60,6 +69,16 @@ public class UserService extends GenericService<User, Long>{
 	@Inject
 	public void setRowStatusService(RowStatusService rowStatusService) {
 		this.rowStatusService = rowStatusService;
+	}
+
+	@Inject
+	public void setTextTemplateRepository(TextTemplateRepository textTemplateRepository) {
+		this.textTemplateRepository = textTemplateRepository;
+	}
+
+	@Inject
+	public void setEmailService(EmailService emailService) {
+		this.emailService = emailService;
 	}
 
 }
