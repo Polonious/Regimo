@@ -12,26 +12,18 @@
 	
 	<!-- Application Loggers -->
 	<logger name="au.com.regimo">
-		<level value="debug" />
+		<level value="${logLevel.regimo}" />
 	</logger>
 	
 	<!-- 3rdparty Loggers -->
-	<logger name="org.springframework.core">
-		<level value="info" />
+	<logger name="org.springframework">
+		<level value="${logLevel.springframework}" />
 	</logger>
 	
-	<logger name="org.springframework.beans">
-		<level value="info" />
+	<logger name="org.hibernate">
+		<level value="${logLevel.hibernate}" />
 	</logger>
 	
-	<logger name="org.springframework.context">
-		<level value="info" />
-	</logger>
-
-	<logger name="org.springframework.web">
-		<level value="info" />
-	</logger>
-
 	<!-- Root Logger -->
 	<root>
 		<priority value="warn" />

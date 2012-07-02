@@ -246,21 +246,6 @@
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
-			<build>
-				<resources>
-					<resource>
-						<directory>${basedir}/src/main/resources/${profile.name}</directory>					
-					</resource>
-					<resource>
-						<directory>${basedir}/src/main/webapp-filtered</directory>
-						<targetPath>../${profile.finalName}</targetPath> <!-- Has to be final name -->
-						<filtering>true</filtering>
-					</resource>
-				</resources>
-				<filters>
-					<filter>src/main/filter/${profile.name}/context.properties</filter>
-				</filters>
-			</build>
 		</profile>
 		<profile>
 			<id>live</id>
@@ -268,21 +253,6 @@
 				<profile.name>live</profile.name>
 				<profile.finalName>ROOT</profile.finalName>
 			</properties>
-			<build>
-				<resources>
-					<resource>
-						<directory>${basedir}/src/main/resources/${profile.name}</directory>					
-					</resource>
-					<resource>
-						<directory>${basedir}/src/main/webapp-filtered</directory>
-						<targetPath>../${profile.finalName}</targetPath> <!-- Has to be final name -->
-						<filtering>true</filtering>
-					</resource>
-				</resources>
-				<filters>
-					<filter>src/main/filter/${profile.name}/context.properties</filter>
-				</filters>
-			</build>
 		</profile>
 		<profile>
 			<id>livestandby</id>
@@ -290,21 +260,6 @@
 				<profile.name>livestandby</profile.name>
 				<profile.finalName>ROOT</profile.finalName>
 			</properties>
-			<build>
-				<resources>
-					<resource>
-						<directory>${basedir}/src/main/resources/${profile.name}</directory>					
-					</resource>
-					<resource>
-						<directory>${basedir}/src/main/webapp-filtered</directory>
-						<targetPath>../${profile.finalName}</targetPath> <!-- Has to be final name -->
-						<filtering>true</filtering>
-					</resource>
-				</resources>
-				<filters>
-					<filter>src/main/filter/${profile.name}/context.properties</filter>
-				</filters>
-			</build>
 		</profile>
 		<profile>
 			<id>demo</id>
@@ -312,87 +267,6 @@
 				<profile.name>demo</profile.name>
 				<profile.finalName>ROOT</profile.finalName>
 			</properties>
-			<build>
-				<resources>
-					<resource>
-						<directory>${basedir}/src/main/resources/${profile.name}</directory>					
-					</resource>
-					<resource>
-						<directory>${basedir}/src/main/webapp-filtered</directory>
-						<targetPath>../${profile.finalName}</targetPath> <!-- Has to be final name -->
-						<filtering>true</filtering>
-					</resource>
-				</resources>
-				<filters>
-					<filter>src/main/filter/${profile.name}/context.properties</filter>
-				</filters>
-			</build>
-		</profile>
-		<profile>
-			<id>teststable</id>
-			<properties>
-				<profile.name>teststable</profile.name>
-				<profile.finalName>teststable</profile.finalName>
-			</properties>
-			<build>
-				<resources>
-					<resource>
-						<directory>${basedir}/src/main/resources/${profile.name}</directory>					
-					</resource>
-					<resource>
-						<directory>${basedir}/src/main/webapp-filtered</directory>
-						<targetPath>../${profile.finalName}</targetPath> <!-- Has to be final name -->
-						<filtering>true</filtering>
-					</resource>
-				</resources>
-				<filters>
-					<filter>src/main/filter/${profile.name}/context.properties</filter>
-				</filters>
-			</build>
-		</profile>
-		<profile>
-			<id>testhead</id>
-			<properties>
-				<profile.name>testhead</profile.name>
-				<profile.finalName>testhead</profile.finalName>
-			</properties>
-			<build>
-				<resources>
-					<resource>
-						<directory>${basedir}/src/main/resources/${profile.name}</directory>					
-					</resource>
-					<resource>
-						<directory>${basedir}/src/main/webapp-filtered</directory>
-						<targetPath>../${profile.finalName}</targetPath> <!-- Has to be final name -->
-						<filtering>true</filtering>
-					</resource>
-				</resources>
-				<filters>
-					<filter>src/main/filter/${profile.name}/context.properties</filter>
-				</filters>
-			</build>
-		</profile>
-		<profile>
-			<id>webtest</id>
-			<properties>
-				<profile.name>webtest</profile.name>
-				<profile.finalName>webtest</profile.finalName>
-			</properties>
-			<build>
-				<resources>
-					<resource>
-						<directory>${basedir}/src/main/resources/${profile.name}</directory>					
-					</resource>
-					<resource>
-						<directory>${basedir}/src/main/webapp-filtered</directory>
-						<targetPath>../${profile.finalName}</targetPath> <!-- Has to be final name -->
-						<filtering>true</filtering>
-					</resource>
-				</resources>
-				<filters>
-					<filter>src/main/filter/${profile.name}/context.properties</filter>
-				</filters>
-			</build>
 		</profile>
 	</profiles>	
 
@@ -416,25 +290,33 @@
 					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<filteringDeploymentDescriptors>true</filteringDeploymentDescriptors>
+				</configuration>
+			</plugin>
 		</plugins>
 		<resources>
             <resource>
-		        <directory>${basedir}/src/main/resources</directory>
+		        <directory>src/main/resources</directory>
 		    </resource>       
 			<resource>
-				<directory>${basedir}/src/main/webapp/WEB-INF/config</directory>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>log4j.xml</include>
+				</includes>
 			</resource>
-            <resource>
-		        <directory>${basedir}/src/main/filter/default</directory>
-		        <targetPath>appConfig/default</targetPath>
-		    </resource>
-            <resource>
-		        <directory>${basedir}/src/main/filter/${profile.name}</directory>
-		        <targetPath>appConfig/profile</targetPath>
-		    </resource>
+			<resource>
+				<directory>src/main/filter/${profile.name}</directory>					
+			</resource>
 		</resources>
 		<filters>
-			<filter>src/main/filter/default/context.properties</filter>
+			<filter>src/main/resources/app-context-default.properties</filter>
+			<filter>src/main/filter/${profile.name}/context.properties</filter>
 		</filters>
 	</build>
 	

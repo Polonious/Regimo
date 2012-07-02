@@ -30,6 +30,7 @@ public class CustomTilesView extends TilesView {
 			if(menu==null){
 				DashboardRepository r = getWebApplicationContext().getBean(DashboardRepository.class);
 				menu = r.findByViewName("HomeMenu");
+				if(menu!=null)
 				for(UserDashlet ud: menu.getUserDashlets()){
 					Hibernate.initialize(ud.getDashlet());
 				}
