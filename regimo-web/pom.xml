@@ -244,7 +244,9 @@
 				<profile.finalName>dev</profile.finalName>
 			</properties>
 			<activation>
-				<activeByDefault>true</activeByDefault>
+				<property>
+            		<name>!profile.name</name>
+        		</property>
 			</activation>
 		</profile>
 		<profile>
