@@ -3,21 +3,44 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:oauth="http://www.springframework.org/schema/security/oauth2"
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
+		http://www.springframework.org/schema/security/oauth2 http://www.springframework.org/schema/security/spring-security-oauth2-1.0.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
 
 	<!-- Configure Spring Security -->
+
+	<http security="none" pattern="/favicon.ico"/>
+	<http security="none" pattern="/resources/**"/>
+	<http security="none" pattern="/signup"/>
+	<http security="none" pattern="/signin"/>
+
+	<http pattern="/oauth/token" create-session="stateless" 
+			authentication-manager-ref="clientAuthenticationManager" 
+			entry-point-ref="oauthAuthenticationEntryPoint">
+		<intercept-url pattern="/oauth/token" access="IS_AUTHENTICATED_FULLY" />
+		<anonymous enabled="false" />
+		<http-basic entry-point-ref="oauthAuthenticationEntryPoint" />
+		<access-denied-handler ref="oauthAccessDeniedHandler" />
+	</http>
+
+	<http pattern="/rest/**" create-session="never"
+			access-decision-manager-ref="accessDecisionManager" 
+			entry-point-ref="oauthAuthenticationEntryPoint">
+		<anonymous enabled="false" />
+		<intercept-url pattern="/rest" access="ROLE_USER,SCOPE_READ" />
+		<intercept-url pattern="/rest/trusted/**" access="ROLE_CLIENT,SCOPE_TRUST" />
+		<intercept-url pattern="/rest/user/**" access="ROLE_USER,SCOPE_TRUST" />
+		<intercept-url pattern="/rest/**" access="ROLE_USER,SCOPE_READ" />
+		<custom-filter ref="resourceServerFilter" before="PRE_AUTH_FILTER" />
+		<access-denied-handler ref="oauthAccessDeniedHandler" />
+	</http>
+
 	<http use-expressions="true">
 		<intercept-url pattern="/" access="permitAll" />
-		<intercept-url pattern="/favicon.ico" access="permitAll" />
-		<intercept-url pattern="/resources/**" access="permitAll" />
 		<intercept-url pattern="${document.resources.path}**" access="permitAll" />
 		<intercept-url pattern="/home" access="permitAll" />
-		<intercept-url pattern="/signup" access="permitAll" />
-		<intercept-url pattern="/signin" access="permitAll" />
 		<intercept-url pattern="/profile" access="isAuthenticated()" />
-		<intercept-url pattern="/rest/user" access="permitAll" />
-		<intercept-url pattern="/signin/*" access="permitAll" />
 		<intercept-url pattern="/dashboard/**" access="permitAll" />
 		<intercept-url pattern="/wp/**" access="permitAll" />
 		<intercept-url pattern="/wp.*" access="permitAll" />
@@ -37,5 +60,64 @@
 	</authentication-manager>	
 
     <beans:bean id="passwordEncoder" class="org.springframework.security.crypto.password.StandardPasswordEncoder" c:secret="polonious"/>
+
+	<!-- Configure oauth for REST Web Services -->
+	<oauth:authorization-server client-details-service-ref="clientDetails" token-services-ref="tokenServices">
+		<oauth:authorization-code />
+		<oauth:implicit />
+		<oauth:refresh-token />
+		<oauth:client-credentials />
+		<oauth:password />
+	</oauth:authorization-server>
+
+	<oauth:resource-server id="resourceServerFilter" resource-id="regimo" token-services-ref="tokenServices" />
+
+	<oauth:client-details-service id="clientDetails">
+		<oauth:client client-id="phonegap@regimo" secret="rgmpg10psw"
+			authorized-grant-types="client_credentials,password,authorization_code,refresh_token,implicit"
+			authorities="ROLE_CLIENT, ROLE_TRUSTED_CLIENT" scope="read,write,trust" />
+	</oauth:client-details-service>
+
+	<global-method-security pre-post-annotations="enabled" proxy-target-class="true">
+		<!--you could also wire in the expression handler up at the layer of the http filters. See https://jira.springsource.org/browse/SEC-1452 -->
+		<expression-handler ref="oauthExpressionHandler" />
+	</global-method-security>
+
+	<oauth:expression-handler id="oauthExpressionHandler" />
+
+	<authentication-manager id="clientAuthenticationManager">
+		<authentication-provider user-service-ref="clientDetailsUserService" />
+	</authentication-manager>
+
+	<beans:bean id="oauthAuthenticationEntryPoint" class="org.springframework.security.oauth2.provider.error.OAuth2AuthenticationEntryPoint">
+		<beans:property name="realmName" value="regimo2" />
+	</beans:bean>
+
+	<beans:bean id="oauthAccessDeniedHandler" class="org.springframework.security.oauth2.provider.error.OAuth2AccessDeniedHandler" />
+
+	<beans:bean id="clientDetailsUserService" class="org.springframework.security.oauth2.provider.client.ClientDetailsUserDetailsService">
+		<beans:constructor-arg ref="clientDetails" />
+	</beans:bean>
+
+	<beans:bean id="tokenStore" class="org.springframework.security.oauth2.provider.token.InMemoryTokenStore" />
+
+	<bean id="tokenServices" class="org.springframework.security.oauth2.provider.token.DefaultTokenServices" 
+			xmlns="http://www.springframework.org/schema/beans">
+		<property name="tokenStore" ref="tokenStore" />
+		<property name="supportRefreshToken" value="true" />
+	</bean>
+
+	<bean id="accessDecisionManager" class="org.springframework.security.access.vote.UnanimousBased" 
+			xmlns="http://www.springframework.org/schema/beans">
+		<constructor-arg>
+			<list>
+				<bean class="org.springframework.security.oauth2.provider.vote.ScopeVoter" />
+				<bean class="org.springframework.security.access.vote.RoleVoter" />
+				<bean class="org.springframework.security.access.vote.AuthenticatedVoter" />
+			</list>
+		</constructor-arg>
+	</bean>
+
+
 
 </beans:beans>
