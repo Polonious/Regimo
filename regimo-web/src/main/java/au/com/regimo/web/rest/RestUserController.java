@@ -18,7 +18,7 @@ import au.com.regimo.web.form.UserProfileEditForm;
 
 @Controller
 @RequestMapping(value="/rest/user")
-public class UserController {
+public class RestUserController {
 
 	private UserService userService;
 
