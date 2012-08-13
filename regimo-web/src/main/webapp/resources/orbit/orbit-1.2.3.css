@@ -8,7 +8,8 @@
  
 /* PUT IN YOUR SLIDER ID AND SIZE TO MAKE LOAD BEAUTIFULLY
    ================================================== */
-#featured { 
+#featured {
+	margin-top: 20px;
 	text-align: center;
 	background: #ddd;
 	/* background: #ddd url('orbit/loading.gif') no-repeat center center; */
@@ -18,11 +19,11 @@
 #featured>a { display: none; }
 
 .orbit-button {
-	left: 730px; 
-	top: 260px; 
+	position: absolute;
+	right: 20px; 
+	bottom: 20px; 
 	height: 34px;
 	width: 82px;
-	position: absolute;
 	background: url(../images/button_more.png) top left no-repeat;;
 }
 
