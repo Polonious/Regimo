@@ -1,9 +1,13 @@
 package au.com.regimo.web.rest;
 
+import java.util.Collection;
+import java.util.LinkedList;
+
 import javax.inject.Inject;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,6 +18,7 @@ import au.com.regimo.core.domain.User;
 import au.com.regimo.core.service.UserService;
 import au.com.regimo.core.utils.SecurityUtils;
 import au.com.regimo.web.form.UserEditForm;
+import au.com.regimo.web.form.UserListForm;
 import au.com.regimo.web.form.UserProfileEditForm;
 
 @Controller
@@ -35,6 +40,18 @@ public class RestUserController {
 		BeanUtils.copyProperties(form, user);
 		userService.save(user);
 		SecurityUtils.updateCurrentUser(user);
+	}
+
+	@RequestMapping(value="", method=RequestMethod.GET)
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public Collection<UserListForm> getUsers() {
+		Collection<UserListForm> userList = new LinkedList<UserListForm>();	
+		for (User user : userService.findAll())
+		{
+			userList.add(new UserListForm(user));
+		}
+		return userList;
 	}
 
 	@Inject
