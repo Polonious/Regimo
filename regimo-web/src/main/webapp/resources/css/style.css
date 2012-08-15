@@ -11,14 +11,25 @@ height: 100%;
 }
 
 #content-container {
-min-height: 100%;
 height: auto !important;
 height: 100%;
-margin: 0 auto -6em;
+margin: 1em auto -6em;
 }
 
 #footer, .push {
 height: 6em;
+}
+
+#logo {
+	width: 205px; 
+	height: 57px;
+	padding-bottom: 30px;
+}
+
+#trusted {
+	height: 90px;
+	margin-left: 180px;
+	margin-bottom: 15px;
 }
 
 h1,h2,h3,h4,h5,h6 {
@@ -65,7 +76,7 @@ body {
 }  
 
 #header {
-	height:70px;
+	height:89px;
 	
 background: #42b4d1; /* Old browsers */
 background: -moz-linear-gradient(top,  #42b4d1 0%, #3299bb 100%); /* FF3.6+ */
@@ -79,11 +90,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#42b4d1', end
 	
 	border-bottom:1px solid #49aed0;
 	/* -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.7); */
-	padding-top: 5px;
+	padding-top: 0px;
 }
 
 .box {
 	width:950px;
+	padding-top: 0px;
 	margin:0 auto;
 }
 
@@ -127,50 +139,16 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#828282', end
 	
 	width:950px;
 	margin:0 auto;
-	background-image: url(../images/bg_image_new_5-14.png);
+/*	background-image: url(../images/bg_image_new_5-14.png); */
 	background-position: bottom;
 	/* [disabled]-webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.2); */
 }
 
-#feature {
-	
-	width:950px;
-	margin:0 auto;
-	height:200px;
-	padding-top:40px;
-	padding-left:40px;
-	
-}
-
-#floor {
-	width:980px;
-	margin:0 auto;
-	height:300px;
-	background-image:url(../images/floor.png);
-}
-/*
-#slogan {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size:5em;
-	font-weight:bold;
-	color:#292929;
-	text-shadow:white 0em 0em 0.3em;
-}
-
-#second-row {
-	padding-top:20px;
-	padding-left:80px;
-}
-*/
-#second-row span {
-	color:#f05205;
-	font-size: 1.5em;
-}
 
 #content {
 	height:370px;
 	background-color: #828282;
-	margin-top: 10px;
+	margin-top: 20px;
 	padding-top:20px;
 }
 
@@ -203,7 +181,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 	box-shadow: 0 0 5px 3px #e1e1e1;
 	
 	height: auto;
-	min-height:778px;
+	min-height:678px;
 	
 	border: 1px solid #d6d6d6;
 	

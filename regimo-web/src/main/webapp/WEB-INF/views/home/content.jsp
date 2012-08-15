@@ -4,54 +4,85 @@
 
 <script type="text/javascript">
       $(document).ready(function () {
-        $("#waterwheel-carousel-default").waterwheelCarousel({
-			startingItem:               0,      // item to place in the center at the start, set to zero to be the middle item
-			startingItemSeparation:     150,    // the starting separation distance between each item
-			itemSeparationFactor:       0.5,     // determines how drastically the item separation decreases
-			startingWaveSeparation:     30,     // the starting separation distance for the wave
-			waveSeparationFactor:       0.75,    // determines how drastically the wave separation decreases
-			itemDecreaseFactor:         0.8,     // determines how drastically the item's width and height decrease
-			opacityDecreaseFactor:      1,     // determines how drastically the item's opacity decreases
-			centerOffset:               20,     // the number of pixels to offset the center item in the carousel
-			flankingItems:              4,      // the number of items visible on either side of the center
-		});
-		
+
+          $('#featured').orbit({
+     	     animation: 'horizontal-push',       // fade, horizontal-slide, vertical-slide, horizontal-push
+     	     animationSpeed: 800,                
+     	     timer: true, 			 
+     	     advanceSpeed: 8000, 		  
+     	     pauseOnHover: true, 		 
+     	     startClockOnMouseOut: true, 	 
+     	     startClockOnMouseOutAfter: 1000, 	 
+     	     directionalNav: true, 		 		 // manual advancing directional navs
+     	     captions: true, 			 		 // do you want captions?
+     	     captionAnimation: 'fade', 		 	 // fade, slideOpen, none
+     	     captionAnimationSpeed: 800, 	 
+     	     bullets: false,			 		 // true or false to activate the bullet navigation
+     	     bulletThumbs: false,		 		 // thumbnails for the bullets
+     	     bulletThumbLocation: '',		     // location from this file where thumbs will be
+     	     afterSlideChange: function(){} 	 // custom action 
+     	});
+
       });
 </script>
 
+<!--[if IE]>
+     <style type="text/css">
+         .timer { display: none !important; }
+         div.caption { background:transparent; filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000,endColorstr=#99000000);zoom: 1; }
+    </style>
+<![endif]-->
+
 <div id="container">
-        <div id="feature">
-        	<!-- <div id="slogan">
-                <div>At Polonious,
-                </div>
-                <div id="second-row">we feel your <span id="pain">pain</span>.
-                </div>
-            </div> -->
-        </div> 
-    
-        <div id="waterwheel-carousel-default">
-          <!-- <div class="carousel-controls">
-            <div class="carousel-prev"><a href="#">&lt; previous</a></div>
-            <div class="carousel-next"><a href="#">&gt; next</a></div>
-          </div> -->
-          <div class="carousel-images">
-            <a href="/wp/post/open-source-is-the-answer">
-            	<img border="0" width="460" height="290" src="<c:url value="/resources/images/carousel_image1_5-14.png" />" alt="Open Source is the Answer" />
-            </a>
-            <a href="/wp/post/single-point-risk">
-            	<img border="0" width="460" height="290" src="<c:url value="/resources/images/carousel_image2_5-14.png" />" alt="Single Point Risk" />
-            </a>
-            <a href="/wp/post/now">
-            	<img border="0" width="460" height="290" src="<c:url value="/resources/images/carousel_image3_5-14.png" />" alt="Now" />
-            </a>
-            <a href="/wp/post/regimo">
-            	<img border="0" width="460" height="290" src="<c:url value="/resources/images/carousel_image5_5-14.png" />" alt="Regimo" />
-            </a>
-          </div>
-        </div>    		
+		<div id="featured"> 
+			<div class="content" style="">
+				<div class="orbit-feature-image"><a href="/wp/post/open-source-is-the-answer"><img src="<c:url value="/resources/images/carousel_image1_5-14.png" />" /></a></div>				
+				<div class="orbit-feature-text">
+					As a business owner you know how hard you and your team work at growing your business in a competitive market place. 
+					<br/><br/>Each time you experience success, increased sales, market share, open an interstate branch how much do you budget for in software licence fees? 
+					<br/><br/>If you would like to know how... 					
+				</div>
+				<div><a href="/wp/post/open-source-is-the-answer" class="orbit-button" alt="more"></a></div>
+			</div>
+			<div class="content" style="">
+				<div class="orbit-feature-image"><a href="/wp/post/single-point-risk"><img src="<c:url value="/resources/images/carousel_image2_5-14.png" />" /></a></div>				
+				<div class="orbit-feature-text">
+					If you use technology in your organisation, you've most likely experienced technical debt creep.
+					<br/><br/>
+					For IT, it's the old software vulnerable to Internet attack; the cheap developer who's moved on; 
+					out-dated code no-one remembers; or unmaintained websites too expensive to change.
+					<br/><br/>
+					Polonious has saved thousands of dollars for... 
+				</div>
+				<div><a href="/wp/post/single-point-risk" class="orbit-button" alt="more"></a></div>
+			</div>
+			<div class="content" style="">
+				<div class="orbit-feature-image"><a href="/wp/post/now"><img src="<c:url value="/resources/images/carousel_image3_5-14.png" />" /></a></div>				
+				<div class="orbit-feature-text">
+					You have the next brilliant idea for a iPhone, iPad or Android game that is going 
+					to set the world on fire? Or maybe your looking to develop a business application that is going to give you the 
+					competitive edge in you market? 
+					<br/><br/>
+					You engage Polonious because we have a reputation in the software development market for...					
+				</div>
+				<div><a href="/wp/post/now" class="orbit-button" alt="more"></a></div>
+			</div>
+			<div class="content" style="">
+				<div class="orbit-feature-image"><a href="/wp/post/regimo"><img src="<c:url value="/resources/images/carousel_image5_5-14.png" />" /></a></div>				
+				<div class="orbit-feature-text">
+					You already have a great looking website managed in WordPress, Drupal or Joomla but it is slow and 
+					unusable on a mobile phone? You would like it to load in a flash and look great on smartphones and 
+					tablets too without much effort? Regimo is what you are after.
+					<br/><br/>You have a great business idea and need a web application to manage your clients, staff, 
+					products, and events as well as features... 
+				</div>
+				<div><a href="/wp/post/regimo" class="orbit-button" alt="more"></a></div>
+			</div>
+		</div>
+		<!-- Captions for Orbit -->
+		<span class="orbit-caption" id="htmlCaption"><strong>I'm A Badass Caption:</strong> I can haz <a href="#">links</a>, <em>style</em> or anything that is valid markup :)</span>		
 	</div>
-    
-    
+        
       
 	<div id="content">
     	<div id="content-box">
