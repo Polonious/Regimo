@@ -6,25 +6,32 @@
       $(document).ready(function () {
 
           $('#featured').orbit({
-     	     animation: 'horizontal-push',                  // fade, horizontal-slide, vertical-slide, horizontal-push
-     	     animationSpeed: 800,                // how fast animtions are
-     	     timer: true, 			 // true or false to have the timer
-     	     advanceSpeed: 4000, 		 // if timer is enabled, time between transitions 
-     	     pauseOnHover: false, 		 // if you hover pauses the slider
-     	     startClockOnMouseOut: false, 	 // if clock should start on MouseOut
-     	     startClockOnMouseOutAfter: 1000, 	 // how long after MouseOut should the timer start again
-     	     directionalNav: true, 		 // manual advancing directional navs
-     	     captions: true, 			 // do you want captions?
-     	     captionAnimation: 'fade', 		 // fade, slideOpen, none
-     	     captionAnimationSpeed: 800, 	 // if so how quickly should they animate in
-     	     bullets: false,			 // true or false to activate the bullet navigation
-     	     bulletThumbs: false,		 // thumbnails for the bullets
-     	     bulletThumbLocation: '',		 // location from this file where thumbs will be
-     	     afterSlideChange: function(){} 	 // empty function 
+     	     animation: 'horizontal-push',       // fade, horizontal-slide, vertical-slide, horizontal-push
+     	     animationSpeed: 800,                
+     	     timer: true, 			 
+     	     advanceSpeed: 8000, 		  
+     	     pauseOnHover: true, 		 
+     	     startClockOnMouseOut: true, 	 
+     	     startClockOnMouseOutAfter: 1000, 	 
+     	     directionalNav: true, 		 		 // manual advancing directional navs
+     	     captions: true, 			 		 // do you want captions?
+     	     captionAnimation: 'fade', 		 	 // fade, slideOpen, none
+     	     captionAnimationSpeed: 800, 	 
+     	     bullets: false,			 		 // true or false to activate the bullet navigation
+     	     bulletThumbs: false,		 		 // thumbnails for the bullets
+     	     bulletThumbLocation: '',		     // location from this file where thumbs will be
+     	     afterSlideChange: function(){} 	 // custom action 
      	});
 
       });
 </script>
+
+<!--[if IE]>
+     <style type="text/css">
+         .timer { display: none !important; }
+         div.caption { background:transparent; filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000,endColorstr=#99000000);zoom: 1; }
+    </style>
+<![endif]-->
 
 <div id="container">
 		<div id="featured"> 
@@ -71,34 +78,11 @@
 				</div>
 				<div><a href="/wp/post/regimo" class="orbit-button" alt="more"></a></div>
 			</div>
-			<img src="#" width="950px" height="310px" style="visibility: hidden;"/> 
 		</div>
 		<!-- Captions for Orbit -->
-		<span class="orbit-caption" id="htmlCaption"><strong>I'm A Badass Caption:</strong> I can haz <a href="#">links</a>, <em>style</em> or anything that is valid markup :)</span>
-    
-        <!-- div id="waterwheel-carousel-default">
-          <<div class="carousel-controls">
-            <div class="carousel-prev"><a href="#">&lt; previous</a></div>
-            <div class="carousel-next"><a href="#">&gt; next</a></div>
-          </div>
-          <div class="carousel-images">
-            <a href="/wp/post/single-point-risk">
-            	<img border="0" width="460" height="290" src="<c:url value="/resources/images/carousel_image2_5-14.png" />" alt="Single Point Risk" />
-            </a>
-            <a href="/wp/post/open-source-is-the-answer">
-            	<img border="0" width="460" height="290" src="<c:url value="/resources/images/carousel_image1_5-14.png" />" alt="Open Source is the Answer" />
-            </a>
-            <a href="/wp/post/now">
-            	<img border="0" width="460" height="290" src="<c:url value="/resources/images/carousel_image3_5-14.png" />" alt="Now" />
-            </a>
-            <a href="/wp/post/regimo">
-            	<img border="0" width="460" height="290" src="<c:url value="/resources/images/carousel_image5_5-14.png" />" alt="Regimo" />
-            </a>
-          </div>
-        </div>   -->  		
+		<span class="orbit-caption" id="htmlCaption"><strong>I'm A Badass Caption:</strong> I can haz <a href="#">links</a>, <em>style</em> or anything that is valid markup :)</span>		
 	</div>
-    
-    
+        
       
 	<div id="content">
     	<div id="content-box">
