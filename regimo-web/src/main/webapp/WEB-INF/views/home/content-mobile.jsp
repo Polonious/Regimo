@@ -4,12 +4,6 @@
 
 <div id="container">
         <div id="feature">
-        	<!-- <div id="slogan">
-                <div>At Polonious,
-                </div>
-                <div id="second-row">we feel your <span id="pain">pain</span>.
-                </div>
-            </div> -->
         </div> 
     
         <div id="waterwheel-carousel-default">
