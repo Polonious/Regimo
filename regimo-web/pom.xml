@@ -14,7 +14,7 @@
 		<org.springframework-version>3.1.2.RELEASE</org.springframework-version>
 		<org.springframework.social-version>1.0.2.RELEASE</org.springframework.social-version>
 		<org.springframework.mobile-version>1.0.0.RELEASE</org.springframework.mobile-version>
-		<org.spring.security.oauth2-version>1.0.0.RC1</org.spring.security.oauth2-version>
+		<org.spring.security.oauth2-version>1.0.0.RC2</org.spring.security.oauth2-version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -136,7 +136,7 @@
 					<artifactId>spring-webmvc</artifactId>
 				</exclusion>
 			</exclusions>
-		</dependency>		
+		</dependency>
 
 		<dependency>
 		    <groupId>commons-fileupload</groupId>
@@ -153,7 +153,7 @@
 		    <artifactId>xstream</artifactId>
 		    <version>1.4.2</version>
 		</dependency>
-		
+
 		<!-- Logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -198,16 +198,16 @@
 			<artifactId>tiles-el</artifactId>
 			<version>2.2.2</version>
 		</dependency>
-	
+
 		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.7</version>
 			<scope>test</scope>
-		</dependency>        
+		</dependency>
 	</dependencies>
-	
+
 	<profiles>
 		<profile>
 			<id>dev</id>
@@ -242,7 +242,7 @@
 				<profile.finalName>ROOT</profile.finalName>
 			</properties>
 		</profile>
-	</profiles>	
+	</profiles>
 
 	<build>
 		<finalName>${profile.finalName}</finalName>
@@ -276,7 +276,7 @@
 		<resources>
             <resource>
 		        <directory>src/main/resources</directory>
-		    </resource>       
+		    </resource>
 			<resource>
 				<directory>src/main/resources</directory>
 				<filtering>true</filtering>
@@ -285,7 +285,7 @@
 				</includes>
 			</resource>
 			<resource>
-				<directory>src/main/filter/${profile.name}</directory>					
+				<directory>src/main/filter/${profile.name}</directory>
 			</resource>
 		</resources>
 		<filters>
@@ -293,7 +293,7 @@
 			<filter>src/main/filter/${profile.name}/context.properties</filter>
 		</filters>
 	</build>
-	
+
 	<repositories>
 		<!-- For Spring releases -->
 		<repository>
