@@ -6,29 +6,30 @@ import org.hibernate.validator.constraints.NotEmpty;
 import au.com.regimo.core.domain.User;
 import au.com.regimo.core.utils.BeanUtilsExtend;
 
+// used by User updating their own profile
 public class UserProfileEditForm {
 
-	private Long id;
-	
-	private String firstName;
+	protected Long id;
 
-	private String lastName;
+	protected String firstName;
+
+	protected String lastName;
 
 	@NotEmpty
 	@Email
-	private String email;
+	protected String email;
 
-	private String confirmEmail;
-	
+	protected String confirmEmail;
+
 	public UserProfileEditForm(User user) {
 		this();
 		BeanUtilsExtend.copyPropertiesWithoutNull(user, this);
 	}
-	
+
 	public UserProfileEditForm() {
 		super();
 	}
-	
+
 	public Long getId() {
 		return id;
 	}

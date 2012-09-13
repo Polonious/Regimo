@@ -7,7 +7,6 @@ import javax.inject.Inject;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -46,7 +45,7 @@ public class RestUserController {
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	public Collection<UserListForm> getUsers() {
-		Collection<UserListForm> userList = new LinkedList<UserListForm>();	
+		Collection<UserListForm> userList = new LinkedList<UserListForm>();
 		for (User user : userService.findAll())
 		{
 			userList.add(new UserListForm(user));
