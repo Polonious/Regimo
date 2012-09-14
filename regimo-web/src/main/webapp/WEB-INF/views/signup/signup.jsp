@@ -9,7 +9,7 @@
 </c:if>
 
 <c:url value="/signup" var="signupUrl" />
-<form:form id="signup" action="${signupUrl}" method="post" modelAttribute="userNewForm">
+<form:form id="signup" action="${signupUrl}" method="post" modelAttribute="userEntryForm">
 	<div class="formInfo">
   		<h2><spring:message code="main.registration.signup"/></h2>
   		<s:bind path="*">

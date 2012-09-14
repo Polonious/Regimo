@@ -7,18 +7,27 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import au.com.regimo.core.domain.User;
 import au.com.regimo.core.utils.BeanUtilsExtend;
+import au.com.regimo.core.web.validator.FieldMatch;
+import au.com.regimo.core.web.validator.Username;
 import au.com.regimo.web.form.validation.AddMode;
 
+@FieldMatch.List({
+    @FieldMatch(groups={AddMode.class}, first = "password", second = "confirmPassword", 
+    		message = "The password fields must match")
+})
 public class UserEntryForm {
 
 	private Long id;
 
 	@NotEmpty(groups={AddMode.class})
+	@Username(message="username exist")
 	private String username;
 	
 	@Size(groups={AddMode.class}, min=6, message="must be at least 6 characters")
 	private String password;
 
+	private String confirmPassword;
+	
 	private String firstName;
 
 	private String lastName;
@@ -27,8 +36,6 @@ public class UserEntryForm {
 	@Email
 	private String email;
 
-	private String confirmEmail;
-	
 	public UserEntryForm() {}
 	
 	public UserEntryForm(User user) {
@@ -59,6 +66,14 @@ public class UserEntryForm {
 		this.password = password;
 	}
 
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
+	}
+
 	public String getFirstName() {
 		return firstName;
 	}
@@ -81,14 +96,6 @@ public class UserEntryForm {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public String getConfirmEmail() {
-		return confirmEmail;
-	}
-
-	public void setConfirmEmail(String confirmEmail) {
-		this.confirmEmail = confirmEmail;
 	}
 	
 }
