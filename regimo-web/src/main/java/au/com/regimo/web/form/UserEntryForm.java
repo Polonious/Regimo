@@ -13,7 +13,7 @@ import au.com.regimo.web.form.validation.AddMode;
 
 @FieldMatch.List({
     @FieldMatch(groups={AddMode.class}, first = "password", second = "confirmPassword", 
-    		message = "The password fields must match")
+    		message = "must match password")
 })
 public class UserEntryForm {
 
