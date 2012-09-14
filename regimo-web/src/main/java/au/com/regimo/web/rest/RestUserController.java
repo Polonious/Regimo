@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.LinkedList;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
@@ -16,9 +17,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import au.com.regimo.core.domain.User;
 import au.com.regimo.core.service.UserService;
 import au.com.regimo.core.utils.SecurityUtils;
-import au.com.regimo.web.form.UserEditForm;
+import au.com.regimo.web.form.UserEntryForm;
 import au.com.regimo.web.form.UserListForm;
-import au.com.regimo.web.form.UserProfileEditForm;
 
 @Controller
 @RequestMapping(value="/rest/user")
@@ -28,13 +28,13 @@ public class RestUserController {
 
 	@RequestMapping(value="/profile", method=RequestMethod.GET)
 	@ResponseBody
-	public UserEditForm getProfile() {
-		return new UserEditForm(SecurityUtils.getCurrentUser());
+	public UserEntryForm getProfile() {
+		return new UserEntryForm(SecurityUtils.getCurrentUser());
 	}
 
 	@RequestMapping(value="/profile", method=RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
-	public void updateProfile(UserProfileEditForm form) {
+	public void updateProfile(@Valid UserEntryForm form) {
 		User user = userService.findOne(SecurityUtils.getCurrentUserId());
 		BeanUtils.copyProperties(form, user);
 		userService.save(user);

@@ -5,14 +5,18 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
-public class UserNewForm {
+import au.com.regimo.core.domain.User;
+import au.com.regimo.core.utils.BeanUtilsExtend;
+import au.com.regimo.web.form.validation.AddMode;
+
+public class UserEntryForm {
 
 	private Long id;
-	
-	@NotEmpty
+
+	@NotEmpty(groups={AddMode.class})
 	private String username;
 	
-	@Size(min=6, message="must be at least 6 characters")
+	@Size(groups={AddMode.class}, min=6, message="must be at least 6 characters")
 	private String password;
 
 	private String firstName;
@@ -25,8 +29,12 @@ public class UserNewForm {
 
 	private String confirmEmail;
 	
-	private String image;
+	public UserEntryForm() {}
 	
+	public UserEntryForm(User user) {
+		BeanUtilsExtend.copyPropertiesWithoutNull(user, this, "password");
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -82,13 +90,5 @@ public class UserNewForm {
 	public void setConfirmEmail(String confirmEmail) {
 		this.confirmEmail = confirmEmail;
 	}
-
-	public String getImage() {
-		return image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
-	}
-
+	
 }

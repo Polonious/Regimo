@@ -5,7 +5,7 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 	
-	<s:url var="actionUrl" value="/userUpdateCommit"/>
+	<s:url var="actionUrl" value="/profile"/>
 <form:form action="${actionUrl}" modelAttribute="UserProfileEditForm" method="post">
 	<div class="formInfo">
   		<h2><spring:message code="profile.edit.title"/></h2>

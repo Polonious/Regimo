@@ -7,7 +7,6 @@ import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -16,7 +15,7 @@ import au.com.regimo.core.domain.User;
 import au.com.regimo.core.repository.DashboardRepository;
 import au.com.regimo.core.service.UserService;
 import au.com.regimo.core.utils.SecurityUtils;
-import au.com.regimo.web.form.UserEditForm;
+import au.com.regimo.web.form.UserEntryForm;
 
 /**
  * Handles requests for the application home page.
@@ -74,9 +73,10 @@ public class HomeController {
 		map.addAttribute("user", SecurityUtils.getCurrentUser());
 	}
 
-	@RequestMapping(value = "/userUpdateCommit", method = RequestMethod.POST)
-	public String updateUser(@Valid @ModelAttribute UserEditForm form,  ModelMap map) {
+	@RequestMapping(value = "/profile", method = RequestMethod.POST)
+	public String updateUser(@Valid UserEntryForm form,  ModelMap map) {
 		User user = userService.findOne(SecurityUtils.getCurrentUserId());
+		user.setEmail(form.getEmail());
 		user.setFirstName(form.getFirstName());
 		user.setLastName(form.getLastName());
 		userService.save(user);
