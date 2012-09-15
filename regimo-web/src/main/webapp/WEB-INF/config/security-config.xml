@@ -36,18 +36,20 @@
 	</http>
 
 	<http use-expressions="true">
+		<form-login login-page="/signin" login-processing-url="/signin/authenticate" 
+					authentication-failure-url="/signin?error=1" 
+					authentication-success-handler-ref="signinSuccessHandler"/>
+		<logout logout-url="/signout" delete-cookies="JSESSIONID" 
+				success-handler-ref="signoutSuccessHandler"/>
+
 		<intercept-url pattern="/" access="permitAll" />
 		<intercept-url pattern="/home" access="permitAll" />
 		<intercept-url pattern="/dashboard/**" access="permitAll" />
 		<intercept-url pattern="/wp/**" access="permitAll" />
 		<intercept-url pattern="/wp.*" access="permitAll" />
 		<intercept-url pattern="/signup" access="permitAll" />
-
-		<form-login login-page="/signin" login-processing-url="/signin/authenticate" 
-			authentication-failure-url="/signin?error=1" 
-			authentication-success-handler-ref="signinSuccessHandler"/>
-		<logout logout-url="/signout" delete-cookies="JSESSIONID" 
-			success-handler-ref="signoutSuccessHandler"/>
+		<intercept-url pattern="/signin" access="permitAll" />
+		<intercept-url pattern="/signin/*" access="permitAll" />
 			
 		<intercept-url pattern="/user/**" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/**" access="isAuthenticated()" />

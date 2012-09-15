@@ -64,7 +64,7 @@ public class HomeController {
 		User user = userService.findOne(SecurityUtils.getCurrentUserId());
 		userService.save(form.getUpdatedUser(user));
 		SecurityUtils.updateCurrentUser(user);
-		return "redirect:/profile/view";
+		return "redirect:/profile";
 	}	
 
 	@Inject
