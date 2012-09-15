@@ -7,8 +7,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import au.com.regimo.core.domain.User;
 import au.com.regimo.core.utils.BeanUtilsExtend;
-import au.com.regimo.core.web.validator.FieldMatch;
-import au.com.regimo.core.web.validator.Username;
+import au.com.regimo.core.web.validation.FieldMatch;
+import au.com.regimo.core.web.validation.Username;
 import au.com.regimo.web.form.validation.AddMode;
 
 @FieldMatch.List({

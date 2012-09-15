@@ -1,4 +1,4 @@
-package au.com.regimo.core.web.validator;
+package au.com.regimo.core.web.validation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

@@ -1,4 +1,4 @@
-package au.com.regimo.core.web.validator;
+package au.com.regimo.core.web.validation;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
