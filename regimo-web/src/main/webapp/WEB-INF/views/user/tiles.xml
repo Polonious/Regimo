@@ -3,22 +3,22 @@
 
 <tiles-definitions>
 	
-	<definition name="user/browse" extends="page">
+	<definition name="user/browse" extends="template">
 		<put-attribute name="title" value="User list" />
 		<put-attribute name="content" value="/WEB-INF/views/user/browse.jsp" />
 	</definition>
 	
-	<definition name="user/view" extends="page">
+	<definition name="user/view" extends="template">
 		<put-attribute name="title" value="View user" />
 		<put-attribute name="content" value="/WEB-INF/views/user/view.jsp" />
 	</definition>
 	
-	<definition name="user/new" extends="page">
+	<definition name="user/new" extends="template">
 		<put-attribute name="title" value="Create user" />
 		<put-attribute name="content" value="/WEB-INF/views/user/new.jsp" />
 	</definition>
 	
-	<definition name="user/edit" extends="page">
+	<definition name="user/edit" extends="template">
 		<put-attribute name="title" value="Edit user" />
 		<put-attribute name="content" value="/WEB-INF/views/user/edit.jsp" />
 	</definition>

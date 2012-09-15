@@ -2,6 +2,7 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
+<div id="page-content">
 <div id="browsePage">
 	<h2><spring:message code="profile.browse.title"/></h2>
 
@@ -54,3 +55,5 @@
 		</table>
 	</div>
 </div>
+</div>
+<div class="push"></div>

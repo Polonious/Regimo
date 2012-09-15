@@ -3,22 +3,22 @@
 
 <tiles-definitions>
 	
-	<definition name="dashlet/browse" extends="page">
+	<definition name="dashlet/browse" extends="template">
 		<put-attribute name="title" value="Dashlet list" />
 		<put-attribute name="content" value="/WEB-INF/views/dashlet/browse.jsp" />
 	</definition>
 	
-	<definition name="dashlet/view" extends="page">
+	<definition name="dashlet/view" extends="template">
 		<put-attribute name="title" value="View dashlet" />
 		<put-attribute name="content" value="/WEB-INF/views/dashlet/view.jsp" />
 	</definition>
 	
-	<definition name="dashlet/new" extends="page">
+	<definition name="dashlet/new" extends="template">
 		<put-attribute name="title" value="Create dashlet" />
 		<put-attribute name="content" value="/WEB-INF/views/dashlet/new.jsp" />
 	</definition>
 	
-	<definition name="dashlet/edit" extends="page">
+	<definition name="dashlet/edit" extends="template">
 		<put-attribute name="title" value="Edit dashlet" />
 		<put-attribute name="content" value="/WEB-INF/views/dashlet/edit.jsp" />
 	</definition>
