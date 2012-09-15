@@ -7,9 +7,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 
+import com.google.common.collect.Sets;
+
 import au.com.regimo.core.domain.TextTemplate;
 import au.com.regimo.core.domain.User;
 import au.com.regimo.core.repository.GenericRepository;
+import au.com.regimo.core.repository.RoleRepository;
 import au.com.regimo.core.repository.TextTemplateRepository;
 import au.com.regimo.core.repository.UserRepository;
 import au.com.regimo.core.utils.RandomPassword;
@@ -23,10 +26,12 @@ public class UserService extends GenericService<User, Long>{
 	private RowStatusService rowStatusService;
 	private TextTemplateRepository textTemplateRepository;
 	private EmailService emailService;
+	private RoleRepository roleRepository;
 	
 	@Transactional
 	public User signup(User user) {
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		user.setRoles(Sets.newHashSet(roleRepository.findByName("USER")));
 		rowStatusService.enable(user);
 		repository.save(user);
 
@@ -79,6 +84,11 @@ public class UserService extends GenericService<User, Long>{
 	@Inject
 	public void setEmailService(EmailService emailService) {
 		this.emailService = emailService;
+	}
+
+	@Inject
+	public void setRoleRepository(RoleRepository roleRepository) {
+		this.roleRepository = roleRepository;
 	}
 
 }
