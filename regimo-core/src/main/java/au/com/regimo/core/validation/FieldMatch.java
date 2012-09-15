@@ -15,14 +15,14 @@ import javax.validation.Payload;
  * 
  * Example, compare 1 pair of fields:
  * 
- * @FieldMatch(first = "password", second = "confirmPassword", message =
+ * @FieldMatch(field = "password", match = "confirmPassword", message =
  *                   "The password fields must match")
  * 
  *                   Example, compare more than 1 pair of fields:
  * @FieldMatch.List({
- * @FieldMatch(first = "password", second = "confirmPassword", message =
+ * @FieldMatch(field = "password", match = "confirmPassword", message =
  *                   "The password fields must match"),
- * @FieldMatch(first = "email", second = "confirmEmail", message =
+ * @FieldMatch(field = "email", match = "confirmEmail", message =
  *                   "The email fields must match")})
  */
 @Target({ElementType.TYPE, ElementType.ANNOTATION_TYPE})
@@ -37,12 +37,12 @@ public @interface FieldMatch {
 	/**
 	 * @return The first field
 	 */
-	String first();
+	String field();
 
 	/**
 	 * @return The second field
 	 */
-	String second();
+	String match();
 
 	/**
 	 * Defines several <code>@FieldMatch</code> annotations on the same element

@@ -62,10 +62,7 @@ public class HomeController {
 	@RequestMapping(value = "/profile", method = RequestMethod.POST)
 	public String updateUser(@Valid UserEntryForm form,  ModelMap map) {
 		User user = userService.findOne(SecurityUtils.getCurrentUserId());
-		user.setEmail(form.getEmail());
-		user.setFirstName(form.getFirstName());
-		user.setLastName(form.getLastName());
-		userService.save(user);
+		userService.save(form.getUpdatedUser(user));
 		SecurityUtils.updateCurrentUser(user);
 		return "redirect:/profile/view";
 	}	

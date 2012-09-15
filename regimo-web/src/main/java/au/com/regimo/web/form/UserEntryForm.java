@@ -11,19 +11,17 @@ import au.com.regimo.core.validation.FieldMatch;
 import au.com.regimo.core.validation.Username;
 import au.com.regimo.web.form.validation.AddMode;
 
-@FieldMatch.List({
-    @FieldMatch(groups={AddMode.class}, first = "password", second = "confirmPassword", 
-    		message = "must match password")
-})
+@FieldMatch(groups=AddMode.class, field="password", 
+			match="confirmPassword", message="must match password")
 public class UserEntryForm {
 
 	private Long id;
 
-	@NotEmpty(groups={AddMode.class})
+	@NotEmpty(groups=AddMode.class)
 	@Username(message="username exist")
 	private String username;
 	
-	@Size(groups={AddMode.class}, min=6, message="must be at least 6 characters")
+	@Size(groups=AddMode.class, min=6, message="must be at least 6 characters")
 	private String password;
 
 	private String confirmPassword;
@@ -42,6 +40,13 @@ public class UserEntryForm {
 		BeanUtilsExtend.copyPropertiesWithoutNull(user, this, "password");
 	}
 
+	public User getUpdatedUser(User user){
+		user.setEmail(email);
+		user.setFirstName(firstName);
+		user.setLastName(lastName);
+		return user;
+	}
+	
 	public Long getId() {
 		return id;
 	}

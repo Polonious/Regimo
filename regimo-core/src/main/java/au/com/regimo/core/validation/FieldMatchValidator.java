@@ -2,13 +2,11 @@ package au.com.regimo.core.validation;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import org.apache.commons.beanutils.BeanUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import org.springframework.beans.BeanWrapper;
+import org.springframework.beans.BeanWrapperImpl;
 
 public class FieldMatchValidator implements ConstraintValidator<FieldMatch, Object> {
-	
-	private final Logger logger = LoggerFactory.getLogger(getClass());
 	
 	private FieldMatch constraint;
 
@@ -18,16 +16,13 @@ public class FieldMatchValidator implements ConstraintValidator<FieldMatch, Obje
 
 	public boolean isValid(final Object value, final ConstraintValidatorContext context) {
 		boolean isValid = false;
-		try {
-			final Object firstObj = BeanUtils.getProperty(value, constraint.first());
-			final Object secondObj = BeanUtils.getProperty(value, constraint.second());
-			isValid = firstObj == secondObj || firstObj != null && firstObj.equals(secondObj);
-		} catch (final Exception ex) {
-			logger.error("validation error", ex);
-		}
+		BeanWrapper beanWrapper = new BeanWrapperImpl(value);
+		final Object field = beanWrapper.getPropertyValue(constraint.field());
+		final Object match = beanWrapper.getPropertyValue(constraint.match());
+		isValid = field == match || field != null && field.equals(match);
 		if(!isValid){
 			context.buildConstraintViolationWithTemplate(constraint.message())
-				.addNode(constraint.second()).addConstraintViolation();
+				.addNode(constraint.match()).addConstraintViolation();
 		}
 		return isValid;
 	}

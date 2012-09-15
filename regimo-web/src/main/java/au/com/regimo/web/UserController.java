@@ -58,8 +58,7 @@ public class UserController extends GenericEntityController<User> {
 			return null;
 		}
 		User user = entityService.findOne(form.getId());
-		BeanUtilsExtend.copyPropertiesWithoutNull(form, user, "username", "password");
-		entityService.save(user);
+		entityService.save(form.getUpdatedUser(user));
 		return "redirect:/user/view/"+form.getId();
 	}
 

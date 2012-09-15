@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import au.com.regimo.core.domain.User;
 import au.com.regimo.core.service.UserService;
+import au.com.regimo.core.utils.BeanUtilsExtend;
 import au.com.regimo.core.utils.SecurityUtils;
 import au.com.regimo.web.form.UserEntryForm;
 import au.com.regimo.web.form.UserListForm;
@@ -36,8 +37,7 @@ public class RestUserController {
 	@ResponseStatus(HttpStatus.OK)
 	public void updateProfile(@Valid UserEntryForm form) {
 		User user = userService.findOne(SecurityUtils.getCurrentUserId());
-		BeanUtils.copyProperties(form, user);
-		userService.save(user);
+		userService.save(form.getUpdatedUser(user));
 		SecurityUtils.updateCurrentUser(user);
 	}
 
