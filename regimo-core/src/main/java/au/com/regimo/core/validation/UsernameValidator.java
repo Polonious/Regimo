@@ -1,4 +1,4 @@
-package au.com.regimo.core.web.validation;
+package au.com.regimo.core.validation;
 
 import javax.inject.Inject;
 import javax.validation.ConstraintValidator;
