@@ -6,7 +6,6 @@ import java.util.LinkedList;
 import javax.inject.Inject;
 import javax.validation.Valid;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import au.com.regimo.core.domain.User;
 import au.com.regimo.core.service.UserService;
-import au.com.regimo.core.utils.BeanUtilsExtend;
 import au.com.regimo.core.utils.SecurityUtils;
 import au.com.regimo.web.form.UserEntryForm;
 import au.com.regimo.web.form.UserListForm;
