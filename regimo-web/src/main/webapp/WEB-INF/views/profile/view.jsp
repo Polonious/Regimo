@@ -39,6 +39,7 @@
 		</table>
 
 	<s:url var="updateUrl" value="/profile/edit"></s:url>
-	<p><button type="button" onclick="location.href='../profile/edit'"><spring:message code="button.edit"/></button><button class="button-cancel" type="button" onclick="location.href='../home'"><spring:message code="button.OK"/></button></p>
+	<p><button type="button" onclick="location.href='../profile/edit'"><spring:message code="button.edit"/></button>
+	<button class="button-cancel" type="button" onclick="location.href='../home'"><spring:message code="button.OK"/></button></p>
 	</div>
 </form>

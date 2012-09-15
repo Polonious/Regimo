@@ -12,7 +12,7 @@
 		<java-version>1.6</java-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 		<org.springframework-version>3.1.2.RELEASE</org.springframework-version>
-		<org.springframework.security-version>3.1.1.RELEASE</org.springframework.security-version>
+		<org.springframework.security-version>3.1.2.RELEASE</org.springframework.security-version>
 		<org.springframework.data.jpa-version>1.1.0.RELEASE</org.springframework.data.jpa-version>
 		<hibernate-version>3.6.10.Final</hibernate-version>
 	</properties>

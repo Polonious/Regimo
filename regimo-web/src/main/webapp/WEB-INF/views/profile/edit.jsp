@@ -45,6 +45,7 @@
 		</table>
 	
 	<input type="hidden" name="id" id="id" autocomplete="off" value="${user.id}"  />
-	<p><button type="submit"><spring:message code="button.save"/></button><button class="button-cancel" type="button" onclick="location.href='view'"><spring:message code="button.cancel"/></button></p>
+	<p><button type="submit"><spring:message code="button.save"/></button>
+	<button class="button-cancel" type="button" onclick="location.href='/profile'"><spring:message code="button.cancel"/></button></p>
 	</div>
 </form:form>

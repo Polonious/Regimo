@@ -12,15 +12,14 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.codec.Base64;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
-
-import com.google.common.collect.Sets;
 
 import au.com.regimo.core.domain.Authority;
 import au.com.regimo.core.domain.Operator;
 import au.com.regimo.core.domain.Role;
 import au.com.regimo.core.domain.User;
+
+import com.google.common.collect.Sets;
 
 public final class SecurityUtils {
 
@@ -136,8 +135,9 @@ public final class SecurityUtils {
 			logger.error("security context is empty, this seems to be a bug/misconfiguration!");
 		}
 		else{
+			Operator operator = createOperator(user);
 			context.setAuthentication(new UsernamePasswordAuthenticationToken(
-					createOperator(user, "de93af5de0169e52bbeea8afbbd4b4e0"), "polonious"));
+					operator, null, operator.getAuthorities()));
 			
 		}
 	}
@@ -148,8 +148,9 @@ public final class SecurityUtils {
 			logger.error("security context is empty, this seems to be a bug/misconfiguration!");
 		}
 		else{
+			Operator operator = createOperator(user);
 			context.setAuthentication(new UsernamePasswordAuthenticationToken(
-					createOperator(user), plainPassword));
+					operator, plainPassword, operator.getAuthorities()));
 		}
 	}
 
@@ -164,28 +165,6 @@ public final class SecurityUtils {
 			}
 		}
 		return authSet;
-	}
-	
-	public static boolean isAuthorizedWithBasicAuthentication(String auth, String username, String password){
-		boolean authorized = false;
-		if (auth.startsWith("Basic ")) {
-            byte[] base64Token = auth.substring(6).getBytes();
-            String token = new String(Base64.decode(base64Token));
-
-            String auth_username = "";
-            String auth_password = "";
-            int delim = token.indexOf(":");
-
-            if (delim != -1) {
-            	auth_username = token.substring(0, delim);
-            	auth_password = token.substring(delim + 1);
-            }
-		
-			if(auth_username.equals(username) && auth_password.equals(password)){
-				authorized = true;
-			}
-		}
-		return authorized;
 	}
 	
 }

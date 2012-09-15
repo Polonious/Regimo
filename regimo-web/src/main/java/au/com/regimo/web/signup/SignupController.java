@@ -53,7 +53,7 @@ public class SignupController {
 		BeanUtilsExtend.copyPropertiesWithoutNull(form, user);
 		userService.signup(user);
 		SecurityUtils.setAuthentcation(user, form.getPassword());
-		return "redirect:/";
+		return "redirect:/home";
 	}
 	
 	@RequestMapping(value="/rest/user", method=RequestMethod.POST)

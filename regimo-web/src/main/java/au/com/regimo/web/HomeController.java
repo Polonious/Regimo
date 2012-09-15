@@ -32,19 +32,14 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(ModelMap map, Principal user) {
-		if(user!=null){
-			if(SecurityUtils.isUserInRole("ADMIN")){
-				return "redirect:/manage/main";
-			}
-			else{
-				return "redirect:/profile/view";
-			}
+		if(user!=null && !SecurityUtils.isUserInRole("ADMIN")){
+			return "redirect:/profile";
 		}
-		return "redirect:/home";
+		return home(map);
 	}
 	
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
-	public String home1(ModelMap map) {
+	public String home(ModelMap map) {
 		Dashboard content = dashboardRepository.findByViewName("HomeContent");
 		map.addAttribute("content", content);
 		return "home";
@@ -54,22 +49,13 @@ public class HomeController {
 	public void signin() {
 	}
 	
-	@RequestMapping(value="/manage/main", method=RequestMethod.GET)
-	public String manageMain(ModelMap map) {
-		Dashboard menu = dashboardRepository.findByViewName("AdminHomeMenu");
-		map.addAttribute("menu", menu);
-		Dashboard content = dashboardRepository.findByViewName("AdminHomeMenuItem");
-		map.addAttribute("content", content);
-		return "home";
-	}
-	
-	@RequestMapping(value="/profile/view", method=RequestMethod.GET)
-	public void profile(ModelMap map) {
+	@RequestMapping(value="/profile", method=RequestMethod.GET)
+	public void viewProfile(ModelMap map) {
 		map.addAttribute("user",  SecurityUtils.getCurrentUser());
 	}
 	
 	@RequestMapping(value="/profile/edit", method=RequestMethod.GET)
-	public void profile_edit(ModelMap map) {
+	public void editProfile(ModelMap map) {
 		map.addAttribute("user", SecurityUtils.getCurrentUser());
 	}
 

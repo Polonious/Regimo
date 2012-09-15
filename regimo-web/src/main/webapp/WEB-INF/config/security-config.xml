@@ -12,8 +12,7 @@
 
 	<http security="none" pattern="/favicon.ico"/>
 	<http security="none" pattern="/resources/**"/>
-	<http security="none" pattern="/signup"/>
-	<http security="none" pattern="/signin"/>
+	<http security="none" pattern="${document.resources.path}**"/>
 
 	<http pattern="/oauth/token" create-session="stateless" 
 			authentication-manager-ref="clientAuthenticationManager" 
@@ -38,19 +37,20 @@
 
 	<http use-expressions="true">
 		<intercept-url pattern="/" access="permitAll" />
-		<intercept-url pattern="${document.resources.path}**" access="permitAll" />
 		<intercept-url pattern="/home" access="permitAll" />
-		<intercept-url pattern="/profile" access="isAuthenticated()" />
 		<intercept-url pattern="/dashboard/**" access="permitAll" />
 		<intercept-url pattern="/wp/**" access="permitAll" />
 		<intercept-url pattern="/wp.*" access="permitAll" />
-		<intercept-url pattern="/user/**" access="hasRole('ROLE_ADMIN')" />
-		<intercept-url pattern="/**" access="isAuthenticated()" />
+		<intercept-url pattern="/signup" access="permitAll" />
+
 		<form-login login-page="/signin" login-processing-url="/signin/authenticate" 
 			authentication-failure-url="/signin?error=1" 
 			authentication-success-handler-ref="signinSuccessHandler"/>
 		<logout logout-url="/signout" delete-cookies="JSESSIONID" 
 			success-handler-ref="signoutSuccessHandler"/>
+			
+		<intercept-url pattern="/user/**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/**" access="isAuthenticated()" />
 	</http>
     
 	<authentication-manager>
@@ -60,6 +60,7 @@
 	</authentication-manager>	
 
     <beans:bean id="passwordEncoder" class="org.springframework.security.crypto.password.StandardPasswordEncoder" c:secret="polonious"/>
+    <beans:bean id="securityContextPersistenceFilter" class="org.springframework.security.web.context.SecurityContextPersistenceFilter"/>
 
 	<!-- Configure oauth for REST Web Services -->
 	<oauth:authorization-server client-details-service-ref="clientDetails" token-services-ref="tokenServices">

@@ -1,6 +1,5 @@
 package au.com.regimo.web;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -12,12 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import au.com.regimo.core.domain.Dashboard;
-import au.com.regimo.core.domain.Menu;
-import au.com.regimo.core.domain.MenuItem;
-import au.com.regimo.core.domain.Role;
 import au.com.regimo.core.domain.UserDashlet;
 import au.com.regimo.core.repository.DashboardRepository;
-import au.com.regimo.core.repository.RoleRepository;
 import au.com.regimo.core.repository.UserDashletRepository;
 import au.com.regimo.core.utils.SecurityUtils;
 import au.com.regimo.core.utils.TextGenerator;
@@ -33,7 +28,6 @@ public class DashboardController {
 	private UserDashletRepository userDashletRepository;
 	private WpTermRepository wpTermRepository;
 	private WpPostRepository wpPostRepository;
-	private RoleRepository roleRepository;
 	
 	@RequestMapping(value = "")
 	public void dashboard(ModelMap map) {
@@ -65,18 +59,6 @@ public class DashboardController {
 				}
 				map.addAttribute("wpMenu", terms);
 			}
-			else if("roleMenu".equals(dashModel)){
-				Role currentRole = roleRepository.findByName("ADMIN");
-				List<MenuItem> s = new ArrayList<MenuItem>();
-				for(Menu menu: currentRole.getMenus()){
-					for(MenuItem menuItem:menu.getMenuItems())
-					{
-						s.add(menuItem);
-					}
-				}
-				map.addAttribute("roleMenu", s);
-				
-			}
 			else{
 				return "TODO: Freemarkered content "+ userDashlet.getDashlet().getContent();
 			}
@@ -103,11 +85,6 @@ public class DashboardController {
 	@Inject
 	public void setWpPostRepository(WpPostRepository wpPostRepository) {
 		this.wpPostRepository = wpPostRepository;
-	}
-	
-	@Inject
-	public void setRoleRepository(RoleRepository roleRepository) {
-		this.roleRepository = roleRepository;
 	}
 
 }
