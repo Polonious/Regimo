@@ -24,7 +24,7 @@
 	</http>
 
 	<http pattern="/rest/**" create-session="never"
-			access-decision-manager-ref="accessDecisionManager" 
+			access-decision-manager-ref="restAccessDecisionManager" 
 			entry-point-ref="oauthAuthenticationEntryPoint">
 		<anonymous enabled="false" />
 		<intercept-url pattern="/rest" access="ROLE_USER,SCOPE_READ" />
@@ -35,13 +35,7 @@
 		<access-denied-handler ref="oauthAccessDeniedHandler" />
 	</http>
 
-	<http use-expressions="true">
-		<form-login login-page="/signin" login-processing-url="/signin/authenticate" 
-					authentication-failure-url="/signin?error=1" 
-					authentication-success-handler-ref="signinSuccessHandler"/>
-		<logout logout-url="/signout" delete-cookies="JSESSIONID" 
-				success-handler-ref="signoutSuccessHandler"/>
-
+	<http use-expressions="true" access-decision-manager-ref="webAccessDecisionManager">
 		<intercept-url pattern="/" access="permitAll" />
 		<intercept-url pattern="/home" access="permitAll" />
 		<intercept-url pattern="/dashboard/**" access="permitAll" />
@@ -50,11 +44,14 @@
 		<intercept-url pattern="/signup" access="permitAll" />
 		<intercept-url pattern="/signin" access="permitAll" />
 		<intercept-url pattern="/signin/*" access="permitAll" />
-			
-		<intercept-url pattern="/user/**" access="hasRole('ROLE_ADMIN')" />
-		<intercept-url pattern="/**" access="isAuthenticated()" />
+		<intercept-url pattern="/**" access="hasRole('ROLE_ROOT')" />
+		<form-login login-page="/signin" login-processing-url="/signin/authenticate" 
+					authentication-failure-url="/signin?error=1" 
+					authentication-success-handler-ref="signinSuccessHandler"/>
+		<logout logout-url="/signout" delete-cookies="JSESSIONID" 
+				success-handler-ref="signoutSuccessHandler"/>
 	</http>
-    
+
 	<authentication-manager>
 		<authentication-provider user-service-ref="userDetailsService">
 			<password-encoder ref="passwordEncoder" />
@@ -110,7 +107,7 @@
 		<property name="supportRefreshToken" value="true" />
 	</bean>
 
-	<bean id="accessDecisionManager" class="org.springframework.security.access.vote.UnanimousBased" 
+	<bean id="restAccessDecisionManager" class="org.springframework.security.access.vote.UnanimousBased" 
 			xmlns="http://www.springframework.org/schema/beans">
 		<constructor-arg>
 			<list>
@@ -121,6 +118,14 @@
 		</constructor-arg>
 	</bean>
 
-
-
+	<bean id="webAccessDecisionManager" class="org.springframework.security.access.vote.AffirmativeBased"
+			xmlns="http://www.springframework.org/schema/beans">
+	    <constructor-arg>
+	        <list>
+	            <bean class="org.springframework.security.web.access.expression.WebExpressionVoter"/>
+	            <ref bean="urlVoter"/>
+	        </list>
+	    </constructor-arg>
+	</bean>
+    
 </beans:beans>

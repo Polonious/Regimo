@@ -160,7 +160,7 @@ public final class SecurityUtils {
 			for (Role role : user.getRoles()) {
 				authSet.add(new SimpleGrantedAuthority("ROLE_" + role.getName()));
 				for (Authority authority : role.getAuthorities()) {
-					authSet.add(new SimpleGrantedAuthority(authority.getValue()));
+					authSet.add(new SimpleGrantedAuthority(authority.getName()));
 				}
 			}
 		}

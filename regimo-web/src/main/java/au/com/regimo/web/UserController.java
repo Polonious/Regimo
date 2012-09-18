@@ -6,7 +6,6 @@ import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.validation.groups.Default;
 
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -19,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import au.com.regimo.core.domain.User;
 import au.com.regimo.core.form.DataTablesSearchCriteria;
+import au.com.regimo.core.form.TransformRequired;
 import au.com.regimo.core.service.UserService;
 import au.com.regimo.core.utils.BeanUtilsExtend;
 import au.com.regimo.web.form.UserEntryForm;
@@ -28,8 +28,8 @@ import au.com.regimo.web.form.validation.AddMode;
 import com.google.common.collect.Lists;
 
 @Controller
-@RequestMapping(value="/user")
-public class UserController {
+@RequestMapping("/user")
+public class UserController implements TransformRequired<User> {
 
 	private UserService service;
 	
@@ -44,16 +44,14 @@ public class UserController {
 	public void browse() {
 	}
 	
-	@RequestMapping(value = "/search")
-	public void search(@ModelAttribute DataTablesSearchCriteria searchCriteria, ModelMap modelMap){
-		Page<User> page = service.searchFullText(searchCriteria);
-		modelMap.addAttribute("aaData", getMappedSearchResult(page.getContent()));
-		modelMap.addAttribute("sEcho", searchCriteria.getsEcho());
-		modelMap.addAttribute("iTotalRecords", page.getTotalElements());
-		modelMap.addAttribute("iTotalDisplayRecords", page.getTotalElements());
+	@RequestMapping(value = "/browse", method=RequestMethod.POST)
+	public void search(@ModelAttribute DataTablesSearchCriteria searchCriteria, 
+			ModelMap modelMap){
+		service.searchFullText(searchCriteria, modelMap, this);
 	}
 
-	private List<?> getMappedSearchResult(List<User> result){
+	@Override
+	public List<?> getMappedSearchResult(List<User> result){
 		List<UserListForm> list = Lists.newLinkedList();
 		for(User user : result){
 			list.add(new UserListForm(user));
@@ -117,5 +115,6 @@ public class UserController {
 	public void setUserService(UserService service) {
 		this.service = service;
 	}
+
 
 }

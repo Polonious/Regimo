@@ -16,6 +16,7 @@ import au.com.regimo.core.repository.DashboardRepository;
 import au.com.regimo.core.service.UserService;
 import au.com.regimo.core.utils.SecurityUtils;
 import au.com.regimo.web.form.UserEntryForm;
+import au.com.regimo.web.spring.UrlVoter;
 
 /**
  * Handles requests for the application home page.
@@ -26,6 +27,8 @@ public class HomeController {
 	private UserService userService;
 
 	private DashboardRepository dashboardRepository;
+	
+	private UrlVoter urlVoter;
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -67,6 +70,12 @@ public class HomeController {
 		return "redirect:/profile";
 	}	
 
+	@RequestMapping(value="/reload", method=RequestMethod.GET)
+	public String reload(ModelMap map) {
+		urlVoter.loadUrls();
+		return this.home(map);
+	}
+
 	@Inject
 	public void setDashboardRepository(DashboardRepository dashboardRepository) {
 		this.dashboardRepository = dashboardRepository;
@@ -75,6 +84,11 @@ public class HomeController {
 	@Inject
 	public void setUserService(UserService userService) {
 		this.userService = userService;
+	}
+
+	@Inject
+	public void setUrlVoter(UrlVoter urlVoter) {
+		this.urlVoter = urlVoter;
 	}
 	
 }

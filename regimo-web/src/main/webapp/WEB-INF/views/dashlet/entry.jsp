@@ -3,7 +3,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
-<fieldset>
+<div class="formBody">
+
 	<form:hidden path="id" />
 	<form:label path="title"><spring:message code="dashlet.column.title"/> <form:errors path="title" cssClass="error" /></form:label>
 	<form:input path="title" />
@@ -16,5 +17,6 @@
 	<form:label path="parameter"><spring:message code="dashlet.column.parameter"/> <form:errors path="parameter" cssClass="error" /></form:label>
 	<form:input path="parameter" />	
 	<form:label path="content"><spring:message code="dashlet.column.content"/> <form:errors path="content" cssClass="error" /></form:label>
-	<form:textarea path="content" id="dashletContent" cssStyle="width:400px; height:200px;"/>
-</fieldset>
+	<form:textarea path="content" id="dashletContent" cssStyle="width:700px; height:500px;"/>
+
+</div>

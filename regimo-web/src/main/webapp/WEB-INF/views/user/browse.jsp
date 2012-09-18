@@ -20,7 +20,7 @@
 				"bServerSide": true,
 				"bStateSave": true,
 				"sPaginationType": "full_numbers",
-				"sAjaxSource": "search.json",
+				"sAjaxSource": "browse",
 				"fnServerData": _getServerData,
 				"aoColumns": [
 				              { "mDataProp": "username" },

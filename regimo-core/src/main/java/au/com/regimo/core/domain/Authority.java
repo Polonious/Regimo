@@ -15,15 +15,12 @@ public class Authority extends IdEntity {
 
 	private static final long serialVersionUID = 1L;
 
-    @Column(length = 255, nullable = false)  
+    @Column(length = 64, nullable = false, unique = true) 
     private String name;
 
-    @Column(length = 64, nullable = false)  
-    private String type;
+    @Column(length = 64)  
+    private String url;
     
-    @Column(length = 255, nullable = false, unique = true) 
-    private String value;
-
     @ManyToMany(targetEntity = Role.class)  
     @JoinTable(name = "AuthorityRole", joinColumns = @JoinColumn(name = "authorityId"), inverseJoinColumns = @JoinColumn(name = "roleId"))
     private Set<Role> roles;
@@ -31,11 +28,14 @@ public class Authority extends IdEntity {
     public Authority() {
     }
 
-    public Authority(String name, String type, String value) {
+    public Authority(String name) {
 		this.name = name;
-		this.type = type;
-		this.value = value;
-	}
+    }
+
+    public Authority(String name, String url) {
+    	this.name = name;
+    	this.url = url;
+    }
 
 	public String getName() {
 		return name;
@@ -45,20 +45,12 @@ public class Authority extends IdEntity {
 		this.name = name;
 	}
 
-	public String getType() {
-		return type;
+	public String getUrl() {
+		return url;
 	}
 
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public String getValue() {
-		return value;
-	}
-
-	public void setValue(String value) {
-		this.value = value;
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 	public Set<Role> getRoles() {

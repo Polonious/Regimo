@@ -3,7 +3,6 @@ package au.com.regimo.web;
 import javax.inject.Inject;
 import javax.validation.Valid;
 
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -17,7 +16,7 @@ import au.com.regimo.core.form.DataTablesSearchCriteria;
 import au.com.regimo.core.service.DashletService;
 
 @Controller
-@RequestMapping(value="/dashlet")
+@RequestMapping("/dashlet")
 public class DashletController {
 
 	private DashletService service;
@@ -33,13 +32,9 @@ public class DashletController {
 	public void browse() {
 	}
 	
-	@RequestMapping(value = "/search")
+	@RequestMapping(value = "/browse", method=RequestMethod.POST)
 	public void search(@ModelAttribute DataTablesSearchCriteria searchCriteria, ModelMap modelMap){
-		Page<Dashlet> page = service.searchFullText(searchCriteria);
-		modelMap.addAttribute("aaData", page.getContent());
-		modelMap.addAttribute("sEcho", searchCriteria.getsEcho());
-		modelMap.addAttribute("iTotalRecords", page.getTotalElements());
-		modelMap.addAttribute("iTotalDisplayRecords", page.getTotalElements());
+		service.searchFullText(searchCriteria, modelMap);
 	}
 	
 	@RequestMapping(value = "/view/{id}", method = RequestMethod.GET)

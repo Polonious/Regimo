@@ -19,6 +19,7 @@ import au.com.regimo.core.utils.TextGenerator;
 import au.com.regimo.server.wordpress.domain.WpTerm;
 import au.com.regimo.server.wordpress.repository.WpPostRepository;
 import au.com.regimo.server.wordpress.repository.WpTermRepository;
+import au.com.regimo.web.spring.UrlVoter;
 
 @Controller
 @RequestMapping("/dashboard")
@@ -28,6 +29,7 @@ public class DashboardController {
 	private UserDashletRepository userDashletRepository;
 	private WpTermRepository wpTermRepository;
 	private WpPostRepository wpPostRepository;
+	private UrlVoter urlVoter;
 	
 	@RequestMapping(value = "")
 	public void dashboard(ModelMap map) {
@@ -64,7 +66,11 @@ public class DashboardController {
 			}
 		}
 		map.addAttribute("user", SecurityUtils.getCurrentUser());
-		return TextGenerator.generateText(userDashlet.getDashlet().getContent(), map);
+		map.addAttribute("security", urlVoter);
+		return TextGenerator.generateText(String.format(
+				"[#macro url link][#if security.isAuthorised(link)][#nested link][/#if][/#macro]%s%s",
+				"[#macro acl attribute][#if security.isPermit(attribute)][#nested][/#if][/#macro]",
+				userDashlet.getDashlet().getContent()), map);
 	}
 
 	@Inject
@@ -85,6 +91,11 @@ public class DashboardController {
 	@Inject
 	public void setWpPostRepository(WpPostRepository wpPostRepository) {
 		this.wpPostRepository = wpPostRepository;
+	}
+
+	@Inject
+	public void setUrlVoter(UrlVoter urlVoter) {
+		this.urlVoter = urlVoter;
 	}
 
 }

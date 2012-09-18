@@ -20,7 +20,7 @@
 				"bServerSide": true,
 				"bStateSave": true,
 				"sPaginationType": "full_numbers",
-				"sAjaxSource": "search.json",
+				"sAjaxSource": "browse",
 				"fnServerData": _getServerData,
 				"aoColumns": [
 				              { "mDataProp": "title" },
@@ -41,9 +41,9 @@
 			<thead>
 				<tr>
 					<th width="20%"><spring:message code="dashlet.column.title"/></th>
-					<th width="25%"><spring:message code="dashlet.column.type"/></th>
-					<th width="25%"><spring:message code="dashlet.column.model"/></th>
-					<th width="15%"><spring:message code="dashlet.column.parameter"/></th>
+					<th width="15%"><spring:message code="dashlet.column.type"/></th>
+					<th width="12%"><spring:message code="dashlet.column.model"/></th>
+					<th width="43%"><spring:message code="dashlet.column.parameter"/></th>
 					<th width="10%"><spring:message code="dashlet.column.action"/></th>
 				</tr>
 			</thead>

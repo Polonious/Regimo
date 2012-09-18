@@ -17,8 +17,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.ModelMap;
 
 import au.com.regimo.core.form.DataTablesSearchCriteria;
+import au.com.regimo.core.form.TransformRequired;
 import au.com.regimo.core.repository.GenericRepository;
 import au.com.regimo.core.utils.ReflectionUtils;
 
@@ -70,7 +72,23 @@ public abstract class GenericService<T, ID extends Serializable> {
 		return getRepository().findAll(fullTextSearchSpec(
 				searchCriteria.getSearchableFields(), searchCriteria.getsSearch()), searchCriteria);
 	}
-	
+
+	public Page<T> searchFullText(DataTablesSearchCriteria searchCriteria, ModelMap modelMap){
+		return searchFullText(searchCriteria, modelMap, null);
+	}
+
+	public Page<T> searchFullText(DataTablesSearchCriteria searchCriteria, ModelMap modelMap, 
+			TransformRequired<T> transformer){
+		Page<T> results = searchFullText(searchCriteria);
+		modelMap.addAttribute("aaData", 
+				transformer==null ? results.getContent() : 
+					transformer.getMappedSearchResult(results.getContent()));
+		modelMap.addAttribute("sEcho", searchCriteria.getsEcho());
+		modelMap.addAttribute("iTotalRecords", results.getTotalElements());
+		modelMap.addAttribute("iTotalDisplayRecords", results.getTotalElements());
+		return results;
+	}
+
 	public long count(Specification<T> spec){
 		return getRepository().count(spec);
 	}
