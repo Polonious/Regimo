@@ -123,7 +123,7 @@
 	    <constructor-arg>
 	        <list>
 	            <bean class="org.springframework.security.web.access.expression.WebExpressionVoter"/>
-	            <ref bean="urlVoter"/>
+	            <ref bean="securityService"/>
 	        </list>
 	    </constructor-arg>
 	</bean>

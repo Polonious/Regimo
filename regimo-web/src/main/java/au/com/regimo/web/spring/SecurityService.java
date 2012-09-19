@@ -24,9 +24,9 @@ import au.com.regimo.core.repository.AuthorityRepository;
 import au.com.regimo.core.utils.SecurityUtils;
 
 @Named
-public class UrlVoter implements AccessDecisionVoter<FilterInvocation> {
+public class SecurityService implements AccessDecisionVoter<FilterInvocation> {
 
-	private static final Logger logger = LoggerFactory.getLogger(UrlVoter.class);
+	private static final Logger logger = LoggerFactory.getLogger(SecurityService.class);
 
 	private String prefix = "URL_";
 
@@ -37,7 +37,7 @@ public class UrlVoter implements AccessDecisionVoter<FilterInvocation> {
 	private AuthorityRepository authorityRepository;
 
 	@Inject
-    public UrlVoter(AuthorityRepository authorityRepository) {
+    public SecurityService(AuthorityRepository authorityRepository) {
 		this.authorityRepository = authorityRepository;
 		loadUrls();
 	}

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
-import au.com.regimo.web.spring.UrlVoter;
+import au.com.regimo.web.spring.SecurityService;
 
 import com.google.common.collect.Lists;
 
@@ -25,16 +25,16 @@ public class AdminController {
 
 	private RequestMappingHandlerMapping requestMappingHandlerMapping;
 
-	private UrlVoter urlVoter;
+	private SecurityService securityService;
 
 	@RequestMapping(value="endpoints", method = RequestMethod.GET)
 	public void getEndPoints(Model model,
 			@RequestParam(required=false, defaultValue="false") Boolean reload) {
-		if(reload) urlVoter.loadUrls();
+		if(reload) securityService.loadUrls();
 		Set<RequestMappingInfo> mappings = requestMappingHandlerMapping.getHandlerMethods().keySet();
 		Collection<String> authorities = Lists.newArrayListWithCapacity(mappings.size());
 		for(RequestMappingInfo mapping : mappings){
-			authorities.add(urlVoter.getAuthority(
+			authorities.add(securityService.getAuthority(
 				StringUtils.substringBetween(mapping.getPatternsCondition().getPatterns().toString(),"[","]"),
 				StringUtils.substringBetween(mapping.getMethodsCondition().getMethods().toString(),"[","]")));
 		}
@@ -51,8 +51,8 @@ public class AdminController {
 	}
 
 	@Inject
-	public void setUrlVoter(UrlVoter urlVoter) {
-		this.urlVoter = urlVoter;
+	public void setSecurityService(SecurityService securityService) {
+		this.securityService = securityService;
 	}
 
 }
