@@ -30,6 +30,7 @@ public class UrlVoter implements AccessDecisionVoter<FilterInvocation> {
 
 	private String prefix = "URL_";
 
+	private Map<String, String> authorityMaps; // Map<authority, url>
 	private Map<String, String> urlMaps; // Map<url, authority>
 	private Map<RequestMatcher, String> urlMatchers;
 
@@ -62,6 +63,15 @@ public class UrlVoter implements AccessDecisionVoter<FilterInvocation> {
 		return getAttribute(new FilterInvocation(url, method).getRequest());
 	}
 
+	public String getAuthorizedUrl(String attribute){
+		if(!attribute.startsWith(prefix)) attribute = prefix + attribute;
+		if(isAuthorized(attribute)){
+			String url = authorityMaps.get(attribute);
+			if(url!=null) return url;
+		}
+		return "";
+	}
+
 	public boolean isAuthorizedUrl(String url){
 		String attribute = getAuthority(url, "get");
 		return attribute==null ? false : isAuthorized(attribute);
@@ -92,11 +102,14 @@ public class UrlVoter implements AccessDecisionVoter<FilterInvocation> {
     }
 
     public void loadUrls() {
+    	authorityMaps = Maps.newLinkedHashMap();
     	urlMaps = Maps.newLinkedHashMap();
     	urlMatchers = Maps.newLinkedHashMap();
     	for(Authority authority: authorityRepository.findByNameStartsWith(prefix)){
     		if(authority.getUrl()==null || authority.equals("")) continue;
-			for(String url: authority.getUrl().split(";")){
+    		String[] urls = authority.getUrl().split(";");
+    		authorityMaps.put(authority.getName(), urls[0]);
+			for(String url: urls){
 	    		if(url.contains("*")){
 	        		urlMatchers.put(new AntPathRequestMatcher(url), authority.getName());
 	        	}
@@ -105,6 +118,7 @@ public class UrlVoter implements AccessDecisionVoter<FilterInvocation> {
 	        	}
 	    	}
     	}
+    	logger.debug("authorityMaps: "+authorityMaps);
     	logger.debug("urlMaps: "+urlMaps);
     	logger.debug("urlMatchers: "+urlMatchers);
     }

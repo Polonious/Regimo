@@ -62,7 +62,7 @@ public class InitializeData implements InitializingBean {
 				"select count(*) from Authority where name = :name", Long.class);
 
 		createAuthority(query, new Authority("UI_MENU_ADMIN"), adminRole);
-		createAuthority(query, new Authority("URL_ADMIN_ENPOINTS", "/admin/endpoints"), adminRole);
+		createAuthority(query, new Authority("URL_ADMIN_ENDPOINTS", "/admin/endpoints"), adminRole);
 
 		createAuthority(query, new Authority("URL_USER_BROWSE", "/user/browse;/user"), adminRole);
 		createAuthority(query, new Authority("URL_USER_VIEW", "/user/view"), adminRole);
