@@ -1,6 +1,6 @@
 
 function standardViewUpdateAction(oObj){
-	return "<a href='view/"+oObj.aData.id+"'>View</a> <a href='edit/"+oObj.aData.id+"'>Edit</a>";
+	return "<a href='view?id="+oObj.aData.id+"'>View</a> <a href='edit?id="+oObj.aData.id+"'>Edit</a>";
 }
 
 function _getServerData( sSource, aoData, fnCallback ) {

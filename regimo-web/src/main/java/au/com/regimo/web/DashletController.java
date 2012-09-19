@@ -7,9 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import au.com.regimo.core.domain.Dashlet;
 import au.com.regimo.core.form.DataTablesSearchCriteria;
@@ -25,22 +25,21 @@ public class DashletController {
 
 	@RequestMapping(method=RequestMethod.GET)
 	public String redirect() {
-		return "redirect:"+service.getEntityName()+"/browse";
+		return "redirect:/dashlet/browse";
 	}
-	
+
 	@RequestMapping(value="/browse", method=RequestMethod.GET)
 	public void browse() {
 	}
-	
+
 	@RequestMapping(value = "/browse", method=RequestMethod.POST)
 	public void search(@ModelAttribute DataTablesSearchCriteria searchCriteria, ModelMap modelMap){
 		service.searchFullText(searchCriteria, modelMap);
 	}
-	
-	@RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
-	public String show(@PathVariable Long id, ModelMap modelMap) {
+
+	@RequestMapping(value = "/view", method = RequestMethod.GET)
+	public void show(@RequestParam Long id, ModelMap modelMap) {
 		modelMap.addAttribute(modelName, service.findOne(id));
-		return service.getEntityName()+"/view";
 	}
 
 	@RequestMapping(value = "/new", method = RequestMethod.GET)
@@ -50,31 +49,26 @@ public class DashletController {
 
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
 	public String create(@Valid Dashlet entity, BindingResult result) {
-		if (result.hasErrors()) {
-			return null;
-		}
-		service.save(entity);
-		return "redirect:view/"+entity.getId();
+		return update(entity, result);
 	}
 
-	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-	public String update(@PathVariable Long id, ModelMap modelMap) {
+	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	public void update(@RequestParam Long id, ModelMap modelMap) {
 		modelMap.addAttribute(modelName, service.findOne(id));
-		return service.getEntityName()+"/edit";
 	}
-	
+
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public String update(@Valid Dashlet entity, BindingResult result) {
 		if (result.hasErrors()) {
 			return null;
 		}
 		service.save(entity);
-		return "redirect:/"+service.getEntityName()+"/view/"+entity.getId();
+		return "redirect:view?id="+entity.getId();
 	}
-	
+
 	@Inject
 	public void setService(DashletService service) {
 		this.service = service;
 	}
-	
+
 }

@@ -4,28 +4,36 @@
 
 <div id="viewPage">
 
-<table>
+	<link rel="stylesheet" href="<c:url value="/resources/datatables/css/demo_page.css" />" type="text/css" />
+	<link rel="stylesheet" href="<c:url value="/resources/datatables/css/demo_table.css" />" type="text/css" />
+	<script type="text/javascript" language="javascript" src="<c:url value="/resources/datatables/jquery.dataTables.min.js" />"></script>
+	<script type="text/javascript" charset="utf-8">
+		$(document).ready(initDataTable);
+		function initDataTable(){
+			var oTable = $('#endpointsTable').dataTable({
+				"sPaginationType": "full_numbers",
+				"iDisplayLength": 50,
+				"iTabIndex": 1
+			});
+		}
+	</script>
+
+<table id="endpointsTable" width="100%">
   <thead>
   <tr>
-    <th>path</th>
-    <th>methods</th>
-    <th>consumes</th>
-    <th>produces</th>
-    <th>params</th>
-    <th>headers</th>
-    <th>custom</th>
+    <th>Path</th>
+    <th>Methods</th>
+    <th>Authority</th>
+    <th>Parameters</th>
   </tr>
   </thead>
   <tbody>
-  <c:forEach items="${endpoints}" var="endPoint">
+  <c:forEach items="${endpoints}" var="endPoint" varStatus="status">
     <tr>
       <td>${endPoint.patternsCondition}</td>
       <td>${endPoint.methodsCondition}</td>
-      <td>${endPoint.consumesCondition}</td>
-      <td>${endPoint.producesCondition}</td>
+      <td>${authorities[status.index]}</td>
       <td>${endPoint.paramsCondition}</td>
-      <td>${endPoint.headersCondition}</td>
-      <td>${empty endPoint.customCondition ? "none" : endPoint.customCondition}</td>
     </tr>
   </c:forEach>
   </tbody>

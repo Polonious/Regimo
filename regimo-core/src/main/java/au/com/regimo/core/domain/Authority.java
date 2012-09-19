@@ -9,19 +9,21 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 
+import com.google.common.collect.Sets;
+
 @Entity
 @SequenceGenerator(name="SEQ_STORE", sequenceName = "seq_authority")
 public class Authority extends IdEntity {
 
 	private static final long serialVersionUID = 1L;
 
-    @Column(length = 64, nullable = false, unique = true) 
+    @Column(length = 64, nullable = false, unique = true)
     private String name;
 
-    @Column(length = 64)  
+    @Column(length = 64)
     private String url;
-    
-    @ManyToMany(targetEntity = Role.class)  
+
+    @ManyToMany(targetEntity = Role.class)
     @JoinTable(name = "AuthorityRole", joinColumns = @JoinColumn(name = "authorityId"), inverseJoinColumns = @JoinColumn(name = "roleId"))
     private Set<Role> roles;
 
@@ -59,6 +61,11 @@ public class Authority extends IdEntity {
 
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
+	}
+
+	public void addRole(Role role){
+		if(roles==null) roles = Sets.newHashSet(role);
+		else roles.add(role);
 	}
 
 }

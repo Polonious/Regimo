@@ -68,8 +68,8 @@ public class DashboardController {
 		map.addAttribute("user", SecurityUtils.getCurrentUser());
 		map.addAttribute("security", urlVoter);
 		return TextGenerator.generateText(String.format(
-				"[#macro url link][#if security.isAuthorised(link)][#nested link][/#if][/#macro]%s%s",
-				"[#macro acl attribute][#if security.isPermit(attribute)][#nested][/#if][/#macro]",
+				"[#macro url link][#if security.isAuthorizedUrl(link)][#nested link][/#if][/#macro]%s%s",
+				"[#macro acl attribute][#if security.isAuthorized(attribute)][#nested][/#if][/#macro]",
 				userDashlet.getDashlet().getContent()), map);
 	}
 

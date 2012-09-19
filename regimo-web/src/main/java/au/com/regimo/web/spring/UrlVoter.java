@@ -25,15 +25,14 @@ import au.com.regimo.core.utils.SecurityUtils;
 
 @Named
 public class UrlVoter implements AccessDecisionVoter<FilterInvocation> {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(UrlVoter.class);
-	
+
 	private String prefix = "URL_";
-	
-	// Map<url, Map<method, attribute>>, method='' means '*'
-	private Map<String, String> urlMaps; 
-	private Map<RequestMatcher, String> urlMatchers; 
-	
+
+	private Map<String, String> urlMaps; // Map<url, authority>
+	private Map<RequestMatcher, String> urlMatchers;
+
 	private AuthorityRepository authorityRepository;
 
 	@Inject
@@ -43,7 +42,7 @@ public class UrlVoter implements AccessDecisionVoter<FilterInvocation> {
 	}
 
     public boolean supports(ConfigAttribute attribute) {
-    	return attribute.getAttribute() != null 
+    	return attribute.getAttribute() != null
     			&& attribute.getAttribute().startsWith(prefix);
     }
 
@@ -51,42 +50,37 @@ public class UrlVoter implements AccessDecisionVoter<FilterInvocation> {
         return clazz.isAssignableFrom(FilterInvocation.class);
     }
 
-	public int vote(Authentication authentication, FilterInvocation fi, 
+	public int vote(Authentication authentication, FilterInvocation fi,
 			Collection<ConfigAttribute> attributes) {
-        int result = ACCESS_ABSTAIN;
-
     	String attribute = getAttribute(fi.getRequest());
-    	if(attribute!=null){
-			result = ACCESS_DENIED;
-            // Attempt to find a matching granted authority
-            for (GrantedAuthority authority : authentication.getAuthorities()) {
-                if (attribute.equals(authority.getAuthority())) {
-                	result = ACCESS_GRANTED;
-                	break;
-                }
-            }
-    	}
-        logger.debug(fi+" , attribute: "+attribute+" , result: "+result);
-        return result;
+        return attribute==null ? ACCESS_ABSTAIN :
+        	isAuthorized(attribute, authentication.getAuthorities()) ?
+				ACCESS_GRANTED : ACCESS_DENIED;
     }
 
-	public boolean isAuthorised(String url){
-		String attribute = getAttribute(new FilterInvocation(url, "get").getRequest());
-		logger.debug("isAuthorised: "+url+" , attribute: "+attribute);
-		return isPermit(attribute);
+	public String getAuthority(String url, String method){
+		return getAttribute(new FilterInvocation(url, method).getRequest());
 	}
-	
-	public boolean isPermit(String attribute){
-		if(attribute!=null){
-			for (GrantedAuthority authority : SecurityUtils.getAuthorities()) {
-	            if (attribute.equals(authority.getAuthority())) {
-	            	return true;
-	            }
-	        }
-		}
+
+	public boolean isAuthorizedUrl(String url){
+		String attribute = getAuthority(url, "get");
+		return attribute==null ? false : isAuthorized(attribute);
+	}
+
+	public boolean isAuthorized(String attribute){
+		return isAuthorized(attribute, SecurityUtils.getAuthorities());
+	}
+
+	private boolean isAuthorized(String attribute, Collection<? extends GrantedAuthority> authorities){
+		// Attempt to find a matching granted authority
+		for (GrantedAuthority authority : authorities) {
+            if (attribute.equals(authority.getAuthority())) {
+            	return true;
+            }
+        }
 		return false;
 	}
-	
+
     private String getAttribute(HttpServletRequest request){
     	String urlMap = urlMaps.get(request.getServletPath());
     	if(urlMap==null){
@@ -96,13 +90,13 @@ public class UrlVoter implements AccessDecisionVoter<FilterInvocation> {
     	}
     	return urlMap;
     }
-    
+
     public void loadUrls() {
     	urlMaps = Maps.newLinkedHashMap();
     	urlMatchers = Maps.newLinkedHashMap();
     	for(Authority authority: authorityRepository.findByNameStartsWith(prefix)){
     		if(authority.getUrl()==null || authority.equals("")) continue;
-			for(String url: authority.getUrl().split(",")){
+			for(String url: authority.getUrl().split(";")){
 	    		if(url.contains("*")){
 	        		urlMatchers.put(new AntPathRequestMatcher(url), authority.getName());
 	        	}

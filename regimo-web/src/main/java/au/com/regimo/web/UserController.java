@@ -11,7 +11,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,20 +31,20 @@ import com.google.common.collect.Lists;
 public class UserController implements TransformRequired<User> {
 
 	private UserService service;
-	
+
 	private final String modelName = "entity";
-	
+
 	@RequestMapping(method=RequestMethod.GET)
 	public String redirect() {
-		return "redirect:"+service.getEntityName()+"/browse";
+		return "redirect:/user/browse";
 	}
-	
+
 	@RequestMapping(value="/browse", method=RequestMethod.GET)
 	public void browse() {
 	}
-	
+
 	@RequestMapping(value = "/browse", method=RequestMethod.POST)
-	public void search(@ModelAttribute DataTablesSearchCriteria searchCriteria, 
+	public void search(@ModelAttribute DataTablesSearchCriteria searchCriteria,
 			ModelMap modelMap){
 		service.searchFullText(searchCriteria, modelMap, this);
 	}
@@ -59,10 +58,9 @@ public class UserController implements TransformRequired<User> {
 		return list;
 	}
 
-	@RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
-	public String show(@PathVariable Long id, ModelMap modelMap) {
+	@RequestMapping(value = "/view", method = RequestMethod.GET)
+	public void show(@RequestParam Long id, ModelMap modelMap) {
 		modelMap.addAttribute(modelName, service.findOne(id));
-		return service.getEntityName()+"/view";
 	}
 
 	@RequestMapping(value = "/new", method = RequestMethod.GET)
@@ -71,7 +69,7 @@ public class UserController implements TransformRequired<User> {
 	}
 
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
-	public String create(@Validated({Default.class, AddMode.class}) UserEntryForm form, 
+	public String create(@Validated({Default.class, AddMode.class}) UserEntryForm form,
 			BindingResult result) {
 		if (result.hasErrors()) {
 			return null;
@@ -79,13 +77,12 @@ public class UserController implements TransformRequired<User> {
 		User user = new User();
 		BeanUtilsExtend.copyPropertiesWithoutNull(form, user);
 		service.signup(user);
-		return "redirect:view/"+user.getId();
+		return "redirect:view?id="+user.getId();
 	}
 
-	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-	public String update(@PathVariable Long id, ModelMap modelMap) {
+	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	public void update(@RequestParam Long id, ModelMap modelMap) {
 		modelMap.addAttribute(modelName, service.findOne(id));
-		return service.getEntityName()+"/edit";
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
@@ -95,7 +92,7 @@ public class UserController implements TransformRequired<User> {
 		}
 		User user = service.findOne(form.getId());
 		service.save(form.getUpdatedUser(user));
-		return "redirect:/user/view/"+form.getId();
+		return "redirect:view?id="+form.getId();
 	}
 
 	@RequestMapping(value = "/resetForgottenPwd", method = RequestMethod.POST)
@@ -110,7 +107,7 @@ public class UserController implements TransformRequired<User> {
 		}
 		return "signin";
 	}
-	
+
 	@Inject
 	public void setUserService(UserService service) {
 		this.service = service;
