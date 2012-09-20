@@ -1,4 +1,4 @@
-package au.com.regimo.web.spring;
+package au.com.regimo.core.service;
 
 import java.util.Collection;
 import java.util.Map;

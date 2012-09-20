@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
-import au.com.regimo.web.spring.SecurityService;
+import au.com.regimo.core.service.SecurityService;
 
 import com.google.common.collect.Lists;
 

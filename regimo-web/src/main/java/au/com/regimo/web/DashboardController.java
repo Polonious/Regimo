@@ -14,12 +14,12 @@ import au.com.regimo.core.domain.Dashboard;
 import au.com.regimo.core.domain.UserDashlet;
 import au.com.regimo.core.repository.DashboardRepository;
 import au.com.regimo.core.repository.UserDashletRepository;
+import au.com.regimo.core.service.SecurityService;
 import au.com.regimo.core.utils.SecurityUtils;
 import au.com.regimo.core.utils.TextGenerator;
 import au.com.regimo.server.wordpress.domain.WpTerm;
 import au.com.regimo.server.wordpress.repository.WpPostRepository;
 import au.com.regimo.server.wordpress.repository.WpTermRepository;
-import au.com.regimo.web.spring.SecurityService;
 
 @Controller
 @RequestMapping("/dashboard")
