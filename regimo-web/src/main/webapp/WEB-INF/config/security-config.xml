@@ -14,8 +14,8 @@
 	<http security="none" pattern="/resources/**"/>
 	<http security="none" pattern="${document.resources.path}**"/>
 
-	<http pattern="/oauth/token" create-session="stateless" 
-			authentication-manager-ref="clientAuthenticationManager" 
+	<http pattern="/oauth/token" create-session="stateless"
+			authentication-manager-ref="clientAuthenticationManager"
 			entry-point-ref="oauthAuthenticationEntryPoint">
 		<intercept-url pattern="/oauth/token" access="IS_AUTHENTICATED_FULLY" />
 		<anonymous enabled="false" />
@@ -24,7 +24,7 @@
 	</http>
 
 	<http pattern="/rest/**" create-session="never"
-			access-decision-manager-ref="restAccessDecisionManager" 
+			access-decision-manager-ref="restAccessDecisionManager"
 			entry-point-ref="oauthAuthenticationEntryPoint">
 		<anonymous enabled="false" />
 		<intercept-url pattern="/rest" access="ROLE_USER,SCOPE_READ" />
@@ -45,18 +45,18 @@
 		<intercept-url pattern="/signin" access="permitAll" />
 		<intercept-url pattern="/signin/*" access="permitAll" />
 		<intercept-url pattern="/**" access="hasRole('ROLE_ROOT')" />
-		<form-login login-page="/signin" login-processing-url="/signin/authenticate" 
-					authentication-failure-url="/signin?error=1" 
+		<form-login login-page="/signin" login-processing-url="/signin/authenticate"
+					authentication-failure-url="/signin?error=1"
 					authentication-success-handler-ref="signinSuccessHandler"/>
-		<logout logout-url="/signout" delete-cookies="JSESSIONID" 
+		<logout logout-url="/signout" delete-cookies="JSESSIONID"
 				success-handler-ref="signoutSuccessHandler"/>
 	</http>
 
 	<authentication-manager>
-		<authentication-provider user-service-ref="userDetailsService">
+		<authentication-provider user-service-ref="securityService">
 			<password-encoder ref="passwordEncoder" />
 		</authentication-provider>
-	</authentication-manager>	
+	</authentication-manager>
 
     <beans:bean id="passwordEncoder" class="org.springframework.security.crypto.password.StandardPasswordEncoder" c:secret="polonious"/>
     <beans:bean id="securityContextPersistenceFilter" class="org.springframework.security.web.context.SecurityContextPersistenceFilter"/>
@@ -101,13 +101,13 @@
 
 	<beans:bean id="tokenStore" class="org.springframework.security.oauth2.provider.token.InMemoryTokenStore" />
 
-	<bean id="tokenServices" class="org.springframework.security.oauth2.provider.token.DefaultTokenServices" 
+	<bean id="tokenServices" class="org.springframework.security.oauth2.provider.token.DefaultTokenServices"
 			xmlns="http://www.springframework.org/schema/beans">
 		<property name="tokenStore" ref="tokenStore" />
 		<property name="supportRefreshToken" value="true" />
 	</bean>
 
-	<bean id="restAccessDecisionManager" class="org.springframework.security.access.vote.UnanimousBased" 
+	<bean id="restAccessDecisionManager" class="org.springframework.security.access.vote.UnanimousBased"
 			xmlns="http://www.springframework.org/schema/beans">
 		<constructor-arg>
 			<list>
@@ -127,5 +127,5 @@
 	        </list>
 	    </constructor-arg>
 	</bean>
-    
+
 </beans:beans>

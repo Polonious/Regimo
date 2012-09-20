@@ -13,18 +13,26 @@ import org.springframework.security.access.AccessDecisionVoter;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.util.AntPathRequestMatcher;
 import org.springframework.security.web.util.RequestMatcher;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.google.common.collect.Maps;
 
 import au.com.regimo.core.domain.Authority;
+import au.com.regimo.core.domain.User;
 import au.com.regimo.core.repository.AuthorityRepository;
+import au.com.regimo.core.repository.UserRepository;
 import au.com.regimo.core.utils.SecurityUtils;
+import au.com.regimo.core.utils.StringUtils;
 
 @Named
-public class SecurityService implements AccessDecisionVoter<FilterInvocation> {
+@Transactional(readOnly = true)
+public class SecurityService implements UserDetailsService, AccessDecisionVoter<FilterInvocation> {
 
 	private static final Logger logger = LoggerFactory.getLogger(SecurityService.class);
 
@@ -34,12 +42,30 @@ public class SecurityService implements AccessDecisionVoter<FilterInvocation> {
 	private Map<String, String> urlMaps; // Map<url, authority>
 	private Map<RequestMatcher, String> urlMatchers;
 
-	private AuthorityRepository authorityRepository;
+	private final UserRepository userRepository;
+	private final AuthorityRepository authorityRepository;
 
 	@Inject
-    public SecurityService(AuthorityRepository authorityRepository) {
+    public SecurityService(UserRepository userRepository, AuthorityRepository authorityRepository) {
+		this.userRepository = userRepository;
 		this.authorityRepository = authorityRepository;
 		loadUrls();
+	}
+
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		User user = null;
+		if(StringUtils.isEmail(username)){
+			user = userRepository.findByEmail(username);
+		}
+		else{
+			user = userRepository.findByUsername(username);
+		}
+
+		if(user==null){
+			throw new UsernameNotFoundException("Username/Email not found: " + username);
+		}
+
+		return SecurityUtils.createOperator(user);
 	}
 
     public boolean supports(ConfigAttribute attribute) {
