@@ -1,5 +1,4 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <div id="page-content">
 
@@ -12,7 +11,7 @@
 		${entity.email}
 	</address>
 	<s:url var="updateUrl" value="/user/edit?id={id}"><s:param name="id" value="${entity.id}"/></s:url>
-	<a href="${updateUrl}"><spring:message code="button.edit"/></a>
+	<a href="${updateUrl}"><s:message code="button.edit"/></a>
 </p>
 </div>
 

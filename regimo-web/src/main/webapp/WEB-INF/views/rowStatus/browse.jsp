@@ -1,12 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <div id="page-content">
 <div id="browsePage">
-	<h2><spring:message code="title.browse"/><spring:message code="rowStatus"/></h2>
+	<h2><s:message code="title.browse"/><s:message code="rowStatus"/></h2>
 
-	<a href='<s:url value="/rowStatus/new"/>'><spring:message code="button.new"/></a>
+	<a href='<s:url value="/rowStatus/new"/>'><s:message code="button.new"/></a>
 
 	<link rel="stylesheet" href="<c:url value="/resources/datatables/css/demo_page.css" />" type="text/css" />
 	<link rel="stylesheet" href="<c:url value="/resources/datatables/css/demo_table.css" />" type="text/css" />
@@ -41,11 +40,11 @@
 		<table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
 			<thead>
 				<tr>
-					<th width="20%"><spring:message code="rowStatus.name"/></th>
-					<th width="35%"><spring:message code="rowStatus.statusObject"/></th>
-					<th width="20%"><spring:message code="rowStatus.reference"/></th>
-					<th width="20%"><spring:message code="rowStatus.current"/></th>
-					<th width="5%"><spring:message code="title.action"/></th>
+					<th width="20%"><s:message code="rowStatus.name"/></th>
+					<th width="35%"><s:message code="rowStatus.statusObject"/></th>
+					<th width="20%"><s:message code="rowStatus.reference"/></th>
+					<th width="20%"><s:message code="rowStatus.current"/></th>
+					<th width="5%"><s:message code="title.action"/></th>
 				</tr>
 			</thead>
 			<tbody>

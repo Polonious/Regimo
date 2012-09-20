@@ -1,16 +1,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib prefix="f" uri="http://www.springframework.org/tags/form" %>
 
 <s:url var="actionUrl" value="/rowStatus/new"/>
-<form:form action="${actionUrl}" modelAttribute="rowStatus" method="post">
+<f:form action="${actionUrl}" modelAttribute="rowStatus" method="post">
 	<div class="formInfo">
-  		<h2><spring:message code="title.create"/> <spring:message code="rowStatus"/></h2>
+  		<h2><s:message code="title.create"/> <s:message code="rowStatus"/></h2>
   		<s:bind path="*"><c:if test="${status.error}">
-  		<div class="error"><spring:message code="error.new"/>.</div>
+  		<div class="error"><s:message code="error.new"/>.</div>
   		</c:if></s:bind>
 	</div>
 	<jsp:include page="entry.jsp"/>
-	<p><button type="submit"><spring:message code="button.create"/></button></p>
-</form:form>
+	<p><button type="submit"><s:message code="button.create"/></button>
+		<a href="browse"><s:message code="title.return"/></a>
+	</p>
+</f:form>
