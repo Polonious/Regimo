@@ -5,12 +5,12 @@
 
 <script type="text/javascript">
 	function toggleForgetPwd(){
-		
+
 		if(	$('#forgetPwd').css('display') == 'none') 	$('#forgetPwd').show();
 		else $('#forgetPwd').hide();
 
 	}
-</script> 
+</script>
 
 <c:if test="${not empty message}">
 	<div class="${message.type.cssClass}">${message.text}</div>
@@ -37,19 +37,19 @@
   		</div>
  	 	</c:if>
 	</div>
-	
+
 	<div class="formBody">
 		<label for="login"><spring:message code="main.signin.username"/></label>
 		<input id="login" name="j_username" type="text" size="25" autocorrect="off" autocapitalize="off" <c:if test="${not empty signinErrorMessage}">value="${SPRING_SECURITY_LAST_USERNAME}"</c:if> />
 		<label for="password"><spring:message code="main.signin.password"/></label>
-		<input id="password" name="j_password" type="password" size="25" />	
+		<input id="password" name="j_password" type="password" size="25" />
 		<p><button type="submit"><spring:message code="main.signin.signin"/></button> <a href="javascript:toggleForgetPwd();"><spring:message code="main.forgotPassword.text"/>?</a></p>
 	</div>
 </form>
 
 <form id="resetPwd" action="<c:url value="/user/resetForgottenPwd" />" modelAttribute="entity" method="post">
 <div  id="forgetPwd" style=" width:500px; display:none">
-		<table> 
+		<table>
 			<tr><td><spring:message code="main.forgotPassword.yourUsername"/> </td>  <td><input type="text" id="username" 	name="username" /></td></tr>
 	    </table>
    		<div align="center">
@@ -57,3 +57,5 @@
    		</div>
 </div>
 </form>
+
+<div class="push"></div>

@@ -3,6 +3,10 @@ function standardViewUpdateAction(oObj){
 	return "<a href='view?id="+oObj.aData.id+"'>View</a> <a href='edit?id="+oObj.aData.id+"'>Edit</a>";
 }
 
+function standardUpdateAction(oObj){
+	return "<a href='edit?id="+oObj.aData.id+"'>Edit</a>";
+}
+
 function _getServerData( sSource, aoData, fnCallback ) {
 	$.each( aoData, function(i, para) {
 		var paraNameParts = para.name.split("_");
@@ -15,12 +19,12 @@ function _getServerData( sSource, aoData, fnCallback ) {
 	    	}
 	    }
 	});
-	
+
     $.ajax( {
-        "dataType": 'json', 
-        "type": "POST", 
-        "url": sSource, 
-        "data": aoData, 
+        "dataType": 'json',
+        "type": "POST",
+        "url": sSource,
+        "data": aoData,
         "success": fnCallback
     } );
 }

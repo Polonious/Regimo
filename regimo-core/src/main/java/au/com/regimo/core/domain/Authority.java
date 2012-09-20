@@ -9,6 +9,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import com.google.common.collect.Sets;
 
 @Entity
@@ -18,6 +20,7 @@ public class Authority extends IdEntity {
 	private static final long serialVersionUID = 1L;
 
     @Column(length = 64, nullable = false, unique = true)
+    @NotEmpty
     private String name;
 
     @Column(length = 64)
@@ -30,6 +33,10 @@ public class Authority extends IdEntity {
     public Authority() {
     }
 
+    public Authority(Long id) {
+		this.id = id;
+    }
+
     public Authority(String name) {
 		this.name = name;
     }
@@ -37,6 +44,12 @@ public class Authority extends IdEntity {
     public Authority(String name, String url) {
     	this.name = name;
     	this.url = url;
+    }
+
+    public static Authority findAuthority(Long id){
+    	Authority entity = new Authority();
+    	entity.id = id;
+    	return entity;
     }
 
 	public String getName() {

@@ -89,8 +89,12 @@ public class SecurityService implements UserDetailsService, AccessDecisionVoter<
 		return getAttribute(new FilterInvocation(url, method).getRequest());
 	}
 
+	public Authority findAuthority(String url, String method){
+		return authorityRepository.findByName(getAuthority(url, method));
+	}
+
 	public String getAuthorizedUrl(String attribute){
-		if(!attribute.startsWith(prefix)) attribute = prefix + attribute;
+		if(!attribute.startsWith(prefix)) attribute = prefix + attribute.toUpperCase();
 		if(isAuthorized(attribute)){
 			String url = authorityMaps.get(attribute);
 			if(url!=null) return url;

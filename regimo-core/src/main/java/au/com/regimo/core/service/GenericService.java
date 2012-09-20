@@ -30,44 +30,44 @@ import com.google.common.base.CaseFormat;
 public abstract class GenericService<T, ID extends Serializable> {
 
 	protected final Logger logger = LoggerFactory.getLogger(getClass());
-	
+
 	protected final Class<T> entityClass;
-	
+
 	protected final String entityName;
-	
+
 	protected abstract GenericRepository<T, ID> getRepository();
-	
+
 	public GenericService() {
 		super();
         entityClass = ReflectionUtils.getSuperClassGenricType(getClass());
-        entityName = CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_CAMEL, 
+        entityName = CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_CAMEL,
         		entityClass.getSimpleName());
     }
-	
+
 	public Iterable<T> findAll(Sort sort){
 		return getRepository().findAll(sort);
 	}
-	
+
 	public Page<T> findAll(Pageable pageable){
 		return getRepository().findAll(pageable);
 	}
-	
+
 	public T findOne(Specification<T> spec){
 		return getRepository().findOne(spec);
 	}
-	
+
 	public List<T> findAll(Specification<T> spec){
 		return getRepository().findAll(spec);
 	}
-	
+
 	public Page<T> findAll(Specification<T> spec, Pageable pageable){
 		return getRepository().findAll(spec, pageable);
 	}
-	
+
 	public List<T> findAll(Specification<T> spec, Sort sort){
 		return getRepository().findAll(spec, sort);
 	}
-	
+
 	public Page<T> searchFullText(DataTablesSearchCriteria searchCriteria){
 		return getRepository().findAll(fullTextSearchSpec(
 				searchCriteria.getSearchableFields(), searchCriteria.getsSearch()), searchCriteria);
@@ -77,11 +77,11 @@ public abstract class GenericService<T, ID extends Serializable> {
 		return searchFullText(searchCriteria, modelMap, null);
 	}
 
-	public Page<T> searchFullText(DataTablesSearchCriteria searchCriteria, ModelMap modelMap, 
+	public Page<T> searchFullText(DataTablesSearchCriteria searchCriteria, ModelMap modelMap,
 			TransformRequired<T> transformer){
 		Page<T> results = searchFullText(searchCriteria);
-		modelMap.addAttribute("aaData", 
-				transformer==null ? results.getContent() : 
+		modelMap.addAttribute("aaData",
+				transformer==null ? results.getContent() :
 					transformer.getMappedSearchResult(results.getContent()));
 		modelMap.addAttribute("sEcho", searchCriteria.getsEcho());
 		modelMap.addAttribute("iTotalRecords", results.getTotalElements());
@@ -92,7 +92,7 @@ public abstract class GenericService<T, ID extends Serializable> {
 	public long count(Specification<T> spec){
 		return getRepository().count(spec);
 	}
-	
+
 	public T getNewEntity() {
 		T object = null;
         try {
@@ -102,28 +102,36 @@ public abstract class GenericService<T, ID extends Serializable> {
 		}
 		return object;
     }
-	
+
 	@Transactional
 	public T save(T entity){
 		return getRepository().save(entity);
 	}
-	
+
 	public T findOne(ID id) {
 		return getRepository().findOne(id);
 	}
-	
+
+	public void loadNewEntity(ModelMap modelMap){
+		modelMap.addAttribute(getEntityName(), getNewEntity());
+	}
+
+	public void loadOne(ID id, ModelMap modelMap) {
+		modelMap.addAttribute(getEntityName(), findOne(id));
+	}
+
 	public boolean exists(ID id){
 		return getRepository().exists(id);
 	}
-	
+
 	public Iterable<T> findAll(){
 		return getRepository().findAll();
 	}
-	
+
 	public long count(){
 		return getRepository().count();
 	}
-	
+
 	@Transactional
 	public void delete(ID id){
 		getRepository().delete(id);
@@ -144,14 +152,14 @@ public abstract class GenericService<T, ID extends Serializable> {
 						continue;
 					}
 					predicate = cb.or(predicate, cb.like(cb.upper(
-							getQueryExpression(root,field).as(String.class)), 
+							getQueryExpression(root,field).as(String.class)),
 							"%"+value.toUpperCase()+"%"));
 				}
 				return predicate;
 			}
 		};
 	}
-	
+
 	private Expression<?> getQueryExpression(Root<?> root, String pathString){
 		Expression<?> expression = null;
 		String[] pathElements = pathString.split("\\.");
@@ -168,9 +176,9 @@ public abstract class GenericService<T, ID extends Serializable> {
 		}
 		return expression;
 	}
-	
+
 	public String getEntityName() {
 		return entityName;
 	}
-	
+
 }

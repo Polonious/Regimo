@@ -20,51 +20,55 @@ import com.google.common.collect.Sets;
 
 @Named
 @Transactional(readOnly=true)
-public class RowStatusService {
+public class RowStatusService extends GenericService<RowStatus, Long> {
 
-	private RowStatusRepository rowStatusRepository;
+	private RowStatusRepository repository;
 	private EntityManager entityManager;
 
 	public void enable(IRowStatusAllowed entity) {
 		setReferenceRowStatus(entity, RowStatus.CURRENT);
 	}
-	
+
 	public void disable(IRowStatusAllowed entity){
 		setReferenceRowStatus(entity, RowStatus.DELETED);
 	}
-	
+
 	public void setReferenceRowStatus(IRowStatusAllowed entity, String reference){
-		entity.setRowStatus(rowStatusRepository.findByReferenceAndStatusObject(reference, 
+		entity.setRowStatus(repository.findByReferenceAndStatusObject(reference,
 				entity.getClass().getSimpleName()));
 	}
-	
+
 	public Collection<ComboItem> getAllowedEntityOption(){
 		Collection<ComboItem> entityOption = Sets.newTreeSet(new ComboItem());
     	for(EntityType<?> entity : entityManager.getMetamodel().getEntities()){
-    		if(ArrayUtils.contains(entity.getJavaType().getInterfaces(), 
+    		if(ArrayUtils.contains(entity.getJavaType().getInterfaces(),
     				IRowStatusAllowed.class)){
     			entityOption.add(new ComboItem(entity.getJavaType().getSimpleName()));
     		}
     	}
     	return entityOption;
 	}
-	
+
 	public Collection<ComboItem> getOptions(String statusObject){
 		Collection<ComboItem> options = Sets.newTreeSet(new ComboItem());
-		for(RowStatus rowStatus : rowStatusRepository.findByStatusObject(statusObject)){
+		for(RowStatus rowStatus : repository.findByStatusObject(statusObject)){
 			options.add(new ComboItem(rowStatus.getName(), rowStatus.getId()));
 		}
 		return options;
 	}
-	
+
+	protected RowStatusRepository getRepository() {
+		return repository;
+	}
+
 	@Inject
-	public void setRowStatusRepository(RowStatusRepository rowStatusRepository) {
-		this.rowStatusRepository = rowStatusRepository;
+	public void setRepository(RowStatusRepository repository) {
+		this.repository = repository;
 	}
 
 	@PersistenceContext
 	public void setEntityManager(EntityManager entityManager) {
 		this.entityManager = entityManager;
 	}
-	
+
 }

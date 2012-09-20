@@ -6,15 +6,17 @@
 <html>
 <head>
 	<title><tiles:insertAttribute name="title" defaultValue="Polonious" /></title>
-	<meta http-equiv="content-type" content="text/html;charset=utf-8" />	
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 	<link rel="stylesheet" href="<c:url value="/resources/wordpress.css" />" type="text/css" media="screen" />
 	<link rel="stylesheet" href="<c:url value="/resources/css/style.css" />" type="text/css" />
 	<link rel="stylesheet" href="<c:url value="/resources/css/dropdown-menu.css" />" type="text/css" />
 	<link rel="stylesheet" href="<c:url value="/resources/css/waterwheel-carousel.css" />" type="text/css" />
 	<link rel="stylesheet" href="<c:url value="/resources/orbit/orbit-1.2.3.css" />" type="text/css" />
+	<link href="/resources/jquery/select2/select2.css" rel="stylesheet" type="text/css"/>
+
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript" src="<c:url value="/resources/waterwheelCarousel/jquery.waterwheelCarousel.min.js" />"></script>
-	<script type="text/javascript" src="/resources/orbit/jquery.orbit-1.2.3.min.js"></script>	
+	<script type="text/javascript" src="/resources/orbit/jquery.orbit-1.2.3.min.js"></script>
 </head>
 
 <script type="text/javascript">
@@ -42,4 +44,6 @@
 		<tiles:insertAttribute name="footer" />
 	</div>
 </body>
+	<script type="text/javascript" src="/resources/jquery/select2/select2.min.js"></script>
+	<script type="text/javascript" src="/resources/jquery/html5breadcrumbs.js"></script>
 </html>

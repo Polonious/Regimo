@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
+import au.com.regimo.core.domain.Authority;
 import au.com.regimo.core.service.SecurityService;
 
 import com.google.common.collect.Lists;
@@ -32,9 +33,9 @@ public class AdminController {
 			@RequestParam(required=false, defaultValue="false") Boolean reload) {
 		if(reload) securityService.loadUrls();
 		Set<RequestMappingInfo> mappings = requestMappingHandlerMapping.getHandlerMethods().keySet();
-		Collection<String> authorities = Lists.newArrayListWithCapacity(mappings.size());
+		Collection<Authority> authorities = Lists.newArrayListWithCapacity(mappings.size());
 		for(RequestMappingInfo mapping : mappings){
-			authorities.add(securityService.getAuthority(
+			authorities.add(securityService.findAuthority(
 				StringUtils.substringBetween(mapping.getPatternsCondition().getPatterns().toString(),"[","]"),
 				StringUtils.substringBetween(mapping.getMethodsCondition().getMethods().toString(),"[","]")));
 		}

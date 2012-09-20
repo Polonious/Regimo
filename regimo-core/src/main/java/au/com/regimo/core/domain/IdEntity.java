@@ -13,8 +13,8 @@ public abstract class IdEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Id 
-	@GeneratedValue(generator="SEQ_STORE") 
+	@Id
+	@GeneratedValue(generator="SEQ_STORE")
     protected Long id;
 
 	@Override
@@ -53,5 +53,5 @@ public abstract class IdEntity implements Serializable {
 	public String toString(){
 		return this.getClass().getSimpleName()+"[" + id + "]";
 	}
-	
+
 }

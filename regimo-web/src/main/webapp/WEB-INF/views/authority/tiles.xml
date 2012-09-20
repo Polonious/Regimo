@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+
+<tiles-definitions>
+
+	<definition name="authority/browse" extends="template">
+		<put-attribute name="title" value="Browse Authority" />
+		<put-attribute name="content" value="/WEB-INF/views/authority/browse.jsp" />
+	</definition>
+
+	<definition name="authority/new" extends="template">
+		<put-attribute name="title" value="Create Authority" />
+		<put-attribute name="content" value="/WEB-INF/views/authority/new.jsp" />
+	</definition>
+
+	<definition name="authority/edit" extends="template">
+		<put-attribute name="title" value="Edit Authority" />
+		<put-attribute name="content" value="/WEB-INF/views/authority/edit.jsp" />
+	</definition>
+
+</tiles-definitions>

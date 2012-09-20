@@ -12,7 +12,7 @@
 		function initDataTable(){
 			var oTable = $('#endpointsTable').dataTable({
 				"sPaginationType": "full_numbers",
-				"iDisplayLength": 50,
+				"iDisplayLength": 25,
 				"iTabIndex": 1
 			});
 		}
@@ -32,7 +32,7 @@
     <tr>
       <td>${endPoint.patternsCondition}</td>
       <td>${endPoint.methodsCondition}</td>
-      <td>${authorities[status.index]}</td>
+      <td><a href="/authority/edit?id=${authorities[status.index].id}">${authorities[status.index].name}</a></td>
       <td>${endPoint.paramsCondition}</td>
     </tr>
   </c:forEach>
