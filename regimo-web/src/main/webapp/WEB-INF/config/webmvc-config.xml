@@ -8,7 +8,7 @@
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
 
 	<!-- Enables the Spring MVC @Controller programming model -->
-	<mvc:annotation-driven>
+	<mvc:annotation-driven conversion-service="conversionService">
 	    <mvc:message-converters>
 	        <bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
 	        <bean class="org.springframework.http.converter.ResourceHttpMessageConverter"/>
@@ -36,6 +36,12 @@
 	<mvc:resources mapping="/favicon.ico" location="/resources/" />
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	<mvc:resources mapping="${document.resources.path}**" location="file:${document.repository}" cache-period="31556926"/>
+
+	<!--  convert string to entity -->
+	<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean" />
+	<bean class="org.springframework.data.repository.support.DomainClassConverter">
+		<constructor-arg ref="conversionService" />
+	</bean>
 
 	<bean id="tilesviewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 	    <property name="viewClass">

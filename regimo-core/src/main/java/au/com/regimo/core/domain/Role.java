@@ -34,12 +34,6 @@ public class Role extends IdEntity {
 		this.description = description;
 	}
 
-    public static Role findRole(Long id){
-    	Role entity = new Role();
-    	entity.id = id;
-    	return entity;
-    }
-
 	public String getName() {
 		return name;
 	}

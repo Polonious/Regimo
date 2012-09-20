@@ -46,12 +46,6 @@ public class Authority extends IdEntity {
     	this.url = url;
     }
 
-    public static Authority findAuthority(Long id){
-    	Authority entity = new Authority();
-    	entity.id = id;
-    	return entity;
-    }
-
 	public String getName() {
 		return name;
 	}
