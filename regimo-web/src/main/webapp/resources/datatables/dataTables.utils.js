@@ -1,10 +1,11 @@
 
 function standardViewUpdateAction(oObj){
-	return "<a href='view?id="+oObj.aData.id+"'>View</a> <a href='edit?id="+oObj.aData.id+"'>Edit</a>";
+	var path = window.location.pathname;
+	return "<a href='"+path+"/view?id="+oObj.aData.id+"'>View</a> <a href='"+path+"/edit?id="+oObj.aData.id+"'>Edit</a>";
 }
 
 function standardUpdateAction(oObj){
-	return "<a href='edit?id="+oObj.aData.id+"'>Edit</a>";
+	return "<a href='"+window.location.pathname+"/edit?id="+oObj.aData.id+"'>Edit</a>";
 }
 
 function _getServerData( sSource, aoData, fnCallback ) {

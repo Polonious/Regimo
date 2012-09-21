@@ -2,10 +2,9 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="f" uri="http://www.springframework.org/tags/form" %>
 
-<s:url var="actionUrl" value="/user/edit"/>
-<f:form action="${actionUrl}" modelAttribute="entity" method="post">
+<f:form modelAttribute="${modelName}" method="post">
 	<div class="formInfo">
-  		<h2><s:message code="profile.edit.title"/></h2>
+  		<h2><s:message code="title.edit"/> <s:message code="user"/></h2>
   		<s:bind path="*">
   		<c:if test="${status.error}">
   		<div class="error"><s:message code="error.new"/></div>
@@ -14,7 +13,7 @@
 	</div>
 	<jsp:include page="entry.jsp"/>
 	<p><button type="submit"><s:message code="button.save"/></button>
-		<a href="browse"><s:message code="title.return"/></a>
+		<a href="../${modelName}"><s:message code="title.return"/></a>
 	</p>
 </f:form>
 

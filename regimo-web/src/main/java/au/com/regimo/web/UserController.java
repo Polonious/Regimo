@@ -32,20 +32,14 @@ public class UserController implements TransformRequired<User> {
 
 	private UserService service;
 
-	private final String modelName = "entity";
-
 	@RequestMapping(method=RequestMethod.GET)
-	public String redirect() {
-		return "redirect:/user/browse";
+	public String browse(ModelMap modelMap) {
+		return service.loadModelName(modelMap);
 	}
 
-	@RequestMapping(value="/browse", method=RequestMethod.GET)
-	public void browse() {
-	}
-
-	@RequestMapping(value = "/browse", method=RequestMethod.POST)
-	public void search(@ModelAttribute DataTablesSearchCriteria searchCriteria,
-			ModelMap modelMap){
+	@RequestMapping(method=RequestMethod.POST)
+	public void browse(ModelMap modelMap,
+			@ModelAttribute DataTablesSearchCriteria searchCriteria){
 		service.searchFullText(searchCriteria, modelMap, this);
 	}
 
@@ -59,13 +53,13 @@ public class UserController implements TransformRequired<User> {
 	}
 
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
-	public void show(@RequestParam Long id, ModelMap modelMap) {
-		modelMap.addAttribute(modelName, service.findOne(id));
+	public void view(@RequestParam Long id, ModelMap modelMap) {
+		service.loadModel(modelMap, id);
 	}
 
 	@RequestMapping(value = "/new", method = RequestMethod.GET)
 	public void create(ModelMap modelMap) {
-		modelMap.addAttribute(modelName, service.getNewEntity());
+		service.loadModel(modelMap);
 	}
 
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
@@ -82,7 +76,7 @@ public class UserController implements TransformRequired<User> {
 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public void update(@RequestParam Long id, ModelMap modelMap) {
-		modelMap.addAttribute(modelName, service.findOne(id));
+		service.loadModel(modelMap, id);
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)

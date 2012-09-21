@@ -64,29 +64,29 @@ public class InitializeData implements InitializingBean {
 		createAuthority(query, new Authority("UI_MENU_ADMIN"), adminRole);
 		createAuthority(query, new Authority("URL_ADMIN_ENDPOINTS", "/admin/endpoints"), adminRole);
 
-		createAuthority(query, new Authority("URL_USER_BROWSE", "/user/browse;/user"), adminRole);
+		createAuthority(query, new Authority("URL_USER_BROWSE", "/user"), adminRole);
 		createAuthority(query, new Authority("URL_USER_VIEW", "/user/view"), adminRole);
 		createAuthority(query, new Authority("URL_USER_EDIT", "/user/edit"), adminRole);
 		createAuthority(query, new Authority("URL_USER_CREATE", "/user/new"), adminRole);
 
-		createAuthority(query, new Authority("URL_DASHLET_BROWSE", "/dashlet/browse;/dashlet"), adminRole);
+		createAuthority(query, new Authority("URL_DASHLET_BROWSE", "/dashlet"), adminRole);
 		createAuthority(query, new Authority("URL_DASHLET_VIEW", "/dashlet/view"), adminRole);
 		createAuthority(query, new Authority("URL_DASHLET_EDIT", "/dashlet/edit"), adminRole);
 		createAuthority(query, new Authority("URL_DASHLET_CREATE", "/dashlet/new"), adminRole);
 
-		createAuthority(query, new Authority("URL_AUTHORITY_BROWSE", "/authority/browse;/authority"), adminRole);
+		createAuthority(query, new Authority("URL_AUTHORITY_BROWSE", "/authority"), adminRole);
 		createAuthority(query, new Authority("URL_AUTHORITY_EDIT", "/authority/edit"), adminRole);
 		createAuthority(query, new Authority("URL_AUTHORITY_CREATE", "/authority/new"), adminRole);
 
-		createAuthority(query, new Authority("URL_ROLE_BROWSE", "/role/browse;/role"), adminRole);
+		createAuthority(query, new Authority("URL_ROLE_BROWSE", "/role"), adminRole);
 		createAuthority(query, new Authority("URL_ROLE_EDIT", "/role/edit"), adminRole);
 		createAuthority(query, new Authority("URL_ROLE_CREATE", "/role/new"), adminRole);
 
-		createAuthority(query, new Authority("URL_ROWSTATUS_BROWSE", "/rowStatus/browse;/rowStatus"), adminRole);
+		createAuthority(query, new Authority("URL_ROWSTATUS_BROWSE", "/rowStatus"), adminRole);
 		createAuthority(query, new Authority("URL_ROWSTATUS_EDIT", "/rowStatus/edit"), adminRole);
 		createAuthority(query, new Authority("URL_ROWSTATUS_CREATE", "/rowStatus/new"), adminRole);
 
-		createAuthority(query, new Authority("URL_TEXTTEMPLATE_BROWSE", "/textTemplate/browse;/textTemplate"), adminRole);
+		createAuthority(query, new Authority("URL_TEXTTEMPLATE_BROWSE", "/textTemplate"), adminRole);
 		createAuthority(query, new Authority("URL_TEXTTEMPLATE_EDIT", "/textTemplate/edit"), adminRole);
 		createAuthority(query, new Authority("URL_TEXTTEMPLATE_CREATE", "/textTemplate/new"), adminRole);
 

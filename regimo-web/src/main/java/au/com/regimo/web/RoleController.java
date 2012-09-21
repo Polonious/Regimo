@@ -22,41 +22,37 @@ public class RoleController {
 	private RoleService service;
 
 	@RequestMapping(method=RequestMethod.GET)
-	public String redirect() {
-		return "redirect:/role/browse";
+	public String browse(ModelMap modelMap) {
+		return service.loadModelName(modelMap);
 	}
 
-	@RequestMapping(value="/browse", method=RequestMethod.GET)
-	public void browse() {
-	}
-
-	@RequestMapping(value = "/browse", method=RequestMethod.POST)
-	public void search(@ModelAttribute DataTablesSearchCriteria searchCriteria, ModelMap modelMap){
+	@RequestMapping(method=RequestMethod.POST)
+	public void browse(ModelMap modelMap,
+			@ModelAttribute DataTablesSearchCriteria searchCriteria){
 		service.searchFullText(searchCriteria, modelMap);
 	}
 
 	@RequestMapping(value = "/new", method = RequestMethod.GET)
 	public void create(ModelMap modelMap) {
-		service.loadNewEntity(modelMap);
+		service.loadModel(modelMap);
 	}
 
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
-	public String create(@Valid Role entity, BindingResult result) {
-		return update(entity, result);
+	public String create(ModelMap modelMap,
+			@Valid Role entity, BindingResult result) {
+		return service.saveModel(modelMap, entity, result) ? 
+				"redirect:edit?id="+entity.getId() : null;
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public void update(@RequestParam Long id, ModelMap modelMap) {
-		service.loadOne(id, modelMap);
+	public void update(ModelMap modelMap, @RequestParam Long id) {
+		service.loadModel(modelMap, id);
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
-	public String update(@Valid Role entity, BindingResult result) {
-		if (result.hasErrors()){
-			return null;
-		}
-		service.save(entity);
-		return "redirect:edit?id="+entity.getId();
+	public void update(ModelMap modelMap,
+			@Valid Role entity, BindingResult result) {
+		service.saveModel(modelMap, entity, result);
 	}
 
 	@Inject

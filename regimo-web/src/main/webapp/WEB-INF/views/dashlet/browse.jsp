@@ -5,7 +5,7 @@
 <div id="browsePage">
 	<h2><s:message code="dashlet.browse.title"/></h2>
 
-	<a href='<s:url value="/dashlet/new"/>'><s:message code="button.new"/></a>
+	<a href='../${modelName}/new'><s:message code="button.new"/></a>
 
 	<link rel="stylesheet" href="<c:url value="/resources/datatables/css/demo_page.css" />" type="text/css" />
 	<link rel="stylesheet" href="<c:url value="/resources/datatables/css/demo_table.css" />" type="text/css" />
@@ -19,7 +19,7 @@
 				"bServerSide": true,
 				"bStateSave": true,
 				"sPaginationType": "full_numbers",
-				"sAjaxSource": "browse",
+				"sAjaxSource": "",
 				"fnServerData": _getServerData,
 				"aoColumns": [
 				              { "mDataProp": "title" },

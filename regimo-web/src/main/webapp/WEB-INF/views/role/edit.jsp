@@ -4,8 +4,7 @@
 
 <div id="page-content">
 
-<s:url var="actionUrl" value="/role/edit"/>
-<f:form action="${actionUrl}" modelAttribute="role" method="post">
+<f:form modelAttribute="${modelName}" method="post">
 	<div class="formInfo">
 	<legend><s:message code="title.edit"/> <s:message code="role"/></legend>
 	<s:bind path="*">
@@ -16,7 +15,7 @@
 	</div>
 	<jsp:include page="entry.jsp"/>
 	<p><button type="submit"><s:message code="button.save"/></button>
-		<a href="browse"><s:message code="title.return"/></a>
+		<a href="../${modelName}"><s:message code="title.return"/></a>
 	</p>
 </f:form>
 

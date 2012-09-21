@@ -5,7 +5,7 @@
 <div id="browsePage">
 	<h2><s:message code="profile.browse.title"/></h2>
 
-	<a href='<s:url value="/user/new"/>'><s:message code="button.new"/></a>
+	<a href='../${modelName}/new'><s:message code="button.new"/></a>
 	
 	<link rel="stylesheet" href="<c:url value="/resources/datatables/css/demo_page.css" />" type="text/css" />
 	<link rel="stylesheet" href="<c:url value="/resources/datatables/css/demo_table.css" />" type="text/css" />
@@ -15,11 +15,12 @@
 		$(document).ready(initDataTable);
 		function initDataTable(){
 			var oTable = $('#example').dataTable( {
+				"sPaginationType": "full_numbers",
+				"iDisplayLength": 25,
 				"bProcessing": true,
 				"bServerSide": true,
 				"bStateSave": true,
-				"sPaginationType": "full_numbers",
-				"sAjaxSource": "browse",
+				"sAjaxSource": "",
 				"fnServerData": _getServerData,
 				"aoColumns": [
 				              { "mDataProp": "username" },

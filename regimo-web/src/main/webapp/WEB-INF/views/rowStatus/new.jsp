@@ -2,8 +2,7 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="f" uri="http://www.springframework.org/tags/form" %>
 
-<s:url var="actionUrl" value="/rowStatus/new"/>
-<f:form action="${actionUrl}" modelAttribute="rowStatus" method="post">
+<f:form modelAttribute="${modelName}" method="post">
 	<div class="formInfo">
   		<h2><s:message code="title.create"/> <s:message code="rowStatus"/></h2>
   		<s:bind path="*"><c:if test="${status.error}">
@@ -12,6 +11,6 @@
 	</div>
 	<jsp:include page="entry.jsp"/>
 	<p><button type="submit"><s:message code="button.create"/></button>
-		<a href="browse"><s:message code="title.return"/></a>
+		<a href="../${modelName}"><s:message code="title.return"/></a>
 	</p>
 </f:form>

@@ -3,7 +3,7 @@
 
 <tiles-definitions>
 	
-	<definition name="user/browse" extends="template">
+	<definition name="user" extends="template">
 		<put-attribute name="title" value="User list" />
 		<put-attribute name="content" value="/WEB-INF/views/user/browse.jsp" />
 	</definition>

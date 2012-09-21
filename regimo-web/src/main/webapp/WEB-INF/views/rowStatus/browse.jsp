@@ -5,7 +5,7 @@
 <div id="browsePage">
 	<h2><s:message code="title.browse"/> <s:message code="rowStatus"/></h2>
 
-	<a href='<s:url value="/rowStatus/new"/>'><s:message code="button.new"/></a>
+	<a href='../${modelName}/new'><s:message code="button.new"/></a>
 
 	<link rel="stylesheet" href="<c:url value="/resources/datatables/css/demo_page.css" />" type="text/css" />
 	<link rel="stylesheet" href="<c:url value="/resources/datatables/css/demo_table.css" />" type="text/css" />
@@ -20,7 +20,7 @@
 				"bProcessing": true,
 				"bServerSide": true,
 				"bStateSave": true,
-				"sAjaxSource": "browse",
+				"sAjaxSource": "",
 				"fnServerData": _getServerData,
 				"aoColumns": [
 				              { "mDataProp": "name" },

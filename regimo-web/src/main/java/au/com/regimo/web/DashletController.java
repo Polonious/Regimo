@@ -21,49 +21,43 @@ public class DashletController {
 
 	private DashletService service;
 
-	private final String modelName = "entity";
-
 	@RequestMapping(method=RequestMethod.GET)
-	public String redirect() {
-		return "redirect:/dashlet/browse";
+	public String browse(ModelMap modelMap) {
+		return service.loadModelName(modelMap);
 	}
 
-	@RequestMapping(value="/browse", method=RequestMethod.GET)
-	public void browse() {
-	}
-
-	@RequestMapping(value = "/browse", method=RequestMethod.POST)
-	public void search(@ModelAttribute DataTablesSearchCriteria searchCriteria, ModelMap modelMap){
+	@RequestMapping(method=RequestMethod.POST)
+	public void browse(ModelMap modelMap,
+			@ModelAttribute DataTablesSearchCriteria searchCriteria){
 		service.searchFullText(searchCriteria, modelMap);
 	}
 
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
-	public void show(@RequestParam Long id, ModelMap modelMap) {
-		modelMap.addAttribute(modelName, service.findOne(id));
+	public void view(ModelMap modelMap, @RequestParam Long id) {
+		service.loadModel(modelMap, id);
 	}
 
 	@RequestMapping(value = "/new", method = RequestMethod.GET)
 	public void create(ModelMap modelMap) {
-		modelMap.addAttribute(modelName, service.getNewEntity());
+		service.loadModel(modelMap);
 	}
 
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
-	public String create(@Valid Dashlet entity, BindingResult result) {
-		return update(entity, result);
+	public String create(ModelMap modelMap,
+			@Valid Dashlet entity, BindingResult result) {
+		return service.saveModel(modelMap, entity, result) ? 
+				"redirect:edit?id="+entity.getId() : null;
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public void update(@RequestParam Long id, ModelMap modelMap) {
-		modelMap.addAttribute(modelName, service.findOne(id));
+	public void update(ModelMap modelMap, @RequestParam Long id) {
+		service.loadModel(modelMap, id);
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
-	public String update(@Valid Dashlet entity, BindingResult result) {
-		if (result.hasErrors()) {
-			return null;
-		}
-		service.save(entity);
-		return "redirect:view?id="+entity.getId();
+	public void update(ModelMap modelMap,
+			@Valid Dashlet entity, BindingResult result) {
+		service.saveModel(modelMap, entity, result);
 	}
 
 	@Inject

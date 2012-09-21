@@ -18,6 +18,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 
 import au.com.regimo.core.form.DataTablesSearchCriteria;
 import au.com.regimo.core.form.TransformRequired;
@@ -112,14 +113,31 @@ public abstract class GenericService<T, ID extends Serializable> {
 		return getRepository().findOne(id);
 	}
 
-	public void loadNewEntity(ModelMap modelMap){
-		modelMap.addAttribute(getEntityName(), getNewEntity());
+	public String loadModelName(ModelMap modelMap){
+		modelMap.addAttribute("modelName", entityName);
+		return entityName;
 	}
 
-	public void loadOne(ID id, ModelMap modelMap) {
-		modelMap.addAttribute(getEntityName(), findOne(id));
+	public void loadModel(ModelMap modelMap){
+		modelMap.addAttribute(loadModelName(modelMap), getNewEntity());
+	}
+	
+	public void loadModel(ModelMap modelMap, T entity){
+		modelMap.addAttribute(loadModelName(modelMap), entity);
 	}
 
+	public void loadModel(ModelMap modelMap, ID id) {
+		loadModel(modelMap, findOne(id));
+	}
+	
+	public boolean saveModel(ModelMap modelMap, T entity, BindingResult result){
+		if (!result.hasErrors()){
+			entity = save(entity);
+		}
+		loadModel(modelMap, entity);
+		return !result.hasErrors();
+	}
+	
 	public boolean exists(ID id){
 		return getRepository().exists(id);
 	}

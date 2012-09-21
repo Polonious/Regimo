@@ -136,10 +136,9 @@ public class SecurityService implements UserDetailsService, AccessDecisionVoter<
     	urlMaps = Maps.newLinkedHashMap();
     	urlMatchers = Maps.newLinkedHashMap();
     	for(Authority authority: authorityRepository.findByNameStartsWith(prefix)){
-    		if(authority.getUrl()==null || authority.equals("")) continue;
-    		String[] urls = authority.getUrl().split(";");
-    		authorityMaps.put(authority.getName(), urls[0]);
-			for(String url: urls){
+    		String url = authority.getUrl();
+    		if(url!=null && !url.equals("")){
+				authorityMaps.put(authority.getName(), url);
 	    		if(url.contains("*")){
 	        		urlMatchers.put(new AntPathRequestMatcher(url), authority.getName());
 	        	}

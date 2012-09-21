@@ -4,14 +4,13 @@
 
 <div id="viewPage">
 <p>
-	<h3 class="alt">${entity.username}</h3>
+	<h3 class="alt">${user.username}</h3>
 	<address>
-		${entity.firstName} ${entity.lastName}
+		${user.firstName} ${user.lastName}
 		<br />
-		${entity.email}
+		${user.email}
 	</address>
-	<s:url var="updateUrl" value="/user/edit?id={id}"><s:param name="id" value="${entity.id}"/></s:url>
-	<a href="${updateUrl}"><s:message code="button.edit"/></a>
+	<a href="edit?id=${user.id}"><s:message code="button.edit"/></a>
 </p>
 </div>
 

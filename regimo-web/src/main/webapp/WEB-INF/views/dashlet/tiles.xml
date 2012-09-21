@@ -3,7 +3,7 @@
 
 <tiles-definitions>
 	
-	<definition name="dashlet/browse" extends="template">
+	<definition name="dashlet" extends="template">
 		<put-attribute name="title" value="Dashlet list" />
 		<put-attribute name="content" value="/WEB-INF/views/dashlet/browse.jsp" />
 	</definition>
