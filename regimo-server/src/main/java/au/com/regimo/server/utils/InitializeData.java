@@ -74,6 +74,10 @@ public class InitializeData implements InitializingBean {
 		createAuthority(query, new Authority("URL_DASHLET_EDIT", "/dashlet/edit"), adminRole);
 		createAuthority(query, new Authority("URL_DASHLET_CREATE", "/dashlet/new"), adminRole);
 
+		createAuthority(query, new Authority("URL_DASHBOARD_BROWSE", "/dashboard"), adminRole);
+		createAuthority(query, new Authority("URL_DASHBOARD_EDIT", "/dashboard/edit"), adminRole);
+		createAuthority(query, new Authority("URL_DASHBOARD_CREATE", "/dashboard/new"), adminRole);
+
 		createAuthority(query, new Authority("URL_AUTHORITY_BROWSE", "/authority"), adminRole);
 		createAuthority(query, new Authority("URL_AUTHORITY_EDIT", "/authority/edit"), adminRole);
 		createAuthority(query, new Authority("URL_AUTHORITY_CREATE", "/authority/new"), adminRole);

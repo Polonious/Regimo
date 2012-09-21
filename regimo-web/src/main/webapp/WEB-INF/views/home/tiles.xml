@@ -8,5 +8,10 @@
 		<put-attribute name="content" value="/WEB-INF/views/home/content.jsp" />
 		<put-attribute name="content" expression="/WEB-INF/views/home/content${currentDevice.mobile ? '-mobile' : ''}.jsp" />
 	</definition>
+
+	<definition name="contents" extends="page">
+		<put-attribute name="title" value="Dashboard" />
+		<put-attribute name="content" value="/WEB-INF/views/home/contents.jsp" />
+	</definition>
 	
 </tiles-definitions>

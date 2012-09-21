@@ -20,7 +20,7 @@
 			<div class="cbox" id="dashlet_content_${userDashlet.id}"></div>
 			<script type="text/javascript">
 		        $(document).ready(function()
-		        	{ $('#dashlet_content_${userDashlet.id}').load('/dashboard/${userDashlet.id}');});
+		        	{ $('#dashlet_content_${userDashlet.id}').load('/contents/${userDashlet.id}');});
 		    </script>
 		</c:forEach>
 	

@@ -96,7 +96,7 @@
 			<c:forEach var="userDashlet" items="${content.userDashlets}">
 				<div class="content-column" id="dashlet_content_${userDashlet.id}"></div>
 					<script type="text/javascript">
-				        $(document).ready(function() { $('#dashlet_content_${userDashlet.id}').load('dashboard/${userDashlet.id}'); });
+				        $(document).ready(function() { $('#dashlet_content_${userDashlet.id}').load('contents/${userDashlet.id}'); });
 				    </script>
 			</c:forEach>
             
