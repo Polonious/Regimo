@@ -3,7 +3,7 @@
 
 <div id="page-content">
 <div id="browsePage">
-	<h2><s:message code="title.browse"/> <s:message code="authority"/></h2>
+	<h2><s:message code="title.browse"/> <s:message code="${modelName}"/></h2>
 
 	<a href='../${modelName}/new'><s:message code="button.new"/></a>
 

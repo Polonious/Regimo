@@ -10,12 +10,14 @@
 
 	<definition name="rowStatus/new" extends="template">
 		<put-attribute name="title" value="Create RowStatus" />
-		<put-attribute name="content" value="/WEB-INF/views/rowStatus/new.jsp" />
+		<put-attribute name="content" value="/WEB-INF/views/new.jsp"/>
+	    <put-attribute name="entry" value="/WEB-INF/views/rowStatus/entry.jsp" cascade="true"/>
 	</definition>
 
 	<definition name="rowStatus/edit" extends="template">
 		<put-attribute name="title" value="Edit RowStatus" />
-		<put-attribute name="content" value="/WEB-INF/views/rowStatus/edit.jsp" />
+		<put-attribute name="content" value="/WEB-INF/views/new.jsp"/>
+	    <put-attribute name="entry" value="/WEB-INF/views/rowStatus/entry.jsp" cascade="true"/>
 	</definition>
 
 </tiles-definitions>
