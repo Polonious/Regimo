@@ -5,17 +5,16 @@
 
 <div id="viewPage">
 <p>
-	<h3 class="alt">${entity.title}</h3>
+	<h3 class="alt">${dashlet.title}</h3>
 	<fieldset>
-		<b><s:message code="dashlet.column.type"/>:</b> ${entity.type}<br />
-		<b><s:message code="dashlet.column.model"/>:</b> ${entity.model}<br />
-		<b><s:message code="dashlet.column.parameter"/>:</b> ${entity.parameter}<br /><br />
-		<b><s:message code="dashlet.column.content"/>:</b><br />
-		<pre><c:out value="${entity.content}"/></pre>
+		<b><s:message code="dashlet.type"/>:</b> ${dashlet.type}<br />
+		<b><s:message code="dashlet.model"/>:</b> ${dashlet.model}<br />
+		<b><s:message code="dashlet.parameter"/>:</b> ${dashlet.parameter}<br /><br />
+		<b><s:message code="dashlet.content"/>:</b><br />
+		<pre><c:out value="${dashlet.content}"/></pre>
 	</fieldset>
 	<br /><br />
-	<s:url var="updateUrl" value="/dashlet/edit?id={id}"><s:param name="id" value="${entity.id}"/></s:url>
-	<a href="${updateUrl}"><s:message code="button.edit"/></a>
+	<a href="edit?id=${dashlet.id}"><s:message code="button.edit"/></a>
 </p>
 </div>
 
