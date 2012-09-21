@@ -10,13 +10,13 @@
 
 	<definition name="authority/new" extends="template">
 		<put-attribute name="title" value="Create Authority" />
-		<put-attribute name="content" value="/WEB-INF/views/new.jsp"/>
+		<put-attribute name="content" value="/WEB-INF/layouts/new.jsp"/>
 	    <put-attribute name="entry" value="/WEB-INF/views/authority/entry.jsp" cascade="true"/>
 	</definition>
 
 	<definition name="authority/edit" extends="template">
 		<put-attribute name="title" value="Edit Authority" />
-		<put-attribute name="content" value="/WEB-INF/views/edit.jsp"/>
+		<put-attribute name="content" value="/WEB-INF/layouts/edit.jsp"/>
 	    <put-attribute name="entry" value="/WEB-INF/views/authority/entry.jsp" cascade="true"/>
 	</definition>
 

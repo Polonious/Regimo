@@ -15,13 +15,13 @@
 	
 	<definition name="user/new" extends="template">
 		<put-attribute name="title" value="Create user" />
-		<put-attribute name="content" value="/WEB-INF/views/new.jsp"/>
+		<put-attribute name="content" value="/WEB-INF/layouts/new.jsp"/>
 	    <put-attribute name="entry" value="/WEB-INF/views/user/entry.jsp" cascade="true"/>
 	</definition>
 	
 	<definition name="user/edit" extends="template">
 		<put-attribute name="title" value="Edit user" />
-		<put-attribute name="content" value="/WEB-INF/views/new.jsp"/>
+		<put-attribute name="content" value="/WEB-INF/layouts/new.jsp"/>
 	    <put-attribute name="entry" value="/WEB-INF/views/user/entry.jsp" cascade="true"/>
 	</definition>
 	

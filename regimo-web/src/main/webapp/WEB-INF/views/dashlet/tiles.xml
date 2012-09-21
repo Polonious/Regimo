@@ -15,13 +15,13 @@
 	
 	<definition name="dashlet/new" extends="template">
 		<put-attribute name="title" value="Create dashlet" />
-		<put-attribute name="content" value="/WEB-INF/views/new.jsp"/>
+		<put-attribute name="content" value="/WEB-INF/layouts/new.jsp"/>
 	    <put-attribute name="entry" value="/WEB-INF/views/dashlet/entry.jsp" cascade="true"/>
 	</definition>
 	
 	<definition name="dashlet/edit" extends="template">
 		<put-attribute name="title" value="Edit dashlet" />
-		<put-attribute name="content" value="/WEB-INF/views/new.jsp"/>
+		<put-attribute name="content" value="/WEB-INF/layouts/new.jsp"/>
 	    <put-attribute name="entry" value="/WEB-INF/views/dashlet/entry.jsp" cascade="true"/>
 	</definition>
 	
