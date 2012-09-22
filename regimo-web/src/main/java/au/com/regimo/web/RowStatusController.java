@@ -22,8 +22,7 @@ public class RowStatusController {
 	private RowStatusService service;
 
 	@RequestMapping(method=RequestMethod.GET)
-	public String browse(ModelMap modelMap) {
-		return service.loadModelName(modelMap);
+	public void browse() {
 	}
 
 	@RequestMapping(method=RequestMethod.POST)

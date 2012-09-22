@@ -2,22 +2,7 @@
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 
 <tiles-definitions>
-
-	<definition name="role" extends="template">
-		<put-attribute name="title" value="Browse Role" />
-		<put-attribute name="content" value="/WEB-INF/views/role/browse.jsp" />
-	</definition>
-
-	<definition name="role/new" extends="template">
-		<put-attribute name="title" value="Create Role" />
-		<put-attribute name="content" value="/WEB-INF/layouts/new.jsp"/>
-	    <put-attribute name="entry" value="/WEB-INF/views/role/entry.jsp" cascade="true"/>
-	</definition>
-
-	<definition name="role/edit" extends="template">
-		<put-attribute name="title" value="Edit Role" />
-		<put-attribute name="content" value="/WEB-INF/layouts/new.jsp"/>
-	    <put-attribute name="entry" value="/WEB-INF/views/role/entry.jsp" cascade="true"/>
-	</definition>
-
+	<definition name="role" extends="browse"/>
+	<definition name="role/new" extends="new"/>
+	<definition name="role/edit" extends="edit"/>
 </tiles-definitions>

@@ -113,17 +113,12 @@ public abstract class GenericService<T, ID extends Serializable> {
 		return getRepository().findOne(id);
 	}
 
-	public String loadModelName(ModelMap modelMap){
-		modelMap.addAttribute("modelName", entityName);
-		return entityName;
-	}
-
 	public void loadModel(ModelMap modelMap){
-		modelMap.addAttribute(loadModelName(modelMap), getNewEntity());
+		modelMap.addAttribute(entityName, getNewEntity());
 	}
 	
 	public void loadModel(ModelMap modelMap, T entity){
-		modelMap.addAttribute(loadModelName(modelMap), entity);
+		modelMap.addAttribute(entityName, entity);
 	}
 
 	public void loadModel(ModelMap modelMap, ID id) {

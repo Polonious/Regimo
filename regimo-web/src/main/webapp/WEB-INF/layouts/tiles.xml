@@ -12,5 +12,27 @@
 		<put-attribute name="header" expression="/WEB-INF/layouts/${currentDevice.mobile ? 'mobile/' : 'desktop/'}header.jsp" />
 		<put-attribute name="footer" expression="/WEB-INF/layouts/${currentDevice.mobile ? 'mobile/' : 'desktop/'}footer.jsp" />
 	</definition>
+
+	<definition name="browse" extends="template">
+		<put-attribute name="title" expression="${msg['label.browse']} ${msg[modelName]}" />
+		<put-attribute name="content" expression="/WEB-INF/views/${modelName}/browse.jsp" />
+	</definition>
+
+	<definition name="view" extends="template">
+		<put-attribute name="title" expression="${msg['label.view']} ${msg[modelName]}" />
+		<put-attribute name="content" expression="/WEB-INF/views/${modelName}/view.jsp" />
+	</definition>
+
+	<definition name="new" extends="template">
+		<put-attribute name="title" expression="${msg['label.new']} ${msg[modelName]}" />
+		<put-attribute name="content" value="/WEB-INF/layouts/new.jsp"/>
+	    <put-attribute name="entry" expression="/WEB-INF/views/${modelName}/entry.jsp" cascade="true"/>
+	</definition>
+
+	<definition name="edit" extends="template">
+		<put-attribute name="title" expression="${msg['label.new']} ${msg[modelName]}" />
+		<put-attribute name="content" value="/WEB-INF/layouts/edit.jsp"/>
+	    <put-attribute name="entry" expression="/WEB-INF/views/${modelName}/entry.jsp" cascade="true"/>
+	</definition>
 	
 </tiles-definitions>

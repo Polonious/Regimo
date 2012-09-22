@@ -2,27 +2,8 @@
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 
 <tiles-definitions>
-	
-	<definition name="dashlet" extends="template">
-		<put-attribute name="title" value="Dashlet list" />
-		<put-attribute name="content" value="/WEB-INF/views/dashlet/browse.jsp" />
-	</definition>
-	
-	<definition name="dashlet/view" extends="template">
-		<put-attribute name="title" value="View dashlet" />
-		<put-attribute name="content" value="/WEB-INF/views/dashlet/view.jsp" />
-	</definition>
-	
-	<definition name="dashlet/new" extends="template">
-		<put-attribute name="title" value="Create dashlet" />
-		<put-attribute name="content" value="/WEB-INF/layouts/new.jsp"/>
-	    <put-attribute name="entry" value="/WEB-INF/views/dashlet/entry.jsp" cascade="true"/>
-	</definition>
-	
-	<definition name="dashlet/edit" extends="template">
-		<put-attribute name="title" value="Edit dashlet" />
-		<put-attribute name="content" value="/WEB-INF/layouts/new.jsp"/>
-	    <put-attribute name="entry" value="/WEB-INF/views/dashlet/entry.jsp" cascade="true"/>
-	</definition>
-	
+	<definition name="dashlet" extends="browse"/>
+	<definition name="dashlet/view" extends="view"/>
+	<definition name="dashlet/new" extends="new"/>
+	<definition name="dashlet/edit" extends="edit"/>
 </tiles-definitions>

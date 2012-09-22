@@ -2,27 +2,8 @@
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 
 <tiles-definitions>
-	
-	<definition name="user" extends="template">
-		<put-attribute name="title" value="User list" />
-		<put-attribute name="content" value="/WEB-INF/views/user/browse.jsp" />
-	</definition>
-	
-	<definition name="user/view" extends="template">
-		<put-attribute name="title" value="View user" />
-		<put-attribute name="content" value="/WEB-INF/views/user/view.jsp" />
-	</definition>
-	
-	<definition name="user/new" extends="template">
-		<put-attribute name="title" value="Create user" />
-		<put-attribute name="content" value="/WEB-INF/layouts/new.jsp"/>
-	    <put-attribute name="entry" value="/WEB-INF/views/user/entry.jsp" cascade="true"/>
-	</definition>
-	
-	<definition name="user/edit" extends="template">
-		<put-attribute name="title" value="Edit user" />
-		<put-attribute name="content" value="/WEB-INF/layouts/new.jsp"/>
-	    <put-attribute name="entry" value="/WEB-INF/views/user/entry.jsp" cascade="true"/>
-	</definition>
-	
+	<definition name="user" extends="browse"/>
+	<definition name="user/view" extends="view"/>
+	<definition name="user/new" extends="new"/>
+	<definition name="user/edit" extends="edit"/>
 </tiles-definitions>

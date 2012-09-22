@@ -26,6 +26,14 @@
 			</div>
 </c:if>
 
+<form id="myform" name="myform" action="/signin/facebook" method="POST">
+	<div style="text-align: center;">
+    	<img src="/resources/images/loginWithFacebook.png" onclick="myform.submit();" />
+   	</div>
+   	<input type="hidden" name="scope" value="email,publish_stream,offline_access" />		    
+</form>
+
+
 <form id="signin" action="<c:url value="/signin/authenticate" />" method="post">
 	<div class="formInfo">
   		<h2><s:message code="main.signin.signin"/></h2>

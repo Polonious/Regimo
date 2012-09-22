@@ -2,22 +2,7 @@
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 
 <tiles-definitions>
-
-	<definition name="rowStatus" extends="template">
-		<put-attribute name="title" value="Browse RowStatus" />
-		<put-attribute name="content" value="/WEB-INF/views/rowStatus/browse.jsp" />
-	</definition>
-
-	<definition name="rowStatus/new" extends="template">
-		<put-attribute name="title" value="Create RowStatus" />
-		<put-attribute name="content" value="/WEB-INF/layouts/new.jsp"/>
-	    <put-attribute name="entry" value="/WEB-INF/views/rowStatus/entry.jsp" cascade="true"/>
-	</definition>
-
-	<definition name="rowStatus/edit" extends="template">
-		<put-attribute name="title" value="Edit RowStatus" />
-		<put-attribute name="content" value="/WEB-INF/layouts/new.jsp"/>
-	    <put-attribute name="entry" value="/WEB-INF/views/rowStatus/entry.jsp" cascade="true"/>
-	</definition>
-
+	<definition name="rowStatus" extends="browse"/>
+	<definition name="rowStatus/new" extends="new"/>
+	<definition name="rowStatus/edit" extends="edit"/>
 </tiles-definitions>
