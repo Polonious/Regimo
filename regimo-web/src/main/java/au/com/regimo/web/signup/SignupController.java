@@ -7,7 +7,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.groups.Default;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.social.connect.Connection;
+import org.springframework.social.connect.web.ProviderSignInUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,7 +37,12 @@ public class SignupController {
 	 * Render a signup form to the person as HTML in their web browser.
 	 */
 	@RequestMapping(value="/signup", method=RequestMethod.GET)
-	public UserEntryForm signupForm(WebRequest request) {
+	public UserEntryForm signupForm(ModelMap modelMap, WebRequest request) {
+		Connection<?> connection = ProviderSignInUtils.getConnection(request);
+		modelMap.addAttribute("hasConnection", connection != null);
+		if (connection != null) {
+			return new UserEntryForm(connection.fetchUserProfile());
+		}
 		return new UserEntryForm();
 	}
 
@@ -45,7 +53,7 @@ public class SignupController {
 	 */
 	@RequestMapping(value="/signup", method=RequestMethod.POST)
 	public String signup(@Validated({Default.class, AddMode.class}) UserEntryForm form, 
-			BindingResult formBinding) {
+			BindingResult formBinding, WebRequest request) {
 		if (formBinding.hasErrors()) {
 			return null;
 		}
@@ -53,6 +61,7 @@ public class SignupController {
 		BeanUtilsExtend.copyPropertiesWithoutNull(form, user);
 		userService.signup(user);
 		SecurityUtils.setAuthentcation(user, form.getPassword());
+		ProviderSignInUtils.handlePostSignUp(user.getId().toString(), request);
 		return "redirect:/home";
 	}
 	

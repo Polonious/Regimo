@@ -6,12 +6,14 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.validation.Valid;
 
+import org.springframework.social.connect.web.ProviderSignInUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.WebRequest;
 
 import au.com.regimo.core.domain.Dashboard;
 import au.com.regimo.core.domain.User;
@@ -44,8 +46,9 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(ModelMap map, Principal user) {
+	public String home(ModelMap map, Principal user, WebRequest request) {
 		if(user!=null && !SecurityUtils.isUserInRole("ADMIN")){
+			ProviderSignInUtils.handlePostSignUp(SecurityUtils.getCurrentUserId().toString(), request);
 			return "redirect:/profile";
 		}
 		return home(map);

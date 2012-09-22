@@ -3,6 +3,13 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
+<form id="myform" name="myform" action="${request.contextPath}/signin/facebook" method="post">
+	<div style="text-align: center;">
+    	<img src="/resources/images/connectWithFacebook.png" onclick="myform.submit();" />
+   	</div>
+   	<input type="hidden" name="scope" value="email,publish_stream,offline_access" />		    
+</form>
+
 <c:if test="${not empty message}">
 <div class="${message.type.cssClass}">${message.text}</div>
 </c:if>

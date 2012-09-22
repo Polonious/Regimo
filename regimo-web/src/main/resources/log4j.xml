@@ -19,6 +19,10 @@
 	<logger name="org.springframework">
 		<level value="${logLevel.springframework}" />
 	</logger>
+
+	<logger name="org.springframework.social">
+		<level value="DEBUG" />
+	</logger>
 	
 	<logger name="org.hibernate">
 		<level value="${logLevel.hibernate}" />

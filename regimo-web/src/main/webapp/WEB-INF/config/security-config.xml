@@ -41,8 +41,8 @@
 		<intercept-url pattern="/contents/**" access="permitAll" />
 		<intercept-url pattern="/wp/**" access="permitAll" />
 		<intercept-url pattern="/wp.*" access="permitAll" />
-		<intercept-url pattern="/signup" access="permitAll" />
-		<intercept-url pattern="/signin" access="permitAll" />
+		<intercept-url pattern="/signup**" access="permitAll" />
+		<intercept-url pattern="/signin**" access="permitAll" />
 		<intercept-url pattern="/signin/*" access="permitAll" />
 		<intercept-url pattern="/**" access="hasRole('ROLE_ROOT')" />
 		<form-login login-page="/signin" login-processing-url="/signin/authenticate"

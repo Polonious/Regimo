@@ -4,6 +4,7 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.social.connect.UserProfile;
 
 import au.com.regimo.core.domain.User;
 import au.com.regimo.core.utils.BeanUtilsExtend;
@@ -38,6 +39,12 @@ public class UserEntryForm {
 	
 	public UserEntryForm(User user) {
 		BeanUtilsExtend.copyPropertiesWithoutNull(user, this, "password");
+	}
+	
+	public UserEntryForm(UserProfile providerUser){
+		firstName = providerUser.getFirstName();
+		lastName = providerUser.getLastName();
+		email = providerUser.getEmail();
 	}
 
 	public User getUpdatedUser(User user){

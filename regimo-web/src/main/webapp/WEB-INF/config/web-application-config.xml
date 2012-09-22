@@ -35,5 +35,16 @@
 		<property name="host" value="${mail.host}"/>
 		<property name="port" value="${mail.port}"/>
 	</bean>
+
+ 	<bean class="au.com.regimo.web.social.SocialConfig" />
+
+	<!-- Allows users to sign-in with their provider accounts.  -->
+	<bean class="org.springframework.social.connect.web.ProviderSignInController">
+		<constructor-arg ref="connectionFactoryLocator" />
+		<constructor-arg ref="usersConnectionRepository" />		
+		<constructor-arg>
+			<bean class="au.com.regimo.web.social.SimpleSignInAdapter" />
+		</constructor-arg>
+	</bean>
 	
 </beans>
