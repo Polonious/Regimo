@@ -7,10 +7,6 @@
 
 	<a href='../${modelName}/new'><s:message code="button.new"/></a>
 
-	<link rel="stylesheet" href="<c:url value="/resources/datatables/css/demo_page.css" />" type="text/css" />
-	<link rel="stylesheet" href="<c:url value="/resources/datatables/css/demo_table.css" />" type="text/css" />
-	<script type="text/javascript" language="javascript" src="<c:url value="/resources/datatables/jquery.dataTables.min.js" />"></script>
-	<script type="text/javascript" language="javascript" src="<c:url value="/resources/datatables/dataTables.utils.js" />"></script>
 	<script type="text/javascript" charset="utf-8">
 		$(document).ready(initDataTable);
 		function initDataTable(){
