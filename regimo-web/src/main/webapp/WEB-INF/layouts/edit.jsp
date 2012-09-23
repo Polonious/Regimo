@@ -7,7 +7,7 @@
 
 <f:form modelAttribute="${modelName}" method="post">
 	<div class="formInfo">
-	<legend><s:message code="title.edit"/> <s:message code="${modelName}"/></legend>
+	<legend><s:message code="label.edit"/> <s:message code="${modelName}"/></legend>
 	<s:bind path="*">
 		<c:if test="${status.error}">
 			<div class="error"><s:message code="error.edit"/></div>
@@ -16,7 +16,7 @@
 	</div>
 	<tiles:insertAttribute name="entry" />
 	<p><button type="submit"><s:message code="button.save"/></button>
-		<a href="../${modelName}"><s:message code="title.return"/></a>
+		<a href="../${modelName}"><s:message code="label.return"/></a>
 	</p>
 </f:form>
 

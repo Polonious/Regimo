@@ -3,7 +3,7 @@
 
 <div id="page-content">
 <div id="browsePage">
-	<h2><s:message code="title.browse"/> <s:message code="role"/></h2>
+	<h2><s:message code="label.browse"/> <s:message code="role"/></h2>
 
 	<a href='../${modelName}/new'><s:message code="button.new"/></a>
 
@@ -40,7 +40,7 @@
 				<tr>
 					<th width="45%"><s:message code="role.name"/></th>
 					<th width="50%"><s:message code="role.description"/></th>
-					<th width="5%"><s:message code="title.action"/></th>
+					<th width="5%"><s:message code="label.action"/></th>
 				</tr>
 			</thead>
 			<tbody>

@@ -29,7 +29,7 @@ public class CustomTilesView extends TilesView {
 	protected void renderMergedOutputModel(
 			Map<String, Object> model, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpServletRequest requestToExpose = new ContextExposingHttpServletRequest(
-				request, getWebApplicationContext(), Sets.newHashSet("referenceData"));
+				request, getWebApplicationContext(), Sets.newHashSet("referenceData", "securityService"));
 		model.put(KEY_MESSAGE, new MessageSourceResourceBundle(getWebApplicationContext().getBean(
 				MessageSource.class), request.getLocale()));
 		if(!model.containsKey(KEY_MENU)){

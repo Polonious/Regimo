@@ -3,7 +3,7 @@
 
 <div id="page-content">
 <div id="browsePage">
-	<h2><s:message code="title.browse"/> <s:message code="rowStatus"/></h2>
+	<h2><s:message code="label.browse"/> <s:message code="rowStatus"/></h2>
 
 	<a href='../${modelName}/new'><s:message code="button.new"/></a>
 
@@ -44,7 +44,7 @@
 					<th width="35%"><s:message code="rowStatus.statusObject"/></th>
 					<th width="20%"><s:message code="rowStatus.reference"/></th>
 					<th width="20%"><s:message code="rowStatus.current"/></th>
-					<th width="5%"><s:message code="title.action"/></th>
+					<th width="5%"><s:message code="label.action"/></th>
 				</tr>
 			</thead>
 			<tbody>

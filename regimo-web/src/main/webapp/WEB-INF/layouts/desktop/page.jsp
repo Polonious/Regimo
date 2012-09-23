@@ -13,10 +13,10 @@
 	<link rel="stylesheet" href="<c:url value="/resources/css/waterwheel-carousel.css" />" type="text/css" />
 	<link rel="stylesheet" href="<c:url value="/resources/orbit/orbit-1.2.3.css" />" type="text/css" />
 	<link href="/resources/jquery/select2/select2.css" rel="stylesheet" type="text/css"/>
-
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript" src="<c:url value="/resources/waterwheelCarousel/jquery.waterwheelCarousel.min.js" />"></script>
 	<script type="text/javascript" src="/resources/orbit/jquery.orbit-1.2.3.min.js"></script>
+	<tiles:insertAttribute name="style" />
 </head>
 
 <body>
@@ -30,6 +30,7 @@
 		<tiles:insertAttribute name="footer" />
 	</div>
 	
+	<tiles:insertAttribute name="script" />
 	<script type="text/javascript" src="/resources/jquery/select2/select2.min.js"></script>
 	<script type="text/javascript" src="/resources/jquery/html5breadcrumbs.js"></script>
 	<script type="text/javascript">

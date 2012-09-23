@@ -25,6 +25,7 @@
 	<script type="text/javascript">
 		window.scrollTo(0, 1);
 	</script>
+	<tiles:insertAttribute name="style" />
 </head>
 <body>
 	<div id="header">
@@ -44,5 +45,6 @@
 	<div id="footer">
 		<tiles:insertAttribute name="footer" />	
 	</div>
+	<tiles:insertAttribute name="script" />
 </body>
 </html>

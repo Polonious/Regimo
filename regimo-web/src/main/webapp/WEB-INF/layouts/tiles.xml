@@ -3,14 +3,11 @@
 
 <tiles-definitions>
 	
-	<definition name="page" templateExpression="/WEB-INF/layouts/${currentDevice.mobile ? 'mobile/' : 'standard/'}page.jsp">
-		<put-attribute name="header" expression="/WEB-INF/layouts/${currentDevice.mobile ? 'mobile/' : 'standard/'}header.jsp" />
-		<put-attribute name="footer" expression="/WEB-INF/layouts/${currentDevice.mobile ? 'mobile/' : 'standard/'}footer.jsp" />
-	</definition>
-
-	<definition name="template" templateExpression="/WEB-INF/layouts/${currentDevice.mobile ? 'mobile/' : 'desktop/'}page.jsp">
-		<put-attribute name="header" expression="/WEB-INF/layouts/${currentDevice.mobile ? 'mobile/' : 'desktop/'}header.jsp" />
-		<put-attribute name="footer" expression="/WEB-INF/layouts/${currentDevice.mobile ? 'mobile/' : 'desktop/'}footer.jsp" />
+	<definition name="template" templateExpression="/WEB-INF/layouts/${currentDevice.mobile?'mobile':'desktop'}/page.jsp">
+		<put-attribute name="header" expression="/WEB-INF/layouts/${currentDevice.mobile?'mobile':'desktop'}/header.jsp" />
+		<put-attribute name="footer" expression="/WEB-INF/layouts/${currentDevice.mobile?'mobile':'desktop'}/footer.jsp" />
+		<put-attribute name="style" value="" />
+		<put-attribute name="script" value="" />
 	</definition>
 
 	<definition name="browse" extends="template">
@@ -30,9 +27,15 @@
 	</definition>
 
 	<definition name="edit" extends="template">
-		<put-attribute name="title" expression="${msg['label.new']} ${msg[modelName]}" />
+		<put-attribute name="title" expression="${msg['label.edit']} ${msg[modelName]}" />
 		<put-attribute name="content" value="/WEB-INF/layouts/edit.jsp"/>
 	    <put-attribute name="entry" expression="/WEB-INF/views/${modelName}/entry.jsp" cascade="true"/>
+	</definition>
+	
+	<!-- TODO: remove it -->
+	<definition name="page" templateExpression="/WEB-INF/layouts/${currentDevice.mobile ? 'mobile/' : 'standard/'}page.jsp">
+		<put-attribute name="header" expression="/WEB-INF/layouts/${currentDevice.mobile ? 'mobile/' : 'standard/'}header.jsp" />
+		<put-attribute name="footer" expression="/WEB-INF/layouts/${currentDevice.mobile ? 'mobile/' : 'standard/'}footer.jsp" />
 	</definition>
 	
 </tiles-definitions>

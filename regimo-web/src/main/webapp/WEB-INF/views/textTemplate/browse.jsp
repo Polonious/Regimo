@@ -3,7 +3,7 @@
 
 <div id="page-content">
 <div id="browsePage">
-	<h2><s:message code="title.browse"/> <s:message code="authority"/></h2>
+	<h2><s:message code="label.browse"/> <s:message code="authority"/></h2>
 
 	<a href='../${modelName}/new'><s:message code="button.new"/></a>
 
@@ -42,7 +42,7 @@
 					<th width="40%"><s:message code="authority.name"/></th>
 					<th width="40%"><s:message code="authority.category"/></th>
 					<th width="15%"><s:message code="authority.model"/></th>
-					<th width="5%"><s:message code="title.action"/></th>
+					<th width="5%"><s:message code="label.action"/></th>
 				</tr>
 			</thead>
 			<tbody>
