@@ -1,28 +1,39 @@
 package au.com.regimo.web.form;
 
 import org.springframework.beans.BeanUtils;
+import org.springframework.social.connect.UserProfile;
 
 import au.com.regimo.core.domain.User;
 
-public class UserListForm {
+public class UserForm {
 
 	private Long id;
 
 	private String username;
 
-    private String firstName;
+	private String firstName;
 
-    private String lastName;
+	private String lastName;
 
 	private String email;
 
-	public UserListForm(User user) {
-		this();
+	public UserForm() {}
+
+	public UserForm(User user) {
 		BeanUtils.copyProperties(user, this);
 	}
 
-	public UserListForm() {
-		super();
+	public UserForm(UserProfile providerUser){
+		firstName = providerUser.getFirstName();
+		lastName = providerUser.getLastName();
+		email = providerUser.getEmail();
+	}
+
+	public User getUpdatedUser(User user){
+		user.setEmail(email);
+		user.setFirstName(firstName);
+		user.setLastName(lastName);
+		return user;
 	}
 
 	public Long getId() {
@@ -64,4 +75,5 @@ public class UserListForm {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 }

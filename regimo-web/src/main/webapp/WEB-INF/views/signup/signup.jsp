@@ -7,15 +7,14 @@
 	<div style="text-align: center;">
     	<img src="/resources/images/connectWithFacebook.png" onclick="myform.submit();" />
    	</div>
-   	<input type="hidden" name="scope" value="email,publish_stream,offline_access" />		    
+   	<input type="hidden" name="scope" value="email,publish_stream,offline_access" />
 </form>
 
 <c:if test="${not empty message}">
 <div class="${message.type.cssClass}">${message.text}</div>
 </c:if>
 
-<c:url value="/signup" var="signupUrl" />
-<form:form id="signup" action="${signupUrl}" method="post" modelAttribute="userEntryForm">
+<form:form id="signup" method="post" modelAttribute="user">
 	<div class="formInfo">
   		<h2><s:message code="main.registration.signup"/></h2>
   		<s:bind path="*">
@@ -23,7 +22,7 @@
   		<c:when test="${status.error}">
   			<div class="error"><s:message code="error.new"/></div>
   		</c:when>
-  		</c:choose>			
+  		</c:choose>
   		</s:bind>
 	</div>
 	<%@ include file="signupForm.jspf" %>

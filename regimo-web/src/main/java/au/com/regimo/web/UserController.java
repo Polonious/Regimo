@@ -15,16 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.google.common.collect.Lists;
+
 import au.com.regimo.core.domain.User;
 import au.com.regimo.core.form.DataTablesSearchCriteria;
 import au.com.regimo.core.form.TransformRequired;
 import au.com.regimo.core.service.UserService;
-import au.com.regimo.core.utils.BeanUtilsExtend;
-import au.com.regimo.web.form.UserEntryForm;
+import au.com.regimo.core.validation.AddMode;
 import au.com.regimo.web.form.UserListForm;
-import au.com.regimo.web.form.validation.AddMode;
-
-import com.google.common.collect.Lists;
 
 @Controller
 @RequestMapping("/user")
@@ -62,14 +60,9 @@ public class UserController implements TransformRequired<User> {
 	}
 
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
-	public String create(@Validated({Default.class, AddMode.class}) UserEntryForm form,
+	public String create(@Validated({Default.class, AddMode.class}) User user,
 			BindingResult result) {
-		if (result.hasErrors()) {
-			return null;
-		}
-		User user = new User();
-		BeanUtilsExtend.copyPropertiesWithoutNull(form, user);
-		service.signup(user);
+		user = service.signup(user);
 		return "redirect:view?id="+user.getId();
 	}
 
@@ -79,13 +72,9 @@ public class UserController implements TransformRequired<User> {
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
-	public String update(@Valid UserEntryForm form, BindingResult result) {
-		if (result.hasErrors()) {
-			return null;
-		}
-		User user = service.findOne(form.getId());
-		service.save(form.getUpdatedUser(user));
-		return "redirect:view?id="+form.getId();
+	public String update(ModelMap modelMap, @Valid User model, BindingResult result) {
+		service.saveModel(modelMap, model, result);
+		return "redirect:view?id="+model.getId();
 	}
 
 	@RequestMapping(value = "/resetForgottenPwd", method = RequestMethod.POST)

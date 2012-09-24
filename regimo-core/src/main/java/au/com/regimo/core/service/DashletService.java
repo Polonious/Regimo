@@ -7,19 +7,11 @@ import au.com.regimo.core.domain.Dashlet;
 import au.com.regimo.core.repository.DashletRepository;
 
 @Named
-public class DashletService extends GenericService<Dashlet, Long> {
-
-	private DashletRepository repository;
-	
-	@Override
-	protected DashletRepository getRepository() {
-		return repository;
-	}
+public class DashletService extends GenericService<DashletRepository, Dashlet> {
 
 	@Inject
-	public void setRepository(DashletRepository repository) {
-		this.repository = repository;
+	public DashletService(DashletRepository repository) {
+		super(repository);
 	}
-	
-	
+
 }

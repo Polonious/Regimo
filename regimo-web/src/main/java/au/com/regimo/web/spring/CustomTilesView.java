@@ -22,9 +22,9 @@ public class CustomTilesView extends TilesView {
 	private static String KEY_MENU = "menu";
 	private static String KEY_MODEL = "modelName";
 	private static String KEY_MESSAGE = "msg";
-	
+
 	private Dashboard menu = null;
-	
+
 	@Override
 	protected void renderMergedOutputModel(
 			Map<String, Object> model, HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -50,8 +50,9 @@ public class CustomTilesView extends TilesView {
 				url = url.substring(0, firstSlash);
 			}
 			model.put(KEY_MODEL, url);
+			logger.debug(KEY_MODEL+": "+url);
 		}
 		super.renderMergedOutputModel(model, requestToExpose, response);
 	}
-	
+
 }

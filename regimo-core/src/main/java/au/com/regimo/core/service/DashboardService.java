@@ -7,19 +7,11 @@ import au.com.regimo.core.domain.Dashboard;
 import au.com.regimo.core.repository.DashboardRepository;
 
 @Named
-public class DashboardService extends GenericService<Dashboard, Long> {
-
-	private DashboardRepository repository;
-	
-	@Override
-	protected DashboardRepository getRepository() {
-		return repository;
-	}
+public class DashboardService extends GenericService<DashboardRepository, Dashboard> {
 
 	@Inject
-	public void setRepository(DashboardRepository repository) {
-		this.repository = repository;
+	public DashboardService(DashboardRepository repository) {
+		super(repository);
 	}
-	
-	
+
 }

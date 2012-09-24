@@ -7,18 +7,11 @@ import au.com.regimo.core.domain.TextTemplate;
 import au.com.regimo.core.repository.TextTemplateRepository;
 
 @Named
-public class TextTemplateService extends GenericService<TextTemplate, Long> {
-
-	private TextTemplateRepository repository;
-
-	@Override
-	protected TextTemplateRepository getRepository() {
-		return repository;
-	}
+public class TextTemplateService extends GenericService<TextTemplateRepository, TextTemplate> {
 
 	@Inject
-	public void setRepository(TextTemplateRepository repository) {
-		this.repository = repository;
+	public TextTemplateService(TextTemplateRepository repository) {
+		super(repository);
 	}
 
 }

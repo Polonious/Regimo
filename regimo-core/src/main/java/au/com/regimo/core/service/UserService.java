@@ -7,65 +7,64 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 
-import com.google.common.collect.Sets;
-
 import au.com.regimo.core.domain.TextTemplate;
 import au.com.regimo.core.domain.User;
-import au.com.regimo.core.repository.GenericRepository;
 import au.com.regimo.core.repository.RoleRepository;
 import au.com.regimo.core.repository.TextTemplateRepository;
 import au.com.regimo.core.repository.UserRepository;
 import au.com.regimo.core.utils.RandomPassword;
 import au.com.regimo.core.utils.TextGenerator;
 
-@Named
-public class UserService extends GenericService<User, Long>{
+import com.google.common.collect.Sets;
 
-	private UserRepository repository;
+@Named
+public class UserService extends GenericService<UserRepository, User> {
+
 	private PasswordEncoder passwordEncoder;
 	private RowStatusService rowStatusService;
 	private TextTemplateRepository textTemplateRepository;
 	private EmailService emailService;
 	private RoleRepository roleRepository;
-	
+
+	@Inject
+	public UserService(UserRepository repository) {
+		super(repository);
+	}
+
+	@Override
+	protected String[] getIgnoreProperties(){
+		return new String[] {"password", "avatar"};
+	}
+
 	@Transactional
 	public User signup(User user) {
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		user.setRoles(Sets.newHashSet(roleRepository.findByName("USER")));
 		rowStatusService.enable(user);
-		repository.save(user);
+		user = repository.save(user);
 
 		TextTemplate textTemplate = textTemplateRepository.findByName("WelcomeNewUser");
 		if(textTemplate != null) {
 			String emailBody = TextGenerator.generateText(textTemplate.getContent(), new ModelMap("user", user));
 			emailService.sendEmail(user.getEmail(), "Regimo registration confirmation ", emailBody);
 		}
-		
+
 		return user;
 	}
-	
+
 	@Transactional
 	public void resetPassword(User user) {
 		 String tmpPwd = RandomPassword.getRandomString(6);
 		user.setPassword(passwordEncoder.encode(tmpPwd));
 		repository.save(user);
-		emailService.sendEmail(user.getEmail(), "You have forgot your password, you reset the password  ", 
+		emailService.sendEmail(user.getEmail(), "You have forgot your password, you reset the password  ",
 				", now reset to new password:" + tmpPwd + "\n Please change it ASAP");
 	}
-	
+
 	public User findByUsername(String username){
 		return repository.findByUsername(username);
 	}
 
-	protected GenericRepository<User, Long> getRepository() {
-		return repository;
-	}
-
-	@Inject
-	public void setRepository(UserRepository repository) {
-		this.repository = repository;
-	}
-	
 	@Inject
 	public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
 		this.passwordEncoder = passwordEncoder;

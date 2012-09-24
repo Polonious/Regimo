@@ -20,10 +20,14 @@ import com.google.common.collect.Sets;
 
 @Named
 @Transactional(readOnly=true)
-public class RowStatusService extends GenericService<RowStatus, Long> {
+public class RowStatusService extends GenericService<RowStatusRepository, RowStatus> {
 
-	private RowStatusRepository repository;
 	private EntityManager entityManager;
+
+	@Inject
+	public RowStatusService(RowStatusRepository repository) {
+		super(repository);
+	}
 
 	public void enable(IRowStatusAllowed entity) {
 		setReferenceRowStatus(entity, RowStatus.CURRENT);
@@ -49,21 +53,16 @@ public class RowStatusService extends GenericService<RowStatus, Long> {
     	return entityOption;
 	}
 
+	public Collection<RowStatus> findByStatusObject(String statusObject){
+		return repository.findByStatusObject(statusObject);
+	}
+
 	public Collection<ComboItem> getOptions(String statusObject){
 		Collection<ComboItem> options = Sets.newTreeSet(new ComboItem());
 		for(RowStatus rowStatus : repository.findByStatusObject(statusObject)){
 			options.add(new ComboItem(rowStatus.getName(), rowStatus.getId()));
 		}
 		return options;
-	}
-
-	protected RowStatusRepository getRepository() {
-		return repository;
-	}
-
-	@Inject
-	public void setRepository(RowStatusRepository repository) {
-		this.repository = repository;
 	}
 
 	@PersistenceContext

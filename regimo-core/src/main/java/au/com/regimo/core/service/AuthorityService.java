@@ -7,18 +7,11 @@ import au.com.regimo.core.domain.Authority;
 import au.com.regimo.core.repository.AuthorityRepository;
 
 @Named
-public class AuthorityService extends GenericService<Authority, Long> {
-
-	private AuthorityRepository repository;
-
-	@Override
-	protected AuthorityRepository getRepository() {
-		return repository;
-	}
+public class AuthorityService extends GenericService<AuthorityRepository, Authority> {
 
 	@Inject
-	public void setRepository(AuthorityRepository repository) {
-		this.repository = repository;
+	public AuthorityService(AuthorityRepository repository) {
+		super(repository);
 	}
 
 }

@@ -13,33 +13,52 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+
+import au.com.regimo.core.validation.AddMode;
+import au.com.regimo.core.validation.FieldMatch;
+import au.com.regimo.core.validation.Username;
 
 @Entity
 @Table(name="Users")
 @Inheritance(strategy=InheritanceType.JOINED)
 @SequenceGenerator(name="SEQ_STORE", sequenceName = "seq_user")
+@FieldMatch(groups=AddMode.class, field="password",
+			match="confirmPassword", message="must match password")
 public class User extends IdEntity implements IRowStatusAllowed, IAuditable {
 
 	private static final long serialVersionUID = 1L;
-	
+
     @Column(nullable = false)
+	@NotEmpty(groups=AddMode.class)
+	@Username(groups=AddMode.class, message="username exist")
     private String username;
-    
+
     @Column(nullable = false)
+	@Size(groups=AddMode.class, min=6, message="must be at least 6 characters")
     private String password;
-    
+
+    @Transient
+	private String confirmPassword;
+
     @Column
     private String firstName;
 
     @Column
     private String lastName;
-    
+
     @Column
+	@NotEmpty
+	@Email
 	private String email;
-    
+
     @OneToOne
-	@JoinColumn(name="imageId")
-	private Document image;
+	@JoinColumn(name="avatarId")
+	private Document avatar;
 
 	@ManyToOne
 	@JoinColumn(name="rowStatusId")
@@ -63,6 +82,14 @@ public class User extends IdEntity implements IRowStatusAllowed, IAuditable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
 	}
 
 	public String getFirstName() {
@@ -92,7 +119,7 @@ public class User extends IdEntity implements IRowStatusAllowed, IAuditable {
 	public Set<Role> getRoles() {
 		return roles;
 	}
-	
+
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
@@ -105,12 +132,12 @@ public class User extends IdEntity implements IRowStatusAllowed, IAuditable {
 		this.rowStatus = rowStatus;
 	}
 
-	public Document getImage() {
-		return image;
+	public Document getAvatar() {
+		return avatar;
 	}
 
-	public void setImage(Document image) {
-		this.image = image;
+	public void setAvatar(Document avatar) {
+		this.avatar = avatar;
 	}
-	
+
 }

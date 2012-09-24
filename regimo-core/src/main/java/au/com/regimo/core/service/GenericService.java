@@ -1,6 +1,5 @@
 package au.com.regimo.core.service;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -12,6 +11,7 @@ import javax.persistence.criteria.Root;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 
+import au.com.regimo.core.domain.IdEntity;
 import au.com.regimo.core.form.DataTablesSearchCriteria;
 import au.com.regimo.core.form.TransformRequired;
 import au.com.regimo.core.repository.GenericRepository;
@@ -28,7 +29,7 @@ import au.com.regimo.core.utils.ReflectionUtils;
 import com.google.common.base.CaseFormat;
 
 @Transactional(readOnly = true)
-public abstract class GenericService<T, ID extends Serializable> {
+public abstract class GenericService<R extends GenericRepository<T, Long>, T extends IdEntity> {
 
 	protected final Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -36,41 +37,41 @@ public abstract class GenericService<T, ID extends Serializable> {
 
 	protected final String entityName;
 
-	protected abstract GenericRepository<T, ID> getRepository();
+	protected final R repository;
 
-	public GenericService() {
-		super();
-        entityClass = ReflectionUtils.getSuperClassGenricType(getClass());
+	public GenericService(R repository) {
+		this.repository = repository;
+        entityClass = ReflectionUtils.getSuperClassGenricType(getClass(), 1);
         entityName = CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_CAMEL,
         		entityClass.getSimpleName());
     }
 
 	public Iterable<T> findAll(Sort sort){
-		return getRepository().findAll(sort);
+		return repository.findAll(sort);
 	}
 
 	public Page<T> findAll(Pageable pageable){
-		return getRepository().findAll(pageable);
+		return repository.findAll(pageable);
 	}
 
 	public T findOne(Specification<T> spec){
-		return getRepository().findOne(spec);
+		return repository.findOne(spec);
 	}
 
 	public List<T> findAll(Specification<T> spec){
-		return getRepository().findAll(spec);
+		return repository.findAll(spec);
 	}
 
 	public Page<T> findAll(Specification<T> spec, Pageable pageable){
-		return getRepository().findAll(spec, pageable);
+		return repository.findAll(spec, pageable);
 	}
 
 	public List<T> findAll(Specification<T> spec, Sort sort){
-		return getRepository().findAll(spec, sort);
+		return repository.findAll(spec, sort);
 	}
 
 	public Page<T> searchFullText(DataTablesSearchCriteria searchCriteria){
-		return getRepository().findAll(fullTextSearchSpec(
+		return repository.findAll(fullTextSearchSpec(
 				searchCriteria.getSearchableFields(), searchCriteria.getsSearch()), searchCriteria);
 	}
 
@@ -91,7 +92,7 @@ public abstract class GenericService<T, ID extends Serializable> {
 	}
 
 	public long count(Specification<T> spec){
-		return getRepository().count(spec);
+		return repository.count(spec);
 	}
 
 	public T getNewEntity() {
@@ -106,53 +107,63 @@ public abstract class GenericService<T, ID extends Serializable> {
 
 	@Transactional
 	public T save(T entity){
-		return getRepository().save(entity);
+		return repository.save(entity);
 	}
 
-	public T findOne(ID id) {
-		return getRepository().findOne(id);
+	public T findOne(Long id) {
+		return repository.findOne(id);
 	}
 
 	public void loadModel(ModelMap modelMap){
 		modelMap.addAttribute(entityName, getNewEntity());
 	}
-	
+
 	public void loadModel(ModelMap modelMap, T entity){
 		modelMap.addAttribute(entityName, entity);
 	}
 
-	public void loadModel(ModelMap modelMap, ID id) {
+	public void loadModel(ModelMap modelMap, Long id) {
 		loadModel(modelMap, findOne(id));
 	}
-	
-	public boolean saveModel(ModelMap modelMap, T entity, BindingResult result){
+
+	public boolean saveModel(ModelMap modelMap, T model, BindingResult result){
 		if (!result.hasErrors()){
-			entity = save(entity);
+			String[] ignoreProperties = getIgnoreProperties();
+			if(ignoreProperties!=null){
+				T entity = this.findOne(model.getId());
+				BeanUtils.copyProperties(model, entity, ignoreProperties);
+				model = entity;
+			}
+			model = save(model);
 		}
-		loadModel(modelMap, entity);
+		loadModel(modelMap, model);
 		return !result.hasErrors();
 	}
-	
-	public boolean exists(ID id){
-		return getRepository().exists(id);
+
+	protected String[] getIgnoreProperties(){
+		return null;
+	}
+
+	public boolean exists(Long id){
+		return repository.exists(id);
 	}
 
 	public Iterable<T> findAll(){
-		return getRepository().findAll();
+		return repository.findAll();
 	}
 
 	public long count(){
-		return getRepository().count();
+		return repository.count();
 	}
 
 	@Transactional
-	public void delete(ID id){
-		getRepository().delete(id);
+	public void delete(Long id){
+		repository.delete(id);
 	}
 
 	@Transactional
 	public void delete(T entity){
-		getRepository().delete(entity);
+		repository.delete(entity);
 	}
 
 	protected Specification<T> fullTextSearchSpec(final List<String> seachableFields, final String value) {

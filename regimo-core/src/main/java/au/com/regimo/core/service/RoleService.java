@@ -7,18 +7,11 @@ import au.com.regimo.core.domain.Role;
 import au.com.regimo.core.repository.RoleRepository;
 
 @Named
-public class RoleService extends GenericService<Role, Long> {
-
-	private RoleRepository repository;
-
-	@Override
-	protected RoleRepository getRepository() {
-		return repository;
-	}
+public class RoleService extends GenericService<RoleRepository, Role> {
 
 	@Inject
-	public void setRepository(RoleRepository repository) {
-		this.repository = repository;
+	public RoleService(RoleRepository repository) {
+		super(repository);
 	}
 
 }
