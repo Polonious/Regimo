@@ -22,7 +22,7 @@ import au.com.regimo.core.form.DataTablesSearchCriteria;
 import au.com.regimo.core.form.TransformRequired;
 import au.com.regimo.core.service.UserService;
 import au.com.regimo.core.validation.AddMode;
-import au.com.regimo.web.form.UserListForm;
+import au.com.regimo.web.form.UserForm;
 
 @Controller
 @RequestMapping("/user")
@@ -42,9 +42,9 @@ public class UserController implements TransformRequired<User> {
 
 	@Override
 	public List<?> getMappedSearchResult(List<User> result){
-		List<UserListForm> list = Lists.newLinkedList();
+		List<UserForm> list = Lists.newLinkedList();
 		for(User user : result){
-			list.add(new UserListForm(user));
+			list.add(new UserForm(user));
 		}
 		return list;
 	}

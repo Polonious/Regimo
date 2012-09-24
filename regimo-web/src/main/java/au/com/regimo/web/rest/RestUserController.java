@@ -24,7 +24,6 @@ import au.com.regimo.core.service.UserService;
 import au.com.regimo.core.utils.SecurityUtils;
 import au.com.regimo.core.validation.AddMode;
 import au.com.regimo.web.form.UserForm;
-import au.com.regimo.web.form.UserListForm;
 
 @Controller
 @RequestMapping(value="/rest/user")
@@ -69,11 +68,11 @@ public class RestUserController {
 	@RequestMapping(value="", method=RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	public Collection<UserListForm> getUsers() {
-		Collection<UserListForm> userList = new LinkedList<UserListForm>();
+	public Collection<UserForm> getUsers() {
+		Collection<UserForm> userList = new LinkedList<UserForm>();
 		for (User user : userService.findAll())
 		{
-			userList.add(new UserListForm(user));
+			userList.add(new UserForm(user));
 		}
 		return userList;
 	}
