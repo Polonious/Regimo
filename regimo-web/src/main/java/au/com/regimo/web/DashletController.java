@@ -25,7 +25,7 @@ public class DashletController {
 	private DashletService service;
 	
 	private final static DataTablesSearchCriteria datatable = new DataTablesSearchCriteria(
-			"title,type,model,parameter", "standardViewUpdateAction", Lists.newArrayList(
+			"title,type,model,parameter", "standardViewUpdate", Lists.newArrayList(
 			new DataTablesColumnDef("dashlet.title","20%"),
 			new DataTablesColumnDef("dashlet.type","15%"),
 			new DataTablesColumnDef("dashlet.model","12%"),

@@ -30,7 +30,7 @@ public class UserController {
 	
 	private final static DataTablesSearchCriteria datatable = new DataTablesSearchCriteria(
 				"username,firstName,lastName,email", 
-				"standardViewUpdateAction", Lists.newArrayList(
+				"standardViewUpdate", Lists.newArrayList(
 				new DataTablesColumnDef("user.username","20%"), 
 				new DataTablesColumnDef("user.firstName","25%"), 
 				new DataTablesColumnDef("user.lastName","25%"), 
