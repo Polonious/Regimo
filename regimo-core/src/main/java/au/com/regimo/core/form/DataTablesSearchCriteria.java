@@ -37,6 +37,19 @@ public class DataTablesSearchCriteria implements Serializable, Pageable {
 	
 	private List<String> sSortDir_;
 	
+	private String action;
+	
+	public DataTablesSearchCriteria() {
+		super();
+	}
+
+	public DataTablesSearchCriteria(String sColumns, String action, List<DataTablesColumnDef> columnDefs) {
+		super();
+		this.sColumns = sColumns;
+		this.action = action;
+		this.columnDefs = columnDefs;
+	}
+
 	public int getsEcho() {
 		return sEcho;
 	}
@@ -176,6 +189,14 @@ public class DataTablesSearchCriteria implements Serializable, Pageable {
 			}
 		}
 		return fields;
+	}
+
+	public String getAction() {
+		return action;
+	}
+
+	public void setAction(String action) {
+		this.action = action;
 	}
 	
 }

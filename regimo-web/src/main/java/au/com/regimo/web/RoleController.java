@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.google.common.collect.Lists;
+
 import au.com.regimo.core.domain.Role;
+import au.com.regimo.core.form.DataTablesColumnDef;
 import au.com.regimo.core.form.DataTablesSearchCriteria;
 import au.com.regimo.core.service.RoleService;
 
@@ -20,9 +23,16 @@ import au.com.regimo.core.service.RoleService;
 public class RoleController {
 
 	private RoleService service;
+	
+	private final static DataTablesSearchCriteria datatable = new DataTablesSearchCriteria(
+				"name,description", "standardUpdate", Lists.newArrayList(
+				new DataTablesColumnDef("role.name","45%"), 
+				new DataTablesColumnDef("role.description","50%"), 
+				new DataTablesColumnDef("label.action","5%")));
 
 	@RequestMapping(method=RequestMethod.GET)
-	public void browse() {
+	public void browse(ModelMap modelMap) {
+		modelMap.addAttribute("datatable", datatable);
 	}
 
 	@RequestMapping(method=RequestMethod.POST)

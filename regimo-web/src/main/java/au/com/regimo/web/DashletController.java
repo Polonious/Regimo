@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.google.common.collect.Lists;
+
 import au.com.regimo.core.domain.Dashlet;
+import au.com.regimo.core.form.DataTablesColumnDef;
 import au.com.regimo.core.form.DataTablesSearchCriteria;
 import au.com.regimo.core.service.DashletService;
 
@@ -20,9 +23,18 @@ import au.com.regimo.core.service.DashletService;
 public class DashletController {
 
 	private DashletService service;
+	
+	private final static DataTablesSearchCriteria datatable = new DataTablesSearchCriteria(
+			"title,type,model,parameter", "standardViewUpdateAction", Lists.newArrayList(
+			new DataTablesColumnDef("dashlet.title","20%"),
+			new DataTablesColumnDef("dashlet.type","15%"),
+			new DataTablesColumnDef("dashlet.model","12%"),
+			new DataTablesColumnDef("dashlet.parameter","43%"),
+			new DataTablesColumnDef("label.action","10%")));
 
 	@RequestMapping(method=RequestMethod.GET)
-	public void browse() {
+	public void browse(ModelMap modelMap) {
+		modelMap.addAttribute("datatable", datatable);
 	}
 
 	@RequestMapping(method=RequestMethod.POST)

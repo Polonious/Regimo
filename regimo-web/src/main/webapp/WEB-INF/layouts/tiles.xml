@@ -10,6 +10,13 @@
 		<put-attribute name="script" value="" />
 	</definition>
 
+	<definition name="standardBrowse" extends="template">
+		<put-attribute name="title" expression="${msg['label.browse']} ${msg[modelName]}" />
+		<put-attribute name="content" expression="/WEB-INF/layouts/browse.jsp" />
+		<put-attribute name="style" value="/WEB-INF/layouts/browseStyle.jsp" />
+		<put-attribute name="script" value="/WEB-INF/layouts/browseScript.jsp" />
+	</definition>
+
 	<definition name="browse" extends="template">
 		<put-attribute name="title" expression="${msg['label.browse']} ${msg[modelName]}" />
 		<put-attribute name="content" expression="/WEB-INF/views/${modelName}/browse.jsp" />

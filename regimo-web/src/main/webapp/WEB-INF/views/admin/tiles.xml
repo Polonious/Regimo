@@ -3,7 +3,7 @@
 
 <tiles-definitions>
 	
-	<definition name="admin/endpoints" extends="template">
+	<definition name="admin/endpoints" extends="browse">
 		<put-attribute name="title" value="End Points" />
 		<put-attribute name="content" value="/WEB-INF/views/admin/endpoints.jsp" />
 	</definition>

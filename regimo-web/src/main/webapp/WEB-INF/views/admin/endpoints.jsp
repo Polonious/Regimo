@@ -4,21 +4,7 @@
 
 <div id="viewPage">
 
-	<link rel="stylesheet" href="<c:url value="/resources/datatables/css/demo_page.css" />" type="text/css" />
-	<link rel="stylesheet" href="<c:url value="/resources/datatables/css/demo_table.css" />" type="text/css" />
-	<script type="text/javascript" language="javascript" src="<c:url value="/resources/datatables/jquery.dataTables.min.js" />"></script>
-	<script type="text/javascript" charset="utf-8">
-		$(document).ready(initDataTable);
-		function initDataTable(){
-			var oTable = $('#endpointsTable').dataTable({
-				"sPaginationType": "full_numbers",
-				"iDisplayLength": 25,
-				"iTabIndex": 1
-			});
-		}
-	</script>
-
-<table id="endpointsTable" width="100%">
+<table id="endpointsTable" width="100%" data-table-config="source:'local'">
   <thead>
   <tr>
     <th>Path</th>

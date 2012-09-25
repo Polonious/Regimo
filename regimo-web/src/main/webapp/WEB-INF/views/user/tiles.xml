@@ -2,7 +2,7 @@
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 
 <tiles-definitions>
-	<definition name="user" extends="browse"/>
+	<definition name="user" extends="standardBrowse"/>
 	<definition name="user/view" extends="view"/>
 	<definition name="user/new" extends="new"/>
 	<definition name="user/edit" extends="edit"/>

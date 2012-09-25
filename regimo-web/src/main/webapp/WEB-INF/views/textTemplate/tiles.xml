@@ -2,7 +2,7 @@
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 
 <tiles-definitions>
-	<definition name="textTemplate" extends="browse"/>
+	<definition name="textTemplate" extends="standardBrowse"/>
 	<definition name="textTemplate/new" extends="new"/>
 	<definition name="textTemplate/edit" extends="edit"/>
 </tiles-definitions>

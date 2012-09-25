@@ -11,11 +11,22 @@ public class DataTablesColumnDef {
 	private Boolean bRegex;
 	
 	private Boolean bSortable;
+	
+	private String sWidth;
+
+	public DataTablesColumnDef() {
+		super();
+	}
+
+	public DataTablesColumnDef(String mDataProp, String sWidth) {
+		super();
+		this.mDataProp = mDataProp;
+		this.sWidth = sWidth;
+	}
 
 	public String getmDataProp() {
 		return mDataProp;
 	}
-
 	
 	public void setmDataProp(String mDataProp) {
 		this.mDataProp = mDataProp;
@@ -51,6 +62,16 @@ public class DataTablesColumnDef {
 
 	public void setbSortable(Boolean bSortable) {
 		this.bSortable = bSortable;
+	}
+
+
+	public String getsWidth() {
+		return sWidth;
+	}
+
+
+	public void setsWidth(String sWidth) {
+		this.sWidth = sWidth;
 	}
 		
 }
