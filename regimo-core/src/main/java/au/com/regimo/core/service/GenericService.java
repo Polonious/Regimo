@@ -130,7 +130,7 @@ public abstract class GenericService<R extends GenericRepository<T>, T extends I
 	public boolean saveModel(ModelMap modelMap, T model, BindingResult result){
 		if (!result.hasErrors()){
 			String[] ignoreProperties = getIgnoreProperties();
-			if(ignoreProperties!=null){
+			if(ignoreProperties!=null && model.getId()!=null){
 				T entity = this.findOne(model.getId());
 				BeanUtils.copyProperties(model, entity, ignoreProperties);
 				model = entity;
