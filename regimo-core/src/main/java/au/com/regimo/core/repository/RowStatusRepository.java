@@ -4,7 +4,7 @@ import java.util.List;
 
 import au.com.regimo.core.domain.RowStatus;
 
-public interface RowStatusRepository extends GenericRepository<RowStatus, Long> {
+public interface RowStatusRepository extends GenericRepository<RowStatus> {
 
 	List<RowStatus> findByStatusObject(String statusObject);
 

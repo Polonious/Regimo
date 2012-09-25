@@ -5,7 +5,9 @@ import org.springframework.social.connect.UserProfile;
 
 import au.com.regimo.core.domain.User;
 
-public class UserForm {
+import com.google.common.base.Function;
+
+public class UserForm implements Function<User, UserForm> {
 
 	private Long id;
 
@@ -74,6 +76,11 @@ public class UserForm {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	@Override
+	public UserForm apply(User user) {
+		return new UserForm(user);
 	}
 
 }

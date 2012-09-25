@@ -2,7 +2,6 @@ package au.com.regimo.web.rest;
 
 import java.io.IOException;
 import java.util.Collection;
-import java.util.LinkedList;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
@@ -68,13 +67,8 @@ public class RestUserController {
 	@RequestMapping(value="", method=RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	public Collection<UserForm> getUsers() {
-		Collection<UserForm> userList = new LinkedList<UserForm>();
-		for (User user : userService.findAll())
-		{
-			userList.add(new UserForm(user));
-		}
-		return userList;
+	public Collection<?> getUsers() {
+		return userService.findAll(new UserForm());
 	}
 
 	@Inject

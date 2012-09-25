@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 
 import au.com.regimo.core.domain.User;
 
-public interface UserRepository extends GenericRepository<User, Long> {
+public interface UserRepository extends GenericRepository<User> {
 	
 	User findByUsername(String username);
 	

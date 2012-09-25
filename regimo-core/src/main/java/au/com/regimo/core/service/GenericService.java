@@ -22,14 +22,16 @@ import org.springframework.validation.BindingResult;
 
 import au.com.regimo.core.domain.IdEntity;
 import au.com.regimo.core.form.DataTablesSearchCriteria;
-import au.com.regimo.core.form.TransformRequired;
 import au.com.regimo.core.repository.GenericRepository;
 import au.com.regimo.core.utils.ReflectionUtils;
 
 import com.google.common.base.CaseFormat;
+import com.google.common.base.Function;
+import com.google.common.collect.Collections2;
+import com.google.common.collect.Lists;
 
 @Transactional(readOnly = true)
-public abstract class GenericService<R extends GenericRepository<T, Long>, T extends IdEntity> {
+public abstract class GenericService<R extends GenericRepository<T>, T extends IdEntity> {
 
 	protected final Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -80,11 +82,10 @@ public abstract class GenericService<R extends GenericRepository<T, Long>, T ext
 	}
 
 	public Page<T> searchFullText(DataTablesSearchCriteria searchCriteria, ModelMap modelMap,
-			TransformRequired<T> transformer){
-		Page<T> results = searchFullText(searchCriteria);
-		modelMap.addAttribute("aaData",
-				transformer==null ? results.getContent() :
-					transformer.getMappedSearchResult(results.getContent()));
+			Function<T, ?> transformer){
+		Page<T> results =	 searchFullText(searchCriteria);
+		modelMap.addAttribute("aaData", transformer!=null ? 
+				Collections2.transform(results.getContent(), transformer) : results.getContent());
 		modelMap.addAttribute("sEcho", searchCriteria.getsEcho());
 		modelMap.addAttribute("iTotalRecords", results.getTotalElements());
 		modelMap.addAttribute("iTotalDisplayRecords", results.getTotalElements());
@@ -150,6 +151,11 @@ public abstract class GenericService<R extends GenericRepository<T, Long>, T ext
 
 	public Iterable<T> findAll(){
 		return repository.findAll();
+	}
+
+	public List<?> findAll(Function<T, ?> transformer){
+		List<T> entities = Lists.newArrayList(findAll());
+		return transformer!=null ? Lists.transform(entities, transformer) : entities;
 	}
 
 	public long count(){

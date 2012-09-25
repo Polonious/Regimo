@@ -1,7 +1,5 @@
 package au.com.regimo.web;
 
-import java.util.List;
-
 import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.validation.groups.Default;
@@ -15,18 +13,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.google.common.collect.Lists;
-
 import au.com.regimo.core.domain.User;
 import au.com.regimo.core.form.DataTablesSearchCriteria;
-import au.com.regimo.core.form.TransformRequired;
 import au.com.regimo.core.service.UserService;
 import au.com.regimo.core.validation.AddMode;
 import au.com.regimo.web.form.UserForm;
 
 @Controller
 @RequestMapping("/user")
-public class UserController implements TransformRequired<User> {
+public class UserController {
 
 	private UserService service;
 
@@ -37,16 +32,7 @@ public class UserController implements TransformRequired<User> {
 	@RequestMapping(method=RequestMethod.POST)
 	public void browse(ModelMap modelMap,
 			@ModelAttribute DataTablesSearchCriteria searchCriteria){
-		service.searchFullText(searchCriteria, modelMap, this);
-	}
-
-	@Override
-	public List<?> getMappedSearchResult(List<User> result){
-		List<UserForm> list = Lists.newLinkedList();
-		for(User user : result){
-			list.add(new UserForm(user));
-		}
-		return list;
+		service.searchFullText(searchCriteria, modelMap, new UserForm());
 	}
 
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
@@ -94,6 +80,5 @@ public class UserController implements TransformRequired<User> {
 	public void setUserService(UserService service) {
 		this.service = service;
 	}
-
 
 }

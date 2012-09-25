@@ -4,7 +4,7 @@ import java.util.List;
 
 import au.com.regimo.core.domain.Authority;
 
-public interface AuthorityRepository extends GenericRepository<Authority, Long> {
+public interface AuthorityRepository extends GenericRepository<Authority> {
 
 	List<Authority> findByNameStartsWith(String prefix);
 
