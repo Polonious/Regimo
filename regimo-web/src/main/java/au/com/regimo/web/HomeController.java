@@ -82,7 +82,7 @@ public class HomeController {
 
 	@RequestMapping(value="/signup", method=RequestMethod.POST)
 	public String signup(WebRequest request,
-			@Valid @Validated({Default.class, AddMode.class}) User user, BindingResult formBinding) {
+			@Validated({Default.class, AddMode.class}) User user, BindingResult formBinding) {
 		if (formBinding.hasErrors()) {
 			return null;
 		}

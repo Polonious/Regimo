@@ -60,7 +60,10 @@ public class UserController {
 
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
 	public String create(@Validated({Default.class, AddMode.class}) User user,
-			BindingResult result) {
+			BindingResult binding) {
+		if (binding.hasErrors()) {
+			return null;
+		}
 		user = service.signup(user);
 		return "redirect:view?id="+user.getId();
 	}

@@ -50,7 +50,6 @@ public class CustomTilesView extends TilesView {
 				url = url.substring(0, firstSlash);
 			}
 			model.put(KEY_MODEL, url);
-			logger.debug(KEY_MODEL+": "+url);
 		}
 		super.renderMergedOutputModel(model, requestToExpose, response);
 	}

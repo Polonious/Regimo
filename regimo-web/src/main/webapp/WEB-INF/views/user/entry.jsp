@@ -6,10 +6,21 @@
 	<form:hidden path="id" />
 	<form:label path="username"><s:message code="user.username"/> <form:errors path="username" cssClass="error" /></form:label>
 	<form:input path="username" />
+
 	<c:if test="${empty user.id}">
-	<form:label path="password">Password (at least 6 characters) <form:errors path="password" cssClass="error" /></form:label>
+	<form:label path="password">
+		<s:message code="user.password"/> (<s:message code="main.password.note"/>) 
+		<form:errors path="password" cssClass="error" />
+	</form:label>
 	<form:password path="password" />
+
+	<form:label path="confirmPassword">
+		<s:message code="user.confirmPassword"/>
+		<form:errors path="confirmPassword" cssClass="error"/>
+	</form:label>
+	<form:password path="confirmPassword"/>
 	</c:if>
+	
 	<form:label path="firstName"><s:message code="user.firstname"/> <form:errors path="firstName" cssClass="error" /></form:label>
 	<form:input path="firstName" />
 	<form:label path="lastName"><s:message code="user.lastname"/> <form:errors path="lastName" cssClass="error" /></form:label>
