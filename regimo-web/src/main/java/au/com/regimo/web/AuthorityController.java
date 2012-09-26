@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import au.com.regimo.core.domain.Authority;
 import au.com.regimo.core.form.DataTablesColumnDef;
 import au.com.regimo.core.form.DataTablesSearchCriteria;
+import au.com.regimo.core.form.DataTablesSearchResult;
 import au.com.regimo.core.service.AuthorityService;
 
 import com.google.common.collect.Lists;
@@ -23,22 +25,24 @@ import com.google.common.collect.Lists;
 public class AuthorityController {
 
 	private AuthorityService service;
-	
+
 	private final static DataTablesSearchCriteria datatable = new DataTablesSearchCriteria(
 			"name,url", "standardUpdate", Lists.newArrayList(
-			new DataTablesColumnDef("authority.name","45%"), 
-			new DataTablesColumnDef("authority.url","50%"), 
+			new DataTablesColumnDef("authority.name","45%"),
+			new DataTablesColumnDef("authority.url","50%"),
 			new DataTablesColumnDef("label.action","5%")));
 
 	@RequestMapping(method=RequestMethod.GET)
-	public void browse(ModelMap modelMap) {
-		modelMap.addAttribute("datatable", datatable);
+	@ModelAttribute("datatable")
+	public DataTablesSearchCriteria browse() {
+		return datatable;
 	}
 
 	@RequestMapping(method=RequestMethod.POST)
-	public void browse(ModelMap modelMap,
+	@ResponseBody
+	public DataTablesSearchResult<?> browse(
 			@ModelAttribute DataTablesSearchCriteria searchCriteria){
-		service.searchFullText(searchCriteria, modelMap);
+		return service.searchFullText(searchCriteria);
 	}
 
 	@RequestMapping(value = "/new", method = RequestMethod.GET)
@@ -49,7 +53,7 @@ public class AuthorityController {
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
 	public String create(ModelMap modelMap,
 			@Valid Authority entity, BindingResult result) {
-		return service.saveModel(modelMap, entity, result) ? 
+		return service.saveModel(modelMap, entity, result) ?
 				"redirect:edit?id="+entity.getId() : null;
 	}
 

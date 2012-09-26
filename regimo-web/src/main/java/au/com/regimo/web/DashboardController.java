@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import au.com.regimo.core.domain.Dashboard;
 import au.com.regimo.core.form.DataTablesSearchCriteria;
+import au.com.regimo.core.form.DataTablesSearchResult;
 import au.com.regimo.core.service.DashboardService;
 
 @Controller
@@ -26,9 +28,10 @@ public class DashboardController {
 	}
 
 	@RequestMapping(method=RequestMethod.POST)
-	public void browse(ModelMap modelMap,
+	@ResponseBody
+	public DataTablesSearchResult<?> browse(
 			@ModelAttribute DataTablesSearchCriteria searchCriteria){
-		service.searchFullText(searchCriteria, modelMap);
+		return service.searchFullText(searchCriteria);
 	}
 
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
@@ -44,7 +47,7 @@ public class DashboardController {
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
 	public String create(ModelMap modelMap,
 			@Valid Dashboard entity, BindingResult result) {
-		return service.saveModel(modelMap, entity, result) ? 
+		return service.saveModel(modelMap, entity, result) ?
 				"redirect:edit?id="+entity.getId() : null;
 	}
 

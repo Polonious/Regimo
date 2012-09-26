@@ -67,7 +67,7 @@ public class RestUserController {
 	@RequestMapping(value="", method=RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	public Collection<?> getUsers() {
+	public Collection<UserForm> getUsers() {
 		return userService.findAll(new UserForm());
 	}
 

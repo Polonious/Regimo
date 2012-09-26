@@ -22,12 +22,14 @@ import org.springframework.validation.BindingResult;
 
 import au.com.regimo.core.domain.IdEntity;
 import au.com.regimo.core.form.DataTablesSearchCriteria;
+import au.com.regimo.core.form.DataTablesSearchResult;
 import au.com.regimo.core.repository.GenericRepository;
 import au.com.regimo.core.utils.ReflectionUtils;
 
 import com.google.common.base.CaseFormat;
 import com.google.common.base.Function;
 import com.google.common.collect.Collections2;
+import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 
 @Transactional(readOnly = true)
@@ -72,24 +74,21 @@ public abstract class GenericService<R extends GenericRepository<T>, T extends I
 		return repository.findAll(spec, sort);
 	}
 
-	public Page<T> searchFullText(DataTablesSearchCriteria searchCriteria){
+	public Page<T> fullTextSearch(DataTablesSearchCriteria searchCriteria){
 		return repository.findAll(fullTextSearchSpec(
 				searchCriteria.getSearchableFields(), searchCriteria.getsSearch()), searchCriteria);
 	}
 
-	public Page<T> searchFullText(DataTablesSearchCriteria searchCriteria, ModelMap modelMap){
-		return searchFullText(searchCriteria, modelMap, null);
+	public DataTablesSearchResult<T> searchFullText(DataTablesSearchCriteria searchCriteria){
+		return new DataTablesSearchResult<T>(searchCriteria.getsEcho(), fullTextSearch(searchCriteria));
 	}
 
-	public Page<T> searchFullText(DataTablesSearchCriteria searchCriteria, ModelMap modelMap,
-			Function<T, ?> transformer){
-		Page<T> results =	 searchFullText(searchCriteria);
-		modelMap.addAttribute("aaData", transformer!=null ? 
-				Collections2.transform(results.getContent(), transformer) : results.getContent());
-		modelMap.addAttribute("sEcho", searchCriteria.getsEcho());
-		modelMap.addAttribute("iTotalRecords", results.getTotalElements());
-		modelMap.addAttribute("iTotalDisplayRecords", results.getTotalElements());
-		return results;
+	public <F> DataTablesSearchResult<F> searchFullText(DataTablesSearchCriteria searchCriteria,
+			Function<T, F> transformer){
+		Page<T> results = fullTextSearch(searchCriteria);
+		return new DataTablesSearchResult<F>(searchCriteria.getsEcho(),
+				Collections2.transform(results.getContent(), transformer),
+				results.getTotalElements());
 	}
 
 	public long count(Specification<T> spec){
@@ -153,9 +152,8 @@ public abstract class GenericService<R extends GenericRepository<T>, T extends I
 		return repository.findAll();
 	}
 
-	public List<?> findAll(Function<T, ?> transformer){
-		List<T> entities = Lists.newArrayList(findAll());
-		return transformer!=null ? Lists.transform(entities, transformer) : entities;
+	public <F> List<F> findAll(Function<T, F> transformer){
+		return Lists.newArrayList(Iterables.transform(findAll(), transformer));
 	}
 
 	public long count(){

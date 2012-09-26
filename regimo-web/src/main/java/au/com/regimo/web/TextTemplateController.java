@@ -10,12 +10,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.common.collect.Lists;
 
 import au.com.regimo.core.domain.TextTemplate;
 import au.com.regimo.core.form.DataTablesColumnDef;
 import au.com.regimo.core.form.DataTablesSearchCriteria;
+import au.com.regimo.core.form.DataTablesSearchResult;
 import au.com.regimo.core.service.TextTemplateService;
 
 @Controller
@@ -23,23 +25,25 @@ import au.com.regimo.core.service.TextTemplateService;
 public class TextTemplateController {
 
 	private TextTemplateService service;
-	
+
 	private final static DataTablesSearchCriteria datatable = new DataTablesSearchCriteria(
 				"name,category,model", "standardUpdate", Lists.newArrayList(
-				new DataTablesColumnDef("textTemplate.name","40%"), 
-				new DataTablesColumnDef("textTemplate.category","40%"), 
-				new DataTablesColumnDef("textTemplate.model","15%"), 
+				new DataTablesColumnDef("textTemplate.name","40%"),
+				new DataTablesColumnDef("textTemplate.category","40%"),
+				new DataTablesColumnDef("textTemplate.model","15%"),
 				new DataTablesColumnDef("label.action","5%")));
 
 	@RequestMapping(method=RequestMethod.GET)
-	public void browse(ModelMap modelMap) {
-		modelMap.addAttribute("datatable", datatable);
+	@ModelAttribute("datatable")
+	public DataTablesSearchCriteria browse() {
+		return datatable;
 	}
 
 	@RequestMapping(method=RequestMethod.POST)
-	public void browse(ModelMap modelMap,
+	@ResponseBody
+	public DataTablesSearchResult<?> browse(
 			@ModelAttribute DataTablesSearchCriteria searchCriteria){
-		service.searchFullText(searchCriteria, modelMap);
+		return service.searchFullText(searchCriteria);
 	}
 
 	@RequestMapping(value = "/new", method = RequestMethod.GET)
@@ -50,7 +54,7 @@ public class TextTemplateController {
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
 	public String create(ModelMap modelMap,
 			@Valid TextTemplate entity, BindingResult result) {
-		return service.saveModel(modelMap, entity, result) ? 
+		return service.saveModel(modelMap, entity, result) ?
 				"redirect:edit?id="+entity.getId() : null;
 	}
 

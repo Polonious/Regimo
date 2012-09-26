@@ -12,40 +12,44 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import com.google.common.collect.Lists;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import au.com.regimo.core.domain.User;
 import au.com.regimo.core.form.DataTablesColumnDef;
 import au.com.regimo.core.form.DataTablesSearchCriteria;
+import au.com.regimo.core.form.DataTablesSearchResult;
 import au.com.regimo.core.service.UserService;
 import au.com.regimo.core.validation.AddMode;
 import au.com.regimo.web.form.UserForm;
+
+import com.google.common.collect.Lists;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
 
 	private UserService service;
-	
+
 	private final static DataTablesSearchCriteria datatable = new DataTablesSearchCriteria(
-				"username,firstName,lastName,email", 
+				"username,firstName,lastName,email",
 				"standardViewUpdate", Lists.newArrayList(
-				new DataTablesColumnDef("user.username","20%"), 
-				new DataTablesColumnDef("user.firstName","25%"), 
-				new DataTablesColumnDef("user.lastName","25%"), 
-				new DataTablesColumnDef("user.email","15%"), 
+				new DataTablesColumnDef("user.username","20%"),
+				new DataTablesColumnDef("user.firstName","25%"),
+				new DataTablesColumnDef("user.lastName","25%"),
+				new DataTablesColumnDef("user.email","15%"),
 				new DataTablesColumnDef("label.action","10%")));
 
 	@RequestMapping(method=RequestMethod.GET)
-	public void browse(ModelMap modelMap) {
-		modelMap.addAttribute("datatable", datatable);
+	@ModelAttribute("datatable")
+	public DataTablesSearchCriteria browse() {
+		return datatable;
 	}
 
 	@RequestMapping(method=RequestMethod.POST)
-	public void browse(ModelMap modelMap,
+	@ResponseBody
+	public DataTablesSearchResult<UserForm> browse(
 			@ModelAttribute DataTablesSearchCriteria searchCriteria){
-		service.searchFullText(searchCriteria, modelMap, new UserForm());
+		return service.searchFullText(searchCriteria, new UserForm());
 	}
 
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
