@@ -69,6 +69,12 @@ public class InitializeData implements InitializingBean {
 		createAuthority(query, new Authority("URL_USER_EDIT", "/user/edit"), adminRole);
 		createAuthority(query, new Authority("URL_USER_CREATE", "/user/new"), adminRole);
 
+		createAuthority(query, new Authority("URL_APPLOCALE_BROWSE", "/appLocale"), adminRole);
+		createAuthority(query, new Authority("URL_APPLOCALE_EDIT", "/appLocale/edit"), adminRole);
+		createAuthority(query, new Authority("URL_APPLOCALE_CREATE", "/appLocale/new"), adminRole);
+		createAuthority(query, new Authority("URL_APPLOCALE_IMPORT", "/appLocale/import"), adminRole);
+		createAuthority(query, new Authority("URL_APPLOCALE_EXPORT", "/appLocale/export"), adminRole);
+
 		createAuthority(query, new Authority("URL_DASHLET_BROWSE", "/dashlet"), adminRole);
 		createAuthority(query, new Authority("URL_DASHLET_VIEW", "/dashlet/view"), adminRole);
 		createAuthority(query, new Authority("URL_DASHLET_EDIT", "/dashlet/edit"), adminRole);

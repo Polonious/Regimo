@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.security.access.AccessDecisionVoter;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.core.Authentication;
@@ -32,7 +33,7 @@ import au.com.regimo.core.utils.StringUtils;
 
 @Named
 @Transactional(readOnly = true)
-public class SecurityService implements UserDetailsService, AccessDecisionVoter<FilterInvocation> {
+public class SecurityService implements InitializingBean, UserDetailsService, AccessDecisionVoter<FilterInvocation> {
 
 	private static final Logger logger = LoggerFactory.getLogger(SecurityService.class);
 
@@ -49,7 +50,6 @@ public class SecurityService implements UserDetailsService, AccessDecisionVoter<
     public SecurityService(UserRepository userRepository, AuthorityRepository authorityRepository) {
 		this.userRepository = userRepository;
 		this.authorityRepository = authorityRepository;
-		loadUrls();
 	}
 
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -154,6 +154,10 @@ public class SecurityService implements UserDetailsService, AccessDecisionVoter<
 
 	public void setPrefix(String prefix) {
 		this.prefix = prefix;
+	}
+	
+	public void afterPropertiesSet(){
+		loadUrls();
 	}
 
 }

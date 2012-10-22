@@ -3,9 +3,16 @@
 
 <tiles-definitions>
 	
-	<definition name="admin/endpoints" extends="browse">
+	<definition name="admin/endpoints" extends="template">
 		<put-attribute name="title" value="End Points" />
 		<put-attribute name="content" value="/WEB-INF/views/admin/endpoints.jsp" />
+		<put-list-attribute name="styles">
+			<add-attribute value="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.3/css/jquery.dataTables.css" />
+		</put-list-attribute>
+		<put-list-attribute name="scripts">
+			<add-attribute value="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.3/jquery.dataTables.min.js" />
+			<add-attribute value="/resources/datatables/dataTables.utils.js" />
+		</put-list-attribute>
 	</definition>
 	
 </tiles-definitions>

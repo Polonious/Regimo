@@ -2,8 +2,22 @@
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 
 <tiles-definitions>
-	<definition name="user" extends="standardBrowse"/>
+	<definition name="user" extends="browse"/>
 	<definition name="user/view" extends="view"/>
-	<definition name="user/new" extends="new"/>
-	<definition name="user/edit" extends="edit"/>
+	<definition name="user/new" extends="new">
+		<put-list-attribute name="styles">
+			<add-attribute value="/resources/jquery/select2/select2.css" />
+		</put-list-attribute>
+		<put-list-attribute name="scripts">
+			<add-attribute value="/resources/jquery/select2/select2.min.js" />
+		</put-list-attribute>
+	</definition>
+	<definition name="user/edit" extends="edit">
+		<put-list-attribute name="styles">
+			<add-attribute value="/resources/jquery/select2/select2.css" />
+		</put-list-attribute>
+		<put-list-attribute name="scripts">
+			<add-attribute value="/resources/jquery/select2/select2.min.js" />
+		</put-list-attribute>
+	</definition>
 </tiles-definitions>

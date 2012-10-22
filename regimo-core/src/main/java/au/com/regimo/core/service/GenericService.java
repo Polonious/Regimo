@@ -21,6 +21,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 
 import au.com.regimo.core.domain.IdEntity;
+import au.com.regimo.core.form.XhrEvent;
 import au.com.regimo.core.form.DataTablesSearchCriteria;
 import au.com.regimo.core.form.DataTablesSearchResult;
 import au.com.regimo.core.repository.GenericRepository;
@@ -128,16 +129,32 @@ public abstract class GenericService<R extends GenericRepository<T>, T extends I
 
 	public boolean saveModel(ModelMap modelMap, T model, BindingResult result){
 		if (!result.hasErrors()){
-			String[] ignoreProperties = getIgnoreProperties();
-			if(ignoreProperties!=null && model.getId()!=null){
-				T entity = this.findOne(model.getId());
-				BeanUtils.copyProperties(model, entity, ignoreProperties);
-				model = entity;
-			}
-			model = save(model);
+			model = saveModel(model);
 		}
 		loadModel(modelMap, model);
 		return !result.hasErrors();
+	}
+
+	public XhrEvent saveModel(T model, BindingResult binding){
+		XhrEvent result = new XhrEvent(binding);
+		if (result.isValid()){
+			result.setId(saveModel(model).getId());
+			result.addSuccessMessage("action.save.success");
+		}
+		else{
+			result.addErrorMessage("action.save.failure");
+		}
+		return result;
+	}
+
+	public T saveModel(T model){
+		String[] ignoreProperties = getIgnoreProperties();
+		if(ignoreProperties!=null && model.getId()!=null){
+			T entity = this.findOne(model.getId());
+			BeanUtils.copyProperties(model, entity, ignoreProperties);
+			model = entity;
+		}
+		return save(model);
 	}
 
 	protected String[] getIgnoreProperties(){

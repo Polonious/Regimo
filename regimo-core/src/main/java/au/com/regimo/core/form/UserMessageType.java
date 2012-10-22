@@ -1,26 +1,26 @@
-package au.com.regimo.core.utils;
+package au.com.regimo.core.form;
 
-public enum MessageType {
+public enum UserMessageType {
 	
 	/**
 	 * The message is informative in nature, like a note or notice.
 	 */
-	INFO, 
+	info, 
 
 	/**
 	 * The message indicates that an action initiated by the user was performed successfully.
 	 */
-	SUCCESS, 
+	success, 
 	
 	/**
 	 * The message warns the user something is not quite right.
 	 * Corrective action is generally recommended but not required.
 	 */
-	WARNING, 
+	warning, 
 	
 	/**
 	 * The message reports an error condition that needs to be addressed by the user.
 	 */
-	ERROR;
+	error;
 	
 }

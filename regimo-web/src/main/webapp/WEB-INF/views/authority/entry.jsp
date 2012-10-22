@@ -17,13 +17,9 @@
 	<form:label path="roles">
 		<s:message code="authority.roles"/> <form:errors path="roles" cssClass="error" />
 	</form:label><br>
-	<form:select path="roles" multiple="true" items="${referenceData.roles}" itemLabel="name" itemValue="id"
+	<form:select data-type="select2" path="roles" multiple="true" items="${referenceData.roles}" itemLabel="name" itemValue="id"
 		cssStyle="width:300px" cssClass="populate"/>
 
 	<form:hidden path="id" />
 
 </div>
-
-<script>
-	$(document).ready(function() { $("#roles").select2(); });
-</script>

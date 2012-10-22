@@ -31,20 +31,14 @@
 	<form:label path="roles">
 		<s:message code="user.roles"/> <form:errors path="roles" cssClass="error" />
 	</form:label><br>
-	<form:select path="roles" items="${referenceData.roles}" multiple="true"
+	<form:select data-type="select2" path="roles" items="${referenceData.roles}" multiple="true"
 		itemLabel="name" itemValue="id" cssStyle="width:300px" />
 	<br>
 
 	<form:label path="rowStatus">
 		<s:message code="user.rowStatus"/> <form:errors path="rowStatus" cssClass="error" />
 	</form:label><br>
-	<form:select path="rowStatus" items="${referenceData.rowStatus('User')}"
+	<form:select data-type="select2" path="rowStatus" items="${referenceData.rowStatus('User')}"
 		itemLabel="name" itemValue="id" cssStyle="width:300px" />
 
 </fieldset>
-
-<script>
-	$(document).ready(function() {
-		$("#roles,#rowStatus").select2();
-	});
-</script>

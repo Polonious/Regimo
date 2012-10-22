@@ -17,6 +17,7 @@ import au.com.regimo.core.form.DataTablesColumnDef;
 import au.com.regimo.core.form.DataTablesSearchCriteria;
 import au.com.regimo.core.form.DataTablesSearchResult;
 import au.com.regimo.core.service.AuthorityService;
+import au.com.regimo.core.service.SecurityService;
 
 import com.google.common.collect.Lists;
 
@@ -25,6 +26,8 @@ import com.google.common.collect.Lists;
 public class AuthorityController {
 
 	private AuthorityService service;
+
+	private SecurityService securityService;
 
 	private final static DataTablesSearchCriteria datatable = new DataTablesSearchCriteria(
 			"name,url", "standardUpdate", Lists.newArrayList(
@@ -53,8 +56,11 @@ public class AuthorityController {
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
 	public String create(ModelMap modelMap,
 			@Valid Authority entity, BindingResult result) {
-		return service.saveModel(modelMap, entity, result) ?
-				"redirect:edit?id="+entity.getId() : null;
+		if(service.saveModel(modelMap, entity, result)){
+			securityService.loadUrls();
+			return "redirect:edit?id="+entity.getId();
+		}
+		return null;
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
@@ -65,12 +71,19 @@ public class AuthorityController {
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public void update(ModelMap modelMap,
 			@Valid Authority entity, BindingResult result) {
-		service.saveModel(modelMap, entity, result);
+		if(service.saveModel(modelMap, entity, result)){
+			securityService.loadUrls();
+		}
 	}
 
 	@Inject
 	public void setService(AuthorityService service) {
 		this.service = service;
+	}
+
+	@Inject
+	public void setSecurityService(SecurityService securityService) {
+		this.securityService = securityService;
 	}
 
 }

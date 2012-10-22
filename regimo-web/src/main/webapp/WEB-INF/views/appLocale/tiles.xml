@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+
+<tiles-definitions>
+	<definition name="appLocale" extends="browse"/>
+	<definition name="appLocale/new" extends="new">
+		<put-list-attribute name="styles">
+			<add-attribute value="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.3/css/jquery.dataTables.css" />
+		</put-list-attribute>
+		<put-list-attribute name="scripts">
+			<add-attribute value="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.3/jquery.dataTables.min.js" />
+			<add-attribute value="/resources/jquery/jquery.formkit.js" />
+			<add-attribute value="//blueimp.github.com/jQuery-File-Upload/js/vendor/jquery.ui.widget.js" />
+			<add-attribute value="//blueimp.github.com/jQuery-File-Upload/js/jquery.iframe-transport.js" />
+			<add-attribute value="//blueimp.github.com/jQuery-File-Upload/js/jquery.fileupload.js" />
+			<add-attribute value="/resources/js/appLocaleEntry.js" />
+		</put-list-attribute>
+	</definition>
+	<definition name="appLocale/edit" extends="edit">
+		<put-list-attribute name="styles">
+			<add-attribute value="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.3/css/jquery.dataTables.css" />
+		</put-list-attribute>
+		<put-list-attribute name="scripts">
+			<add-attribute value="//ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.3/jquery.dataTables.min.js" />
+			<add-attribute value="/resources/jquery/jquery.formkit.js" />
+			<add-attribute value="//blueimp.github.com/jQuery-File-Upload/js/vendor/jquery.ui.widget.js" />
+			<add-attribute value="//blueimp.github.com/jQuery-File-Upload/js/jquery.iframe-transport.js" />
+			<add-attribute value="//blueimp.github.com/jQuery-File-Upload/js/jquery.fileupload.js" />
+			<add-attribute value="/resources/js/appLocaleEntry.js" />
+		</put-list-attribute>
+	</definition>
+</tiles-definitions>

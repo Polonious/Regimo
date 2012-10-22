@@ -5,8 +5,8 @@
 
 <div id="page-content">
 
-<f:form modelAttribute="${modelName}" method="post">
-	<div class="formInfo">
+<f:form id="mainForm" modelAttribute="${modelName}" method="post">
+	<div id="formInfo" class="formInfo">
   		<h2><s:message code="label.create"/> <s:message code="${modelName}"/></h2>
   		<s:bind path="*"><c:if test="${status.error}">
   		<div class="error"><s:message code="error.new"/>.</div>

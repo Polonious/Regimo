@@ -16,6 +16,13 @@
 		<org.springframework.mobile-version>1.0.0.RELEASE</org.springframework.mobile-version>
 		<org.spring.security.oauth2-version>1.0.0.RC2</org.spring.security.oauth2-version>
 	</properties>
+
+	<scm>
+		<connection>scm:git:ssh://git@github.com/Polonious/Regimo</connection>
+		<developerConnection>scm:git:ssh://git@github.com/Polonious/Regimo</developerConnection>
+		<url>http://github.com/Polonious/Regimo</url>
+	</scm>
+
 	<dependencies>
 		<dependency>
 			<groupId>au.com.regimo</groupId>
