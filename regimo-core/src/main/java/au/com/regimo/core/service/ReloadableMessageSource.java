@@ -11,7 +11,6 @@ import java.util.Properties;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.support.AbstractMessageSource;
 
 @Named("messageSource")
