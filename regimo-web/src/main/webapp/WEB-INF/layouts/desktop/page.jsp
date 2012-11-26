@@ -12,21 +12,23 @@
 	<link rel="stylesheet" href="<c:url value="/resources/css/dropdown-menu.css" />" type="text/css" />
 	<link rel="stylesheet" href="<c:url value="/resources/css/waterwheel-carousel.css" />" type="text/css" />
 	<link rel="stylesheet" href="<c:url value="/resources/orbit/orbit-1.2.3.css" />" type="text/css" />
-	
+
 	<script type="text/javascript">
 		var pageReady = [];
 	</script>
-	
+
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript" src="<c:url value="/resources/waterwheelCarousel/jquery.waterwheelCarousel.min.js" />"></script>
 	<script type="text/javascript" src="/resources/orbit/jquery.orbit-1.2.3.min.js"></script>
-	
+
 	<tiles:useAttribute id="styles" name="styles" classname="java.util.List" ignore="true" /><c:forEach var="style" items="${styles}">
 	<link rel="stylesheet" type="text/css" href="${style}" /></c:forEach>
-	
+
+	<link rel="stylesheet" href="<c:url value="/resources/dojo/1.8.1/dijit/themes/claro/claro.css" />" media="screen">
+
 </head>
 
-<body>
+<body class="claro">
 	<input type="hidden" id="locale" value="${pageContext.response.locale}"/>
   	<div id="header-container">
 		<tiles:insertAttribute name="header" />
@@ -37,7 +39,10 @@
 	<div id="footer">
 		<tiles:insertAttribute name="footer" />
 	</div>
-	
+
+	<script type="text/javascript" src="<c:url value="/resources/dojo/1.8.1/dojo/dojo.js"/>"
+		data-dojo-config="async: true"></script>
+
 	<tiles:useAttribute id="scripts" name="scripts" classname="java.util.List" ignore="true" /><c:forEach var="script" items="${scripts}">
 	<script type="text/javascript" src="${script}"></script></c:forEach>
 
@@ -57,7 +62,7 @@
 	  var _gaq = _gaq || [];
 	  _gaq.push(['_setAccount', 'UA-10992736-4']);
 	  _gaq.push(['_trackPageview']);
-	
+
 	  (function() {
 	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
 	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';

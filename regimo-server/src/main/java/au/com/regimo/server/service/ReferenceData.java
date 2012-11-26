@@ -7,6 +7,8 @@ import javax.inject.Named;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import au.com.regimo.cms.domain.Category;
+import au.com.regimo.cms.service.CategoryService;
 import au.com.regimo.core.domain.Authority;
 import au.com.regimo.core.domain.Dashlet;
 import au.com.regimo.core.domain.Role;
@@ -25,6 +27,7 @@ public class ReferenceData {
 	private RoleService roleService;
 	private AuthorityService authorityService;
 	private RowStatusService rowStatusService;
+	private CategoryService categoryService;
 
 	public List<ComboItem> getDashletTypeOptions() {
 		List<ComboItem> options = Lists.newArrayList();
@@ -40,6 +43,10 @@ public class ReferenceData {
 
 	public Iterable<Authority> getAuthorities(){
 		return authorityService.findAll();
+	}
+
+	public Iterable<Category> getCategories(){
+		return categoryService.findAll();
 	}
 
 	public Iterable<RowStatus> rowStatus(String statusObject){
@@ -59,6 +66,11 @@ public class ReferenceData {
 	@Inject
 	public void setRowStatusService(RowStatusService rowStatusService) {
 		this.rowStatusService = rowStatusService;
+	}
+
+	@Inject
+	public void setCategoryService(CategoryService categoryService) {
+		this.categoryService = categoryService;
 	}
 
 }

@@ -34,7 +34,7 @@
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<mvc:resources mapping="/favicon.ico" location="/resources/" />
-	<mvc:resources mapping="/resources/**" location="/resources/" />
+	<mvc:resources mapping="/resources/**" location="/resources/,classpath:/META-INF/resources/webjars/"/>
 	<mvc:resources mapping="${document.resources.path}**" location="file:${document.repository}" cache-period="31556926"/>
 
 	<!--  convert string to entity -->

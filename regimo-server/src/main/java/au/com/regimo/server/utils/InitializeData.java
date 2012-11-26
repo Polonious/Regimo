@@ -61,48 +61,29 @@ public class InitializeData implements InitializingBean {
 		query = entityManager.createQuery(
 				"select count(*) from Authority where name = :name", Long.class);
 
-		createAuthority(query, new Authority("UI_MENU_ADMIN"), adminRole);
-		createAuthority(query, new Authority("URL_ADMIN_ENDPOINTS", "/admin/endpoints"), adminRole);
+		ensureAuthority(query, new Authority("UI_MENU_ADMIN"), adminRole);
+		ensureAuthority(query, new Authority("URL_ADMIN_ENDPOINTS", "/admin/endpoints"), adminRole);
 
-		createAuthority(query, new Authority("URL_USER_BROWSE", "/user"), adminRole);
-		createAuthority(query, new Authority("URL_USER_VIEW", "/user/view"), adminRole);
-		createAuthority(query, new Authority("URL_USER_EDIT", "/user/edit"), adminRole);
-		createAuthority(query, new Authority("URL_USER_CREATE", "/user/new"), adminRole);
+		ensureStandardAuthority(query, "user", adminRole);
+		ensureAuthority(query, new Authority("URL_USER_VIEW", "/user/view"), adminRole);
 
-		createAuthority(query, new Authority("URL_APPLOCALE_BROWSE", "/appLocale"), adminRole);
-		createAuthority(query, new Authority("URL_APPLOCALE_EDIT", "/appLocale/edit"), adminRole);
-		createAuthority(query, new Authority("URL_APPLOCALE_CREATE", "/appLocale/new"), adminRole);
-		createAuthority(query, new Authority("URL_APPLOCALE_IMPORT", "/appLocale/import"), adminRole);
-		createAuthority(query, new Authority("URL_APPLOCALE_EXPORT", "/appLocale/export"), adminRole);
+		ensureStandardAuthority(query, "appLocale", adminRole);
+		ensureAuthority(query, new Authority("URL_APPLOCALE_IMPORT", "/appLocale/import"), adminRole);
+		ensureAuthority(query, new Authority("URL_APPLOCALE_EXPORT", "/appLocale/export"), adminRole);
 
-		createAuthority(query, new Authority("URL_DASHLET_BROWSE", "/dashlet"), adminRole);
-		createAuthority(query, new Authority("URL_DASHLET_VIEW", "/dashlet/view"), adminRole);
-		createAuthority(query, new Authority("URL_DASHLET_EDIT", "/dashlet/edit"), adminRole);
-		createAuthority(query, new Authority("URL_DASHLET_CREATE", "/dashlet/new"), adminRole);
+		ensureStandardAuthority(query, "dashlet", adminRole);
+		ensureAuthority(query, new Authority("URL_DASHLET_VIEW", "/dashlet/view"), adminRole);
 
-		createAuthority(query, new Authority("URL_DASHBOARD_BROWSE", "/dashboard"), adminRole);
-		createAuthority(query, new Authority("URL_DASHBOARD_EDIT", "/dashboard/edit"), adminRole);
-		createAuthority(query, new Authority("URL_DASHBOARD_CREATE", "/dashboard/new"), adminRole);
+		ensureStandardAuthority(query, "dashboard", adminRole);
+		ensureStandardAuthority(query, "authority", adminRole);
+		ensureStandardAuthority(query, "role", adminRole);
+		ensureStandardAuthority(query, "rowStatus", adminRole);
+		ensureStandardAuthority(query, "textTemplate", adminRole);
+		ensureStandardAuthority(query, "category", adminRole);
+		ensureStandardAuthority(query, "post", adminRole);
 
-		createAuthority(query, new Authority("URL_AUTHORITY_BROWSE", "/authority"), adminRole);
-		createAuthority(query, new Authority("URL_AUTHORITY_EDIT", "/authority/edit"), adminRole);
-		createAuthority(query, new Authority("URL_AUTHORITY_CREATE", "/authority/new"), adminRole);
-
-		createAuthority(query, new Authority("URL_ROLE_BROWSE", "/role"), adminRole);
-		createAuthority(query, new Authority("URL_ROLE_EDIT", "/role/edit"), adminRole);
-		createAuthority(query, new Authority("URL_ROLE_CREATE", "/role/new"), adminRole);
-
-		createAuthority(query, new Authority("URL_ROWSTATUS_BROWSE", "/rowStatus"), adminRole);
-		createAuthority(query, new Authority("URL_ROWSTATUS_EDIT", "/rowStatus/edit"), adminRole);
-		createAuthority(query, new Authority("URL_ROWSTATUS_CREATE", "/rowStatus/new"), adminRole);
-
-		createAuthority(query, new Authority("URL_TEXTTEMPLATE_BROWSE", "/textTemplate"), adminRole);
-		createAuthority(query, new Authority("URL_TEXTTEMPLATE_EDIT", "/textTemplate/edit"), adminRole);
-		createAuthority(query, new Authority("URL_TEXTTEMPLATE_CREATE", "/textTemplate/new"), adminRole);
-
-
-		createAuthority(query, new Authority("URL_PROFILE_VIEW", "/profile"), adminRole, userRole);
-		createAuthority(query, new Authority("URL_PROFILE_EDIT", "/profile/edit"), adminRole, userRole);
+		ensureAuthority(query, new Authority("URL_PROFILE_VIEW", "/profile"), adminRole, userRole);
+		ensureAuthority(query, new Authority("URL_PROFILE_EDIT", "/profile/edit"), adminRole, userRole);
 
 		tx.commit();
 
@@ -132,7 +113,14 @@ public class InitializeData implements InitializingBean {
 		entityManager.persist(rs);
 	}
 
-	private void createAuthority(TypedQuery<Long> query, Authority authority, Role... roles){
+	private void ensureStandardAuthority(TypedQuery<Long> query, String name, Role... roles){
+		String namePrefix = "URL_"+name.toUpperCase()+"_", urlPrefix = "/"+name;
+		ensureAuthority(query, new Authority(namePrefix+"BROWSE", urlPrefix), roles);
+		ensureAuthority(query, new Authority(namePrefix+"EDIT", urlPrefix+"/edit"), roles);
+		ensureAuthority(query, new Authority(namePrefix+"CREATE", urlPrefix+"/new"), roles);
+	}
+
+	private void ensureAuthority(TypedQuery<Long> query, Authority authority, Role... roles){
 		if(query.setParameter("name", authority.getName()).getSingleResult()==0){
 			for(Role role : roles){
 				authority.addRole(role);

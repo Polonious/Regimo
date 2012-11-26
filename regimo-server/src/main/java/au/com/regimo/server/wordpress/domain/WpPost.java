@@ -10,7 +10,7 @@ import java.util.Set;
 
 /**
  * The persistent class for the wp_posts database table.
- * 
+ *
  */
 @Entity
 @Table(name="wp_posts")
@@ -310,7 +310,7 @@ public class WpPost implements Serializable {
 	public void setWpPostmetas(Set<WpPostmeta> wpPostmetas) {
 		this.wpPostmetas = wpPostmetas;
 	}
-	
+
 	public Set<WpComment> getWpComments() {
 		return this.wpComments;
 	}
@@ -318,7 +318,7 @@ public class WpPost implements Serializable {
 	public void setWpComments(Set<WpComment> wpComments) {
 		this.wpComments = wpComments;
 	}
-	
+
 	public WpUser getWpUser() {
 		return this.wpUser;
 	}
@@ -326,7 +326,7 @@ public class WpPost implements Serializable {
 	public void setWpUser(WpUser wpUser) {
 		this.wpUser = wpUser;
 	}
-	
+
 	public Set<WpTermTaxonomy> getWpTermTaxonomies() {
 		return this.wpTermTaxonomies;
 	}
@@ -334,5 +334,5 @@ public class WpPost implements Serializable {
 	public void setWpTermTaxonomies(Set<WpTermTaxonomy> wpTermTaxonomies) {
 		this.wpTermTaxonomies = wpTermTaxonomies;
 	}
-	
+
 }

@@ -8,7 +8,7 @@
 			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
 			http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.1.xsd
            	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
-	
+
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 	    <property name="ignoreResourceNotFound" value="true"/>
 	    <property name="locations">
@@ -20,17 +20,19 @@
 	</bean>
 
 	<context:component-scan base-package="au.com.regimo.core" />
+	<context:component-scan base-package="au.com.regimo.cms" />
 	<context:component-scan base-package="au.com.regimo.server" />
 	<context:component-scan base-package="au.com.regimo.web" />
 
 	<import resource="webmvc-config.xml" />
 	<import resource="data-access-config.xml" />
 	<import resource="security-config.xml" />
+	<import resource="data-access-mongodb-config.xml" />
 	<import resource="data-access-wordpress-config.xml" />
-	 
+
 	<aop:aspectj-autoproxy/>
 	<task:annotation-driven />
-	
+
 	<bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="${mail.host}"/>
 		<property name="port" value="${mail.port}"/>
@@ -41,10 +43,10 @@
 	<!-- Allows users to sign-in with their provider accounts.  -->
 	<bean class="org.springframework.social.connect.web.ProviderSignInController">
 		<constructor-arg ref="connectionFactoryLocator" />
-		<constructor-arg ref="usersConnectionRepository" />		
+		<constructor-arg ref="usersConnectionRepository" />
 		<constructor-arg>
 			<bean class="au.com.regimo.web.social.SimpleSignInAdapter" />
 		</constructor-arg>
 	</bean>
-	
+
 </beans>

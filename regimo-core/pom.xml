@@ -14,6 +14,7 @@
 		<org.springframework-version>3.1.3.RELEASE</org.springframework-version>
 		<org.springframework.security-version>3.1.3.RELEASE</org.springframework.security-version>
 		<org.springframework.data.jpa-version>1.2.0.RELEASE</org.springframework.data.jpa-version>
+		<spring.data.mongo.version>1.1.1.RELEASE</spring.data.mongo.version>
 		<hibernate-version>3.6.10.Final</hibernate-version>
 	</properties>
 	<dependencies>
@@ -63,6 +64,12 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>${hibernate-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-mongodb</artifactId>
+			<version>${spring.data.mongo.version}</version>
 		</dependency>
 
 		<!-- JSR 303 with Hibernate Validator -->

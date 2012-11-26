@@ -16,30 +16,30 @@ public class WordpressController {
 
 	private WpTermRepository wpTermRepository;
 	private WpPostRepository wpPostRepository;
-	
+
 	@RequestMapping(value = "")
 	public void browse(ModelMap map) {
 		map.addAttribute("menu", wpTermRepository.findByTaxonomyCategory());
 	}
-	
+
 	@RequestMapping(value = "/category/{slug}")
 	public String getPostsByCategory(@PathVariable("slug") String slug, ModelMap map) {
 		map.addAttribute("posts", wpPostRepository.findBySlug(slug));
 		map.addAttribute("name",wpTermRepository.getNameBySlug(slug));
-		return "posts";
+		return "wp/posts";
 	}
 
 	@RequestMapping(value = "/post/{postName}")
 	public String getPost(@PathVariable("postName") String postName, ModelMap map) {
 		map.addAttribute("post", wpPostRepository.findByPostName(postName));
-		return "post";
+		return "wp/post";
 	}
 
 	@Inject
 	public void setWpTermRepository(WpTermRepository wpTermRepository) {
 		this.wpTermRepository = wpTermRepository;
 	}
-	
+
 	@Inject
 	public void setWpPostRepository(WpPostRepository wpPostRepository) {
 		this.wpPostRepository = wpPostRepository;
