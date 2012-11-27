@@ -32,14 +32,4 @@
 
 	<form:hidden path="id" />
 
-	<script type="text/javascript">
-	pageReady.push(function(){
-		require(["dojo/parser", "dojo/ready", "dijit/Editor"], function(parser, ready){
-		    ready(function(){
-		    	//parser.parse();
-			});
-		});
-	});
-	</script>
-
 </div>

@@ -55,6 +55,9 @@
 			});
 			$.each(pageReady,function(){this();});
 		});
+		require(["dojo/parser", "dojo/ready"], function(parser, ready){
+			ready(function(){parser.parse();});
+		});
 	</script>
 
 	<script type="text/javascript" src="/resources/jquery/html5breadcrumbs.js"></script>
