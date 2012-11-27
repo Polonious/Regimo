@@ -16,4 +16,11 @@
     	<constructor-arg name="databaseName" value="regimo"/>
 	</bean>
 
+	<mongo:db-factory id="mongoDbFactory" dbname="regimo" />
+	<mongo:mapping-converter id="converter" />
+	<bean class="org.springframework.data.mongodb.gridfs.GridFsTemplate">
+		<constructor-arg ref="mongoDbFactory" />
+		<constructor-arg ref="converter" />
+	</bean>
+
 </beans>

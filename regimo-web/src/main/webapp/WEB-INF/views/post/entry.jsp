@@ -2,6 +2,10 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
+<link rel="stylesheet" href="/resources/dojo/1.8.1/dojox/form/resources/FileInput.css" type="text/css"/>
+<link rel="stylesheet" href="/resources/dojo/1.8.1/dojox/form/resources/FileUploader.css" type="text/css"/>
+
+
 <div class="formBody">
 
 	<form:label path="title">
@@ -29,6 +33,32 @@
 	</form:label><br>
 	<form:select data-type="select2" path="categories" multiple="true" items="${referenceData.categories}" itemLabel="name" itemValue="id"
 		cssStyle="width:300px" cssClass="populate"/>
+
+	<span id="docUploaderNode"></span>
+	
+	<script type="text/javascript">
+		pageReady.push(function(){
+			require(["dojo/ready", "dojo/dom", "dojox/form/Uploader", "dojox/form/uploader/FileList", 
+			         "dojox/form/uploader/plugins/IFrame"], function(ready, dom, Uploader, FileList){
+				ready(function(){
+					var docUploaderNode = dom.byId("docUploaderNode");
+					
+					var docUploader = new dojox.form.Uploader({
+						id: "uploader", file:"uploadedfile", label: "Select files", multiple: true,
+						url: "/document", uploadOnSelect:true
+				        //isDebug:true, devMode:true, 
+				        //onChange:uploadOnChange, onComplete:uploadOnComplete
+				    	});
+					var docFileList = new FileList({
+						id:"docFileList", uploader: docUploader});
+					docUploaderNode.appendChild(docFileList.domNode);
+					docUploaderNode.appendChild(docUploader.domNode);
+					docUploader.startup();
+				});
+			});
+			
+		});
+	</script>
 
 	<form:hidden path="id" />
 
