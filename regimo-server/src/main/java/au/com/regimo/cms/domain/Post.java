@@ -40,6 +40,8 @@ public class Post extends IdEntity {
 	private Set<Category> categories;
 
 	private Date createdDate;
+	
+	private String image;
 
 	public String getTitle() {
 		return title;
@@ -87,6 +89,14 @@ public class Post extends IdEntity {
 
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 }

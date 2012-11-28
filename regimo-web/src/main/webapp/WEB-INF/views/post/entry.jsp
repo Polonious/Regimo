@@ -26,7 +26,9 @@
 	<form:label path="detail">
 		<s:message code="post.detail"/> <form:errors path="detail" cssClass="error" />
 	</form:label>
-	<form:textarea path="detail" data-dojo-type="dijit/Editor"/>
+	<form:textarea path="detail" data-dojo-type="dijit/Editor" data-dojo-props="extraPlugins:['insertHorizontalRule','|',
+			'formatBlock',{name:'dijit/_editor/plugins/FontChoice', command:'fontName', generic:true},
+			'fontSize','foreColor','hiliteColor','|','createLink','insertImage','viewsource']"/>
 
 	<form:label path="categories">
 		<s:message code="post.categories"/> <form:errors path="categories" cssClass="error" />
@@ -34,29 +36,59 @@
 	<form:select data-type="select2" path="categories" multiple="true" items="${referenceData.categories}" itemLabel="name" itemValue="id"
 		cssStyle="width:300px" cssClass="populate"/>
 
-	<span id="docUploaderNode"></span>
-	
+	<br><br>
+	<form:label path="image">
+		<s:message code="post.image"/> <form:errors path="image" cssClass="error" />
+	</form:label>
+	<form:hidden path="image"/>
+	<div id="imageDiv"></div>
+	<br/>
+	<div id="docUploader"></div>
+
 	<script type="text/javascript">
 		pageReady.push(function(){
-			require(["dojo/ready", "dojo/dom", "dojox/form/Uploader", "dojox/form/uploader/FileList", 
-			         "dojox/form/uploader/plugins/IFrame"], function(ready, dom, Uploader, FileList){
+			require(["dijit/Editor",
+			         "dijit/_editor/plugins/FontChoice", // 'fontName','fontSize','formatBlock'
+			         "dijit/_editor/plugins/TextColor",
+			         "dijit/_editor/plugins/LinkDialog",
+			         "dijit/_editor/plugins/ViewSource"]);
+			require(["dojo/ready", "dojo/dom", "dojo/dom-construct", "dojox/form/Uploader", "dojox/form/uploader/FileList",
+			         "dojox/form/uploader/plugins/IFrame"], function(ready, dom, domConstruct, Uploader, FileList){
 				ready(function(){
-					var docUploaderNode = dom.byId("docUploaderNode");
-					
-					var docUploader = new dojox.form.Uploader({
-						id: "uploader", file:"uploadedfile", label: "Select files", multiple: true,
-						url: "/document", uploadOnSelect:true
-				        //isDebug:true, devMode:true, 
-				        //onChange:uploadOnChange, onComplete:uploadOnComplete
-				    	});
-					var docFileList = new FileList({
-						id:"docFileList", uploader: docUploader});
-					docUploaderNode.appendChild(docFileList.domNode);
-					docUploaderNode.appendChild(docUploader.domNode);
-					docUploader.startup();
+
+					var showImage = function(src){
+						domConstruct.create("img", {src: src}, "imageDiv");
+					};
+
+					var image = dom.byId("image").value;
+					if(image.indexOf("doc://")==0){
+						showImage("/document/"+image.substr(6));
+					}
+
+					var uploadOnComplete = function(dataArray){
+						domConstruct.empty("imageDiv");
+                        for(var i=0, l=dataArray.length, doc; i<l; i++){
+                        	doc = dataArray[i];
+                        	dom.byId("image").value = "doc://"+doc;
+                        	showImage("/document/"+doc);
+                        }
+                	};
+
+					var uploader = new dojox.form.Uploader({
+						url: "/document",
+						label: "Select file",
+						multiple: false,
+						uploadOnSelect: true,
+				        onComplete: uploadOnComplete,
+						getForm: function(){return null;}
+				    	}, "docUploader");
+					uploader.startup();
+					if(uploader.uploadType=="iframe"){
+						uploader.set("url", "/document/upload");
+					}
 				});
 			});
-			
+
 		});
 	</script>
 

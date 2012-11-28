@@ -13,8 +13,9 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.gridfs.GridFsOperations;
 import org.springframework.web.multipart.MultipartFile;
 
+import au.com.regimo.core.utils.SecurityUtils;
+
 import com.mongodb.BasicDBObject;
-import com.mongodb.DBObject;
 import com.mongodb.gridfs.GridFSDBFile;
 import com.mongodb.gridfs.GridFSFile;
 import com.sun.mail.util.BASE64DecoderStream;
@@ -31,11 +32,11 @@ public class FileStorage {
 	public String save(String filename, String content, String contentType) throws IOException {
 		return save(filename, content.getBytes(), contentType);
 	}
-	
+
 	public String saveBase64Decode(String filename, String content, String contentType) throws IOException {
 		return save(filename, content.getBytes(), contentType, true);
 	}
-	
+
 	public String save(String filename, byte[] content, String contentType) throws IOException{
 		return save(filename, content, contentType, false);
 	}
@@ -46,13 +47,14 @@ public class FileStorage {
 		if(isBase64Decode){
 			inStream = new BASE64DecoderStream(byteStream);
 		}
-		DBObject metaData = new BasicDBObject();
-		metaData.put("contentType", contentType);
-		GridFSFile file = gridFs.store(inStream, filename);
+		GridFSFile file = gridFs.store(inStream, filename,
+				new BasicDBObject("userId", SecurityUtils.getCurrentUserId()));
+		file.put("contentType", contentType);
+		file.save();
 		inStream.close();
 		return file.getId().toString();
 	}
-	
+
 	public GridFSDBFile get(String id) {
 		return gridFs.findOne(new Query(Criteria.where("_id").is(new ObjectId(id))));
 	}
@@ -60,6 +62,6 @@ public class FileStorage {
 	@Inject
 	public void setGridFs(GridFsOperations gridFs) {
 		this.gridFs = gridFs;
-	}	
-	
+	}
+
 }
