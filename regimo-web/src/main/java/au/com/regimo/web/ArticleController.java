@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import au.com.regimo.cms.domain.Post;
-import au.com.regimo.cms.service.PostService;
+import au.com.regimo.cms.domain.Article;
+import au.com.regimo.cms.service.ArticleService;
 import au.com.regimo.core.form.DataTablesColumnDef;
 import au.com.regimo.core.form.DataTablesSearchCriteria;
 import au.com.regimo.core.form.DataTablesSearchResult;
@@ -21,15 +21,15 @@ import au.com.regimo.core.form.DataTablesSearchResult;
 import com.google.common.collect.Lists;
 
 @Controller
-@RequestMapping("/post")
-public class PostController {
+@RequestMapping("/article")
+public class ArticleController {
 
-	private PostService service;
+	private ArticleService service;
 
 	private final static DataTablesSearchCriteria datatable = new DataTablesSearchCriteria(
 			"title,slug", "standardUpdate", Lists.newArrayList(
-					new DataTablesColumnDef("post.title","50%"),
-					new DataTablesColumnDef("post.slug","45%"),
+					new DataTablesColumnDef("article.title","50%"),
+					new DataTablesColumnDef("article.slug","45%"),
 					new DataTablesColumnDef("label.action","5%")));
 
 	@RequestMapping(method=RequestMethod.GET)
@@ -52,7 +52,7 @@ public class PostController {
 
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
 	public String create(ModelMap modelMap,
-			@Valid Post entity, BindingResult result) {
+			@Valid Article entity, BindingResult result) {
 		return service.saveModel(modelMap, entity, result) ?
 				"redirect:edit?id="+entity.getId() : null;
 	}
@@ -64,12 +64,12 @@ public class PostController {
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public void update(ModelMap modelMap,
-			@Valid Post entity, BindingResult result) {
+			@Valid Article entity, BindingResult result) {
 		service.saveModel(modelMap, entity, result);
 	}
 
 	@Inject
-	public void setService(PostService service) {
+	public void setService(ArticleService service) {
 		this.service = service;
 	}
 

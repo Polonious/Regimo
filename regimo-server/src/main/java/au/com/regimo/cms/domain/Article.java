@@ -16,8 +16,8 @@ import javax.persistence.SequenceGenerator;
 import au.com.regimo.core.domain.IdEntity;
 
 @Entity
-@SequenceGenerator(name="SEQ_STORE", sequenceName = "seq_post")
-public class Post extends IdEntity {
+@SequenceGenerator(name="SEQ_STORE", sequenceName = "seq_article")
+public class Article extends IdEntity {
 
 	private static final long serialVersionUID = 1L;
 
@@ -36,7 +36,7 @@ public class Post extends IdEntity {
 	private String detail;
 
     @ManyToMany(targetEntity = Category.class)
-    @JoinTable(name = "PostCategory", joinColumns = @JoinColumn(name = "postId"), inverseJoinColumns = @JoinColumn(name = "categoryId"))
+    @JoinTable(name = "ArticleCategory", joinColumns = @JoinColumn(name = "articleId"), inverseJoinColumns = @JoinColumn(name = "categoryId"))
 	private Set<Category> categories;
 
 	private Date createdDate;

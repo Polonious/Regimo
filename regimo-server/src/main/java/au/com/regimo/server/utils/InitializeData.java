@@ -80,7 +80,7 @@ public class InitializeData implements InitializingBean {
 		ensureStandardAuthority(query, "rowStatus", adminRole);
 		ensureStandardAuthority(query, "textTemplate", adminRole);
 		ensureStandardAuthority(query, "category", adminRole);
-		ensureStandardAuthority(query, "post", adminRole);
+		ensureStandardAuthority(query, "article", adminRole);
 
 		ensureAuthority(query, new Authority("URL_PROFILE_VIEW", "/profile"), adminRole, userRole);
 		ensureAuthority(query, new Authority("URL_PROFILE_EDIT", "/profile/edit"), adminRole, userRole);
