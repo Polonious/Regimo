@@ -42,8 +42,6 @@
 		<intercept-url pattern="/document/**" access="permitAll" />
 		<intercept-url pattern="/content/**" access="permitAll" />
 		<intercept-url pattern="/contents/**" access="permitAll" />
-		<intercept-url pattern="/wp/**" access="permitAll" />
-		<intercept-url pattern="/wp.*" access="permitAll" />
 		<intercept-url pattern="/signup**" access="permitAll" />
 		<intercept-url pattern="/signin**" access="permitAll" />
 		<intercept-url pattern="/signin/*" access="permitAll" />
