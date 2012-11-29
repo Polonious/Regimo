@@ -35,7 +35,6 @@ public class ReloadableMessageSource extends AbstractMessageSource {
 	protected String resolveCodeWithoutArguments(String code, Locale locale) {
 		PropertiesHolder propHolder = getMergedProperties(locale);
 		String result = propHolder.getProperty(code);
-		logger.debug(String.format("resolveCodeWithoutArguments: %s , locale:  %s , result: %s", code, locale, result));
 		if (result != null) {
 			return result;
 		}
@@ -50,7 +49,6 @@ public class ReloadableMessageSource extends AbstractMessageSource {
 	protected MessageFormat resolveCode(String code, Locale locale) {
 		PropertiesHolder propHolder = getMergedProperties(locale);
 		MessageFormat result = propHolder.getMessageFormat(code, locale);
-		logger.debug(String.format("resolveCode: %s , locale: %s , result: %s", code, locale, result));
 		if (result != null) {
 			return result;
 		}
