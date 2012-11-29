@@ -6,26 +6,24 @@
 	<definition name="appLocale/new" extends="new">
 		<put-list-attribute name="styles">
 			<add-attribute value="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.3/css/jquery.dataTables.css" />
+			<add-attribute value="/resources/dojo/1.8.1/dojox/form/resources/FileInput.css" />
+			<add-attribute value="/resources/dojo/1.8.1/dojox/form/resources/FileUploader.css" />
 		</put-list-attribute>
 		<put-list-attribute name="scripts">
 			<add-attribute value="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.3/jquery.dataTables.min.js" />
 			<add-attribute value="/resources/jquery/jquery.formkit.js" />
-			<add-attribute value="//blueimp.github.com/jQuery-File-Upload/js/vendor/jquery.ui.widget.js" />
-			<add-attribute value="//blueimp.github.com/jQuery-File-Upload/js/jquery.iframe-transport.js" />
-			<add-attribute value="//blueimp.github.com/jQuery-File-Upload/js/jquery.fileupload.js" />
 			<add-attribute value="/resources/js/appLocaleEntry.js" />
 		</put-list-attribute>
 	</definition>
 	<definition name="appLocale/edit" extends="edit">
 		<put-list-attribute name="styles">
 			<add-attribute value="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.3/css/jquery.dataTables.css" />
+			<add-attribute value="/resources/dojo/1.8.1/dojox/form/resources/FileInput.css" />
+			<add-attribute value="/resources/dojo/1.8.1/dojox/form/resources/FileUploader.css" />
 		</put-list-attribute>
 		<put-list-attribute name="scripts">
 			<add-attribute value="//ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.3/jquery.dataTables.min.js" />
 			<add-attribute value="/resources/jquery/jquery.formkit.js" />
-			<add-attribute value="//blueimp.github.com/jQuery-File-Upload/js/vendor/jquery.ui.widget.js" />
-			<add-attribute value="//blueimp.github.com/jQuery-File-Upload/js/jquery.iframe-transport.js" />
-			<add-attribute value="//blueimp.github.com/jQuery-File-Upload/js/jquery.fileupload.js" />
 			<add-attribute value="/resources/js/appLocaleEntry.js" />
 		</put-list-attribute>
 	</definition>

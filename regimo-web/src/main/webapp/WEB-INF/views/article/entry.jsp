@@ -48,8 +48,8 @@
 			         "dijit/_editor/plugins/TextColor",
 			         "dijit/_editor/plugins/LinkDialog",
 			         "dijit/_editor/plugins/ViewSource"]);
-			require(["dojo/ready", "dojo/dom", "dojo/dom-construct", "dojox/form/Uploader", "dojox/form/uploader/FileList",
-			         "dojox/form/uploader/plugins/IFrame"], function(ready, dom, domConstruct, Uploader, FileList){
+			require(["dojo/ready", "dojo/dom", "dojo/dom-construct", "dojox/form/Uploader",
+			         "dojox/form/uploader/plugins/IFrame"], function(ready, dom, domConstruct, Uploader){
 				ready(function(){
 
 					var showImage = function(src){

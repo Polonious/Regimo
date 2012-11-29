@@ -8,12 +8,12 @@
 		<s:message code="appLocale.language"/> <form:errors path="language" cssClass="error" />
 	</form:label>
 	<form:input path="language" />
-	
+
 	<form:label path="country">
 		<s:message code="appLocale.country"/> <form:errors path="country" cssClass="error" />
 	</form:label>
 	<form:input path="country" />
-	
+
 	<form:label path="variant">
 		<s:message code="appLocale.variant"/> <form:errors path="variant" cssClass="error" />
 	</form:label>
@@ -33,11 +33,11 @@
 	        </tr>
 	    </c:forEach>
 	</table>
-	
+
 	<form:hidden path="id" />
-	
+
 	<br><br><p><a href="javascript:void(0);" onclick="fnClickAddRow();">Add a new row</a>. <i>Notes: Message will be removed if key is empty!</i></p>
-	<p><br><label>Import messages from Property file:</label><input id="fileupload" type="file" name="file" data-url="/appLocale/import"></p>
+	<p><br><label>Import messages from Property file:</label><div id="docUploader"></div></p>
 	<p><br><a href="export?id=${appLocale.id}" target="_blank">Export messages</a></p>
 
 </div>

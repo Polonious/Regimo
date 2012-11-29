@@ -1,5 +1,37 @@
 var giCount = 0;
 var $msgDatatable;
+
+require(["dojo/ready", "dojox/form/Uploader", "dojox/form/uploader/plugins/IFrame"],
+		function(ready, Uploader){
+	ready(function(){
+		var uploadOnComplete = function(msg){
+			var isNew;
+    		for(var key in msg){
+    			isNew = true;
+    			$msgDatatable.$("input[value='"+key+"']").each(function(){
+    				isNew = false;
+    				$msgDatatable.$("input[name="+this.name.replace("Name","Value")+"]").val(msg[key]);
+    			});
+    		    if(isNew){
+    		    	fnClickAddRow(key, msg[key]);
+    		    }
+    		}
+    	};
+
+		var uploader = new dojox.form.Uploader({
+			url: "/appLocale/import",
+			label: "Select file",
+			name: "file",
+			multiple: false,
+			uploadOnSelect: true,
+	        onComplete: uploadOnComplete,
+			getForm: function(){return null;}
+	    	}, "docUploader");
+		uploader.startup();
+	});
+});
+
+
 pageReady.push(function(){
 	$.fn.dataTableExt.afnSortData['dom-text'] = function  ( oSettings, iColumn )
 	{
@@ -9,7 +41,7 @@ pageReady.push(function(){
 		} );
 		return aData;
 	};
-	
+
 	$msgDatatable = $("#messages").dataTable({
 		"sPaginationType": "full_numbers",
 		"iDisplayLength": 25,
@@ -41,31 +73,14 @@ pageReady.push(function(){
 		}, "json");
 		return false;
 	});
-	
-	$('#fileupload').fileupload({
-        dataType: 'json',
-        done: function (e, data) {
-    		var isNew, msg = data.result;
-    		for(var key in msg){
-    			isNew = true;
-    			$msgDatatable.$("input[value='"+key+"']").each(function(){
-    				isNew = false;
-    				$msgDatatable.$("input[name="+this.name.replace("Name","Value")+"]").val(msg[key]);
-    			});
-    		    if(isNew){
-    		    	fnClickAddRow(key, msg[key]);
-    		    }
-    		}
-        }
-    });
 });
 
 function fnClickAddRow(name, value) {
-	name = name || ""; 
-	value = value || ""; 
+	name = name || "";
+	value = value || "";
 	$msgDatatable.fnAddData( [
-        "<input value='"+name+"' name=messagesNameA"+giCount+"/>",
-        "<input value='"+value+"' name=messagesValueA"+giCount+"/>"] );
+        "<input value='"+name+"' name='messagesNameA"+giCount+"'/>",
+        "<input value='"+value+"' name='messagesValueA"+giCount+"'/>"] );
     giCount++;
-    $msgDatatable.fnPageChange( 'last' );    
+    $msgDatatable.fnPageChange( 'last' );
 }
