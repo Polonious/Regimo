@@ -16,7 +16,7 @@ import au.com.regimo.server.wordpress.repository.WpTermRepository;
 public class WpTermRepositoryImpl implements WpTermRepository {
 
 	private JdbcTemplate jdbcTemplate;
-	
+
 	private final ParameterizedRowMapper<WpTerm> mapper = new ParameterizedRowMapper<WpTerm>() {
 		public WpTerm mapRow(ResultSet resultSet, int rowNum)
 				throws SQLException {
@@ -27,24 +27,25 @@ public class WpTermRepositoryImpl implements WpTermRepository {
 			return entity;
 		}
 	};
-	
+
 	public void setDataSource(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
 
 	public List<WpTerm> findByTaxonomy(String taxonomy) {
-		return jdbcTemplate.query("select * from wp_terms where term_id in (select term_id from wp_term_taxonomy where count>0 and taxonomy = ?)", 
+		return jdbcTemplate.query("select * from wp_terms where term_id in (select term_id from wp_term_taxonomy where count>0 and taxonomy = ?)",
 				new Object[]{taxonomy}, mapper);
 	}
-	
+
 	public List<WpTerm> findByTaxonomyCategory() {
 		return findByTaxonomy(WpTermTaxonomy.AXONOMY_CATEGORY);
 	}
-	
-	public String getNameBySlug(String slug) {
+
+	public WpTerm findBySlug(String slug) {
 		return jdbcTemplate.queryForObject("select * from wp_terms where slug = ?",
-				new Object[]{slug}, mapper).getName();
-		
+				new Object[]{slug}, mapper);
+
 	}
+
 }

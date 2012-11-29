@@ -15,4 +15,12 @@ public class ArticleService extends GenericService<ArticleRepository, Article> {
 		super(repository);
 	}
 
+	public Article findBySlug(String slug){
+		return repository.findBySlug(slug);
+	}
+
+	public Article findByTitle(String title){
+		return repository.findByTitle(title);
+	}
+
 }

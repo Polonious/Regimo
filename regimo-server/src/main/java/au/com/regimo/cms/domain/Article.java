@@ -9,9 +9,10 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 import au.com.regimo.core.domain.IdEntity;
 
@@ -25,13 +26,11 @@ public class Article extends IdEntity {
 
 	private String slug;
 
-	@Column
-	@Lob
+	@Column(length=8000)
 	@Basic(fetch=FetchType.LAZY)
 	private String summary;
 
-	@Column
-	@Lob
+	@Column(length=8000)
 	@Basic(fetch=FetchType.LAZY)
 	private String detail;
 
@@ -39,8 +38,8 @@ public class Article extends IdEntity {
     @JoinTable(name = "ArticleCategory", joinColumns = @JoinColumn(name = "articleId"), inverseJoinColumns = @JoinColumn(name = "categoryId"))
 	private Set<Category> categories;
 
-	private Date createdDate;
-	
+	private Date publishedDate;
+
 	private String image;
 
 	public String getTitle() {
@@ -75,6 +74,7 @@ public class Article extends IdEntity {
 		this.detail = detail;
 	}
 
+	@JsonIgnore
 	public Set<Category> getCategories() {
 		return categories;
 	}
@@ -83,12 +83,12 @@ public class Article extends IdEntity {
 		this.categories = categories;
 	}
 
-	public Date getCreatedDate() {
-		return createdDate;
+	public Date getPublishedDate() {
+		return publishedDate;
 	}
 
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
+	public void setPublishedDate(Date publishedDate) {
+		this.publishedDate = publishedDate;
 	}
 
 	public String getImage() {

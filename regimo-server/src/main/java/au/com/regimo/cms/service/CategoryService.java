@@ -15,4 +15,8 @@ public class CategoryService extends GenericService<CategoryRepository, Category
 		super(repository);
 	}
 
+	public Category findBySlug(String slug){
+		return repository.findBySlug(slug);
+	}
+
 }

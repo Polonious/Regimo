@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+
+<tiles-definitions>
+
+	<definition name="content/category" extends="template">
+		<put-attribute name="content" value="/WEB-INF/views/content/category.jsp" />
+	</definition>
+
+	<definition name="content/article" extends="template">
+		<put-attribute name="title" expression="Polonious - ${article.title}" />
+		<put-attribute name="content" value="/WEB-INF/views/content/article.jsp" />
+	</definition>
+
+</tiles-definitions>

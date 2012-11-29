@@ -46,7 +46,7 @@ public class WpPost implements Serializable {
 
     @Lob()
 	@Column(name="post_content")
-	private String postContent;
+	private String detail;
 
     @Lob()
 	@Column(name="post_content_filtered")
@@ -54,7 +54,7 @@ public class WpPost implements Serializable {
 
     @Temporal( TemporalType.TIMESTAMP)
 	@Column(name="post_date")
-	private Date postDate;
+	private Date publishedDate;
 
     @Temporal( TemporalType.TIMESTAMP)
 	@Column(name="post_date_gmt")
@@ -76,7 +76,7 @@ public class WpPost implements Serializable {
 	private Date postModifiedGmt;
 
 	@Column(name="post_name")
-	private String postName;
+	private String slug;
 
 	@Column(name="post_parent")
 	private BigInteger postParent;
@@ -89,10 +89,10 @@ public class WpPost implements Serializable {
 
     @Lob()
 	@Column(name="post_title")
-	private String postTitle;
+	private String title;
 
 	@Column(name="post_type")
-	private String postType;
+	private String type;
 
     @Lob()
 	@Column(name="to_ping")
@@ -183,12 +183,16 @@ public class WpPost implements Serializable {
 		this.pinged = pinged;
 	}
 
-	public String getPostContent() {
-		return this.postContent;
+	public String getDetail() {
+		return this.detail;
 	}
 
-	public void setPostContent(String postContent) {
-		this.postContent = postContent;
+	public String getSummary() {
+		return this.detail;
+	}
+
+	public void setDetail(String detail) {
+		this.detail = detail;
 	}
 
 	public String getPostContentFiltered() {
@@ -199,12 +203,12 @@ public class WpPost implements Serializable {
 		this.postContentFiltered = postContentFiltered;
 	}
 
-	public Date getPostDate() {
-		return this.postDate;
+	public Date getPublishedDate() {
+		return this.publishedDate;
 	}
 
-	public void setPostDate(Date postDate) {
-		this.postDate = postDate;
+	public void setPublishedDate(Date publishedDate) {
+		this.publishedDate = publishedDate;
 	}
 
 	public Date getPostDateGmt() {
@@ -247,12 +251,12 @@ public class WpPost implements Serializable {
 		this.postModifiedGmt = postModifiedGmt;
 	}
 
-	public String getPostName() {
-		return this.postName;
+	public String getSlug() {
+		return this.slug;
 	}
 
-	public void setPostName(String postName) {
-		this.postName = postName;
+	public void setSlug(String slug) {
+		this.slug = slug;
 	}
 
 	public BigInteger getPostParent() {
@@ -279,20 +283,20 @@ public class WpPost implements Serializable {
 		this.postStatus = postStatus;
 	}
 
-	public String getPostTitle() {
-		return this.postTitle;
+	public String getTitle() {
+		return this.title;
 	}
 
-	public void setPostTitle(String postTitle) {
-		this.postTitle = postTitle;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
-	public String getPostType() {
-		return this.postType;
+	public String getType() {
+		return this.type;
 	}
 
-	public void setPostType(String postType) {
-		this.postType = postType;
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public String getToPing() {

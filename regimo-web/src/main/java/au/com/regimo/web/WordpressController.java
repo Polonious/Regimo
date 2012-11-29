@@ -25,7 +25,7 @@ public class WordpressController {
 	@RequestMapping(value = "/category/{slug}")
 	public String getPostsByCategory(@PathVariable("slug") String slug, ModelMap map) {
 		map.addAttribute("posts", wpPostRepository.findBySlug(slug));
-		map.addAttribute("name",wpTermRepository.getNameBySlug(slug));
+		map.addAttribute("name",wpTermRepository.findBySlug(slug));
 		return "wp/posts";
 	}
 

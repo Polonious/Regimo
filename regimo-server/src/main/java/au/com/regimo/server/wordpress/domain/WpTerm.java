@@ -11,7 +11,7 @@ import java.util.Set;
 
 /**
  * The persistent class for the wp_terms database table.
- * 
+ *
  */
 @Entity
 @Table(name="wp_terms")
@@ -33,7 +33,7 @@ public class WpTerm implements Serializable {
 	//bi-directional many-to-one association to WpTermTaxonomy
 	@OneToMany(mappedBy="wpTerm")
 	private Set<WpTermTaxonomy> wpTermTaxonomies;
-	
+
 	private List<WpPost> wpPosts = new LinkedList<WpPost>();
 
     public WpTerm() {
@@ -86,5 +86,5 @@ public class WpTerm implements Serializable {
 	public void setWpPosts(List<WpPost> wpPosts) {
 		this.wpPosts = wpPosts;
 	}
-	
+
 }
