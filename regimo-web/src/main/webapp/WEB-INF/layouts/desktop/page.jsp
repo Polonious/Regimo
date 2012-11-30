@@ -40,8 +40,10 @@
 		<tiles:insertAttribute name="footer" />
 	</div>
 
-	<script type="text/javascript" src="<c:url value="/resources/dojo/1.8.1/dojo/dojo.js"/>"
-		data-dojo-config="async: true"></script>
+	<script type="text/javascript" 
+		src="<c:url value="/resources/dojo/1.8.1/dojo/dojo.js"/>"
+		data-dojo-config="async: true, 
+			locale: '${pageContext.response.locale.toString().replace("_","-")}'"></script>
 
 	<tiles:useAttribute id="scripts" name="scripts" classname="java.util.List" ignore="true" /><c:forEach var="script" items="${scripts}">
 	<script type="text/javascript" src="${script}"></script></c:forEach>

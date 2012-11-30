@@ -1,5 +1,6 @@
 package au.com.regimo.cms.domain;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Set;
 
@@ -10,11 +11,15 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import au.com.regimo.core.domain.IdEntity;
+import au.com.regimo.core.domain.User;
 
 @Entity
 @SequenceGenerator(name="SEQ_STORE", sequenceName = "seq_article")
@@ -35,10 +40,25 @@ public class Article extends IdEntity {
 	private String detail;
 
     @ManyToMany(targetEntity = Category.class)
-    @JoinTable(name = "ArticleCategory", joinColumns = @JoinColumn(name = "articleId"), inverseJoinColumns = @JoinColumn(name = "categoryId"))
+    @JoinTable(name = "ArticleCategory", 
+    	joinColumns = @JoinColumn(name = "articleId"), 
+    	inverseJoinColumns = @JoinColumn(name = "categoryId"))
 	private Set<Category> categories;
 
-	private Date publishedDate;
+    @DateTimeFormat(iso=ISO.DATE)
+    private Date publishedDate;
+	
+    @DateTimeFormat(iso=ISO.DATE)
+	private Date startDate;
+	
+    @DateTimeFormat(iso=ISO.DATE)
+	private Date endDate;
+	
+	private BigDecimal price;
+	
+	@ManyToOne
+	@JoinColumn(name="authorId")
+	private User author;
 
 	private String image;
 
@@ -97,6 +117,38 @@ public class Article extends IdEntity {
 
 	public void setImage(String image) {
 		this.image = image;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	public BigDecimal getPrice() {
+		return price;
+	}
+
+	public void setPrice(BigDecimal price) {
+		this.price = price;
+	}
+
+	public User getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(User author) {
+		this.author = author;
 	}
 
 }

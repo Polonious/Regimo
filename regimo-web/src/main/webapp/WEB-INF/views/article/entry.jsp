@@ -26,6 +26,34 @@
 			'formatBlock',{name:'dijit/_editor/plugins/FontChoice', command:'fontName', generic:true},
 			'fontSize','foreColor','hiliteColor','|','createLink','insertImage','viewsource']"/>
 
+	<form:label path="price">
+		<s:message code="article.price"/> <form:errors path="price" cssClass="error" />
+	</form:label>
+	<br>
+	<form:input path="price" data-dojo-type="dijit/form/CurrencyTextBox" />
+	<br><br>
+
+	<form:label path="publishedDate">
+		<s:message code="article.publishedDate"/> <form:errors path="publishedDate" cssClass="error" />
+	</form:label>
+	<br>
+	<form:input path="publishedDate" data-dojo-type="dijit/form/DateTextBox" />
+	<br><br>
+
+	<form:label path="startDate">
+		<s:message code="article.startDate"/> <form:errors path="startDate" cssClass="error" />
+	</form:label>
+	<br>
+	<form:input path="startDate" data-dojo-type="dijit/form/DateTextBox" />
+	<br><br>
+
+	<form:label path="endDate">
+		<s:message code="article.endDate"/> <form:errors path="endDate" cssClass="error" />
+	</form:label>
+	<br>
+	<form:input path="endDate" data-dojo-type="dijit/form/DateTextBox" />
+	<br><br>
+
 	<form:label path="categories">
 		<s:message code="article.categories"/> <form:errors path="categories" cssClass="error" />
 	</form:label><br>
