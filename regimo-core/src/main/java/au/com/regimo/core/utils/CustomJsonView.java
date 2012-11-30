@@ -5,13 +5,13 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.web.servlet.view.json.MappingJacksonJsonView;
+import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import au.com.regimo.core.form.XhrEvent;
 import au.com.regimo.core.form.UserMessage;
 import au.com.regimo.core.service.ReloadableMessageSource;
 
-public class CustomJsonView extends MappingJacksonJsonView {
+public class CustomJsonView extends MappingJackson2JsonView {
 
 	private ReloadableMessageSource messageSource;
 	

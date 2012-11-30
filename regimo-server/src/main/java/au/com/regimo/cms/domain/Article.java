@@ -14,9 +14,10 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import au.com.regimo.core.domain.IdEntity;
 import au.com.regimo.core.domain.User;

@@ -12,7 +12,7 @@
 	    <mvc:message-converters>
 	        <bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
 	        <bean class="org.springframework.http.converter.ResourceHttpMessageConverter"/>
-	        <bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+	        <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
 	        	<property name="objectMapper" ref="jsonObjectMapper" />
 	        </bean>
     	</mvc:message-converters>

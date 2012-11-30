@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.SequenceGenerator;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @SequenceGenerator(name="SEQ_STORE", sequenceName = "seq_dashboard")

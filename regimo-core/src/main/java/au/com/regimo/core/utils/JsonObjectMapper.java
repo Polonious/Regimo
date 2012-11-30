@@ -2,18 +2,20 @@ package au.com.regimo.core.utils;
 
 import java.text.SimpleDateFormat;
 
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.SerializationConfig.Feature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature ;
 
 public class JsonObjectMapper extends ObjectMapper {
 
-    public JsonObjectMapper() {
+	private static final long serialVersionUID = 1L;
+
+	public JsonObjectMapper() {
     	super();
-        configure(Feature.FAIL_ON_EMPTY_BEANS, false);
+        configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
     }
 
     public void setPrettyPrint(boolean prettyPrint) {
-        configure(Feature.INDENT_OUTPUT, prettyPrint);
+        configure(SerializationFeature.INDENT_OUTPUT, prettyPrint);
     }
     
     public void setCustomDateFormat(String dateFormat){
