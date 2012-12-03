@@ -82,6 +82,7 @@
 
 					var showImage = function(src){
 						domConstruct.create("img", {src: src}, "imageDiv");
+						domConstruct.create("div", {innerHTML: "URL: "+src}, "imageDiv");
 					};
 
 					var image = dom.byId("image").value;
