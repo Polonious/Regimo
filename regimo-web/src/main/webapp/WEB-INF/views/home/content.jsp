@@ -36,16 +36,16 @@
 <div id="container">
 		<div id="featured">
 			<div class="content" style="">
-				<div class="orbit-feature-image"><a href="/wp/post/open-source-is-the-answer"><img src="<c:url value="/resources/images/carousel_image1_5-14.png" />" /></a></div>
+				<div class="orbit-feature-image"><a href="/content/article/open-source-is-the-answer"><img src="<c:url value="/resources/images/carousel_image1_5-14.png" />" /></a></div>
 				<div class="orbit-feature-text">
 					As a business owner you know how hard you and your team work at growing your business in a competitive market place.
 					<br/><br/>Each time you experience success, increased sales, market share, open an interstate branch how much do you budget for in software licence fees?
 					<br/><br/>If you would like to know how...
 				</div>
-				<div><a href="/wp/post/open-source-is-the-answer" class="orbit-button" alt="more"></a></div>
+				<div><a href="/content/article/open-source-is-the-answer" class="orbit-button" alt="more"></a></div>
 			</div>
 			<div class="content" style="">
-				<div class="orbit-feature-image"><a href="/wp/post/single-point-risk"><img src="<c:url value="/resources/images/carousel_image2_5-14.png" />" /></a></div>
+				<div class="orbit-feature-image"><a href="/content/article/single-point-risk"><img src="<c:url value="/resources/images/carousel_image2_5-14.png" />" /></a></div>
 				<div class="orbit-feature-text">
 					If you use technology in your organisation, you've most likely experienced technical debt creep.
 					<br/><br/>
@@ -54,10 +54,10 @@
 					<br/><br/>
 					Polonious has saved thousands of dollars for...
 				</div>
-				<div><a href="/wp/post/single-point-risk" class="orbit-button" alt="more"></a></div>
+				<div><a href="/content/article/single-point-risk" class="orbit-button" alt="more"></a></div>
 			</div>
 			<div class="content" style="">
-				<div class="orbit-feature-image"><a href="/wp/post/now"><img src="<c:url value="/resources/images/carousel_image3_5-14.png" />" /></a></div>
+				<div class="orbit-feature-image"><a href="/content/article/now"><img src="<c:url value="/resources/images/carousel_image3_5-14.png" />" /></a></div>
 				<div class="orbit-feature-text">
 					You have the next brilliant idea for a iPhone, iPad or Android game that is going
 					to set the world on fire? Or maybe your looking to develop a business application that is going to give you the
@@ -65,10 +65,10 @@
 					<br/><br/>
 					You engage Polonious because we have a reputation in the software development market for...
 				</div>
-				<div><a href="/wp/post/now" class="orbit-button" alt="more"></a></div>
+				<div><a href="/content/article/now" class="orbit-button" alt="more"></a></div>
 			</div>
 			<div class="content" style="">
-				<div class="orbit-feature-image"><a href="/wp/post/regimo"><img src="<c:url value="/resources/images/carousel_image5_5-14.png" />" /></a></div>
+				<div class="orbit-feature-image"><a href="/content/article/regimo"><img src="<c:url value="/resources/images/carousel_image5_5-14.png" />" /></a></div>
 				<div class="orbit-feature-text">
 					You already have a great looking website managed in WordPress, Drupal or Joomla but it is slow and
 					unusable on a mobile phone? You would like it to load in a flash and look great on smartphones and
@@ -76,7 +76,7 @@
 					<br/><br/>You have a great business idea and need a web application to manage your clients, staff,
 					products, and events as well as features...
 				</div>
-				<div><a href="/wp/post/regimo" class="orbit-button" alt="more"></a></div>
+				<div><a href="/content/article/regimo" class="orbit-button" alt="more"></a></div>
 			</div>
 		</div>
 		<!-- Captions for Orbit -->

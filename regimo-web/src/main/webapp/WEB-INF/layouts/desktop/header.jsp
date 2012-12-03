@@ -4,7 +4,7 @@
 
 <div id="header">
 <div class="cbox">
-	<a href="/wp/post/we-listen-design-innovate"><img id="logo" src="<c:url value="/resources/images/logo.png" />" alt="logo" /></a>
+	<a href="/content/article/we-listen-design-innovate"><img id="logo" src="<c:url value="/resources/images/logo.png" />" alt="logo" /></a>
 		<img id="trusted" src="<c:url value="/resources/images/bg_image_new_5-14-trusted.png" />" />
 </div>
 </div>
