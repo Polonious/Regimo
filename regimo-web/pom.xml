@@ -267,6 +267,13 @@
 				<profile.finalName>ROOT</profile.finalName>
 			</properties>
 		</profile>
+		<profile>
+			<id>kundayi</id>
+			<properties>
+				<profile.name>kundayi</profile.name>
+				<profile.finalName>ROOT</profile.finalName>
+			</properties>
+		</profile>
 	</profiles>
 
 	<build>
