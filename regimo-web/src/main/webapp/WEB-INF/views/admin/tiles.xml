@@ -2,7 +2,7 @@
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 
 <tiles-definitions>
-	
+
 	<definition name="admin/endpoints" extends="template">
 		<put-attribute name="title" value="End Points" />
 		<put-attribute name="content" value="/WEB-INF/views/admin/endpoints.jsp" />
@@ -14,5 +14,17 @@
 			<add-attribute value="/resources/datatables/dataTables.utils.js" />
 		</put-list-attribute>
 	</definition>
-	
+
+	<definition name="admin/documents" extends="template">
+		<put-attribute name="title" value="Documents" />
+		<put-attribute name="content" value="/WEB-INF/views/admin/documents.jsp" />
+		<put-list-attribute name="styles">
+			<add-attribute value="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.3/css/jquery.dataTables.css" />
+		</put-list-attribute>
+		<put-list-attribute name="scripts">
+			<add-attribute value="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.3/jquery.dataTables.min.js" />
+			<add-attribute value="/resources/datatables/dataTables.utils.js" />
+		</put-list-attribute>
+	</definition>
+
 </tiles-definitions>

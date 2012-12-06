@@ -3,7 +3,6 @@ package au.com.regimo.web;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.LinkedList;
-import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
@@ -13,10 +12,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import au.com.regimo.core.service.FileStorage;
 import au.com.regimo.core.utils.JsonObjectMapper;
@@ -34,23 +33,35 @@ public class DocumentController {
 	// via Html5
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	@ResponseBody
-    public Collection<String> upload(MultipartHttpServletRequest request) throws IOException {
+    public Collection<String> upload(
+    		@RequestParam(value="uploadedfiles[]", required=false) MultipartFile[] files1,
+    		@RequestParam(value="uploadedfile", required=false) MultipartFile[] files2) throws IOException {
 		Collection<String> result = new LinkedList<String>();
-		for(Map.Entry<String,MultipartFile> entry : request.getFileMap().entrySet()){
-			MultipartFile file = entry.getValue();
-	        if (file!=null && !file.isEmpty()) {
-	        	result.add(service.save(file)+"/"+file.getOriginalFilename());
-	        }
+		if(files1!=null){
+			for(MultipartFile file : files1){
+				saveFile(result, file);
+			}
+		}
+		if(files2!=null){
+			for(MultipartFile file : files2){
+				saveFile(result, file);
+			}
 		}
         return result;
     }
 
+	private void saveFile(Collection<String> result, MultipartFile file) throws IOException {
+		if (file!=null && !file.isEmpty()) {
+			result.add(service.save(file)+"/"+file.getOriginalFilename());
+		}
+	}
+
 	// via iFrame
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public void uploadFile(MultipartHttpServletRequest request,
+    public void uploadFile(@RequestParam("uploadedfile") MultipartFile[] file,
     		ModelMap modelMap) throws IOException {
         modelMap.addAttribute("document",
-        		json.writeValueAsString(upload(request)));
+        		json.writeValueAsString(upload(file, null)));
     }
 
 	@RequestMapping(value = "/{id}/{filename:.+}")

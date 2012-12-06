@@ -88,7 +88,7 @@
 				ready(function(){
 
 					var showImage = function(src){
-						domConstruct.create("img", {src: src}, "imageDiv");
+						domConstruct.create("img", {src: src, style: "max-width:800px;"}, "imageDiv");
 						domConstruct.create("div", {innerHTML: "URL: "+src}, "imageDiv");
 					};
 

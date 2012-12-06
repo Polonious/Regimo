@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
 import au.com.regimo.core.domain.Authority;
+import au.com.regimo.core.service.FileStorage;
 import au.com.regimo.core.service.SecurityService;
 
 import com.google.common.collect.Lists;
@@ -27,6 +28,8 @@ public class AdminController {
 	private RequestMappingHandlerMapping requestMappingHandlerMapping;
 
 	private SecurityService securityService;
+
+	private FileStorage fileStorage;
 
 	@RequestMapping(value="endpoints", method = RequestMethod.GET)
 	public void getEndPoints(Model model,
@@ -44,6 +47,11 @@ public class AdminController {
 	    model.addAttribute("authorities", authorities.toArray());
 	}
 
+	@RequestMapping(value="documents", method = RequestMethod.GET)
+	public void getDocuments(Model model){
+		model.addAttribute("documents", fileStorage.findAll());
+	}
+
 	@Inject
 	@Qualifier("org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping#0")
 	public void setRequestMappingHandlerMapping(
@@ -54,6 +62,11 @@ public class AdminController {
 	@Inject
 	public void setSecurityService(SecurityService securityService) {
 		this.securityService = securityService;
+	}
+
+	@Inject
+	public void setFileStorage(FileStorage fileStorage) {
+		this.fileStorage = fileStorage;
 	}
 
 }

@@ -3,6 +3,7 @@ package au.com.regimo.core.service;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -57,6 +58,10 @@ public class FileStorage {
 
 	public GridFSDBFile get(String id) {
 		return gridFs.findOne(new Query(Criteria.where("_id").is(new ObjectId(id))));
+	}
+
+	public List<GridFSDBFile> findAll(){
+		return gridFs.find(new Query());
 	}
 
 	@Inject

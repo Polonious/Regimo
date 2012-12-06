@@ -63,6 +63,7 @@ public class InitializeData implements InitializingBean {
 
 		ensureAuthority(query, new Authority("UI_MENU_ADMIN"), adminRole);
 		ensureAuthority(query, new Authority("URL_ADMIN_ENDPOINTS", "/admin/endpoints"), adminRole);
+		ensureAuthority(query, new Authority("URL_ADMIN_DOCUMENTS", "/admin/documents"), adminRole);
 
 		ensureStandardAuthority(query, "user", adminRole);
 		ensureAuthority(query, new Authority("URL_USER_VIEW", "/user/view"), adminRole);
