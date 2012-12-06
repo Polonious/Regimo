@@ -12,27 +12,23 @@
             <div class="carousel-next"><a href="#">&gt; next</a></div>
           </div> -->
           <div class="carousel-images">
-            <a href="/content/article/open-source-is-the-answer"><img class="mobile" src="<c:url value="/resources/images/carousel_image1_5-14.png" />" alt="Open Source is the Answer" /></a>
-            <a href="/content/article/single-point-risk"><img class="mobile" src="<c:url value="/resources/images/carousel_image2_5-14.png" />" alt="Single Point Risk" /></a>
-            <a href="/content/article/now"><img class="mobile" src="<c:url value="/resources/images/carousel_image3_5-14.png" />" alt="Now" /></a>
-            <a href="/content/article/regimo"><img class="mobile" src="<c:url value="/resources/images/carousel_image5_5-14.png" />" alt="Regimo" /></a>
+        	<c:forEach var="a" items="${feature}">
+			<a href="/content/article/${a.slug}"><img class="mobile" src="${a.imageUrl}" alt="${a.title}"/></a>
+			</c:forEach>
           </div>
         </div>
 	</div>
-
-
 
 	<div id="content">
     	<div id="content-box">
 
 			<c:forEach var="userDashlet" items="${content.userDashlets}">
 				<div>
-				<c:if test="${userDashlet.dashlet.title!='About us'}"><a href="/content/category/${userDashlet.dashlet.parameter}"></c:if>
-				<c:if test="${userDashlet.dashlet.title=='About us'}"><a href="/content/article/${userDashlet.dashlet.parameter}"></c:if>
+				<a href="/content/${userDashlet.dashlet.model=='articles'?'category':'article'}/${userDashlet.dashlet.parameter}">
 				<h3 id="title${rowCounter.count}">${userDashlet.dashlet.title}</h3></a></div>
 				<div class="content-column" id="dashlet_content_${userDashlet.id}"></div>
 					<script type="text/javascript">
-				        $(document).ready(function() { $('#dashlet_content_${userDashlet.id}').load('dashboard/${userDashlet.id}'); });
+				        $(document).ready(function() { $('#dashlet_content_${userDashlet.id}').load('content/dashlet/${userDashlet.id}'); });
 				    </script>
 			</c:forEach>
 

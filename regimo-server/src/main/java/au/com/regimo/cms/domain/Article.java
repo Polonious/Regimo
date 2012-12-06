@@ -41,27 +41,36 @@ public class Article extends IdEntity {
 	private String detail;
 
     @ManyToMany(targetEntity = Category.class)
-    @JoinTable(name = "ArticleCategory", 
-    	joinColumns = @JoinColumn(name = "articleId"), 
+    @JoinTable(name = "ArticleCategory",
+    	joinColumns = @JoinColumn(name = "articleId"),
     	inverseJoinColumns = @JoinColumn(name = "categoryId"))
 	private Set<Category> categories;
 
+    private Boolean showOnFront = Boolean.FALSE;
+
     @DateTimeFormat(iso=ISO.DATE)
     private Date publishedDate;
-	
+
     @DateTimeFormat(iso=ISO.DATE)
 	private Date startDate;
-	
+
     @DateTimeFormat(iso=ISO.DATE)
 	private Date endDate;
-	
+
 	private BigDecimal price;
-	
+
 	@ManyToOne
 	@JoinColumn(name="authorId")
 	private User author;
 
 	private String image;
+
+	public String getImageUrl() {
+		if(image!=null){
+			return image.replace("doc://", "document/");
+		}
+		return null;
+	}
 
 	public String getTitle() {
 		return title;
@@ -102,6 +111,14 @@ public class Article extends IdEntity {
 
 	public void setCategories(Set<Category> categories) {
 		this.categories = categories;
+	}
+
+	public Boolean getShowOnFront() {
+		return showOnFront;
+	}
+
+	public void setShowOnFront(Boolean showOnFront) {
+		this.showOnFront = showOnFront;
 	}
 
 	public Date getPublishedDate() {

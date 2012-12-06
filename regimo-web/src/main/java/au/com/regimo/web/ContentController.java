@@ -8,6 +8,7 @@ import javax.inject.Inject;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mobile.device.Device;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -84,7 +85,7 @@ public class ContentController {
 
 	@RequestMapping(value = "/dashlet/{userDashletId}")
 	@ResponseBody
-	public String browse(@PathVariable Long userDashletId, ModelMap map) {
+	public String browse(@PathVariable Long userDashletId, Device device, ModelMap map) {
 		UserDashlet userDashlet = userDashletRepository.findOne(userDashletId);
 		String dashModel = userDashlet.getDashlet().getModel();
 		if(dashModel!=null){
@@ -122,6 +123,7 @@ public class ContentController {
 		}
 		map.addAttribute("user", SecurityUtils.getCurrentUser());
 		map.addAttribute("security", securityService);
+		map.addAttribute("device", device);
 		return TextGenerator.generateText(String.format(
 				"[#macro acl attribute][#if security.isAuthorized(attribute)][#nested][/#if][/#macro]%s%s",
 				"[#macro url attribute][#local link=security.getAuthorizedUrl(attribute)][#if link!=''][#nested link][/#if][/#macro]",

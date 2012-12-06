@@ -15,6 +15,10 @@ public class ArticleService extends GenericService<ArticleRepository, Article> {
 		super(repository);
 	}
 
+	public Iterable<Article> findAllShowOnFront(){
+		return repository.findAllShowOnFront();
+	}
+
 	public Article findBySlug(String slug){
 		return repository.findBySlug(slug);
 	}

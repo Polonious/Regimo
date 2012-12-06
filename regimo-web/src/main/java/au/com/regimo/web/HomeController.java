@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.WebRequest;
 
+import au.com.regimo.cms.service.ArticleService;
 import au.com.regimo.core.domain.Dashboard;
 import au.com.regimo.core.domain.User;
 import au.com.regimo.core.repository.DashboardRepository;
@@ -32,6 +33,7 @@ public class HomeController {
 
 	private UserService userService;
 	private DashboardRepository dashboardRepository;
+	private ArticleService articleService;
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -49,6 +51,7 @@ public class HomeController {
 	public String home(ModelMap map) {
 		Dashboard content = dashboardRepository.findByViewName("HomeContent");
 		map.addAttribute("content", content);
+		map.addAttribute("feature", articleService.findAllShowOnFront());
 		return "home";
 	}
 
@@ -117,6 +120,11 @@ public class HomeController {
 	@Inject
 	public void setUserService(UserService userService) {
 		this.userService = userService;
+	}
+
+	@Inject
+	public void setArticleService(ArticleService articleService) {
+		this.articleService = articleService;
 	}
 
 }

@@ -17,7 +17,9 @@
 	<form:label path="summary">
 		<s:message code="article.summary"/> <form:errors path="summary" cssClass="error" />
 	</form:label>
-	<form:input path="summary" />
+	<form:textarea path="summary" data-dojo-type="dijit/Editor" data-dojo-props="extraPlugins:['insertHorizontalRule','|',
+			'formatBlock',{name:'dijit/_editor/plugins/FontChoice', command:'fontName', generic:true},
+			'fontSize','foreColor','hiliteColor','|','createLink','insertImage','viewsource']"/>
 
 	<form:label path="detail">
 		<s:message code="article.detail"/> <form:errors path="detail" cssClass="error" />
@@ -53,6 +55,11 @@
 	<br>
 	<form:input path="endDate" data-dojo-type="dijit/form/DateTextBox" />
 	<br><br>
+
+	<form:label path="showOnFront">
+		<s:message code="article.showOnFront"/> <form:errors path="showOnFront" cssClass="error" />
+	</form:label>
+	<form:checkbox path="showOnFront" />
 
 	<form:label path="categories">
 		<s:message code="article.categories"/> <form:errors path="categories" cssClass="error" />
