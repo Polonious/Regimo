@@ -13,10 +13,10 @@
 
     <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
     	<constructor-arg ref="mongo"/>
-    	<constructor-arg name="databaseName" value="regimo"/>
+    	<constructor-arg name="databaseName" value="${mongodb.name}"/>
 	</bean>
 
-	<mongo:db-factory id="mongoDbFactory" dbname="regimo" />
+	<mongo:db-factory id="mongoDbFactory" dbname="${mongodb.name}"/>
 	<mongo:mapping-converter id="converter" />
 	<bean class="org.springframework.data.mongodb.gridfs.GridFsTemplate">
 		<constructor-arg ref="mongoDbFactory" />
