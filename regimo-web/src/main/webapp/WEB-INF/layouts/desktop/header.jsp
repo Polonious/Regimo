@@ -15,8 +15,9 @@
 <c:otherwise>
 	<c:forEach var="userDashlet" items="${menu.userDashlets}">
 		<script type="text/javascript">
-	        $(document).ready(function()
-	        	{ $('#header-container').load('/content/dashlet/${userDashlet.id}');});
+	        $(document).ready(function(){
+	        	$('#header-container').load('/content/dashlet/${userDashlet.id}');
+	        });
 	    </script>
 	</c:forEach>
 </c:otherwise>
