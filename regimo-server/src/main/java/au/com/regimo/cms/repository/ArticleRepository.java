@@ -7,7 +7,7 @@ import au.com.regimo.core.repository.GenericRepository;
 
 public interface ArticleRepository extends GenericRepository<Article> {
 
-	@Query("from Article a where a.showOnFront=true")
+	@Query("from Article a where a.showOnFront=true order by a.publishedDate desc")
 	Iterable<Article> findAllShowOnFront();
 
 	Article findByTitle(String title);
