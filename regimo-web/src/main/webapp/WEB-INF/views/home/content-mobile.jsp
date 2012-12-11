@@ -19,7 +19,7 @@
         </div>
 	</div>
 
-	<div id="content">
+	<div id="content2">
     	<div id="content-box">
 
 			<c:forEach var="userDashlet" items="${content.userDashlets}">

@@ -12,15 +12,9 @@
 	<link rel="stylesheet" href="<c:url value="/resources/mobile/page.css" />" type="text/css" media="screen" />
 	<link rel="stylesheet" href="<c:url value="/resources/wordpress.css" />" type="text/css" media="screen" />
 
-	<!--
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.css" />
-	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-	<script type="text/javascript" src="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js"></script>
-	 -->
-
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
-	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-	<script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
 
 	<script type="text/javascript">
 		window.scrollTo(0, 1);
@@ -29,7 +23,8 @@
 	<link rel="stylesheet" type="text/css" href="${style}" /></c:forEach>
 </head>
 <body>
-	<div id="header">
+	<div data-role="page" id="page">
+	<div id="header" class="header">
 		<tiles:insertAttribute name="header" />
 	</div>
 	<div id="content" data-role="content">
@@ -45,6 +40,7 @@
 	</sec:authorize>
 	<div id="footer">
 		<tiles:insertAttribute name="footer" />
+	</div>
 	</div>
 	<tiles:useAttribute id="scripts" name="scripts" classname="java.util.List" ignore="true" /><c:forEach var="script" items="${scripts}">
 	<script type="text/javascript" src="${script}"></script></c:forEach>
