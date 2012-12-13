@@ -97,10 +97,6 @@
 					<groupId>org.springframework.security</groupId>
 					<artifactId>spring-security-config</artifactId>
 				</exclusion>
-				<exclusion>
-					<groupId>org.codehaus.jackson</groupId>
-					<artifactId>jackson-mapper-asl</artifactId>
-				</exclusion>
 			</exclusions>
 		</dependency>
 
@@ -149,12 +145,6 @@
 		    <groupId>org.springframework.social</groupId>
 		    <artifactId>spring-social-facebook</artifactId>
 	        <version>${org.springframework.social-version}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.codehaus.jackson</groupId>
-					<artifactId>jackson-mapper-asl</artifactId>
-				</exclusion>
-			</exclusions>
 	    </dependency>
 
 		<dependency>
