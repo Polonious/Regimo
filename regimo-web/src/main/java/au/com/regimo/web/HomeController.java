@@ -51,7 +51,7 @@ public class HomeController {
 	public String home(ModelMap map) {
 		Dashboard content = dashboardRepository.findByViewName("HomeContent");
 		map.addAttribute("content", content);
-		map.addAttribute("feature", articleService.findAllShowOnFront());
+		map.addAttribute("feature", articleService.findAllFeatured());
 		return "home";
 	}
 

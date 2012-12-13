@@ -56,11 +56,6 @@
 	<form:input path="endDate" data-dojo-type="dijit/form/DateTextBox" />
 	<br><br>
 
-	<form:label path="showOnFront">
-		<s:message code="article.showOnFront"/> <form:errors path="showOnFront" cssClass="error" />
-	</form:label>
-	<form:checkbox path="showOnFront" />
-
 	<form:label path="categories">
 		<s:message code="article.categories"/> <form:errors path="categories" cssClass="error" />
 	</form:label><br>

@@ -46,8 +46,6 @@ public class Article extends IdEntity {
     	inverseJoinColumns = @JoinColumn(name = "categoryId"))
 	private Set<Category> categories;
 
-    private Boolean showOnFront = Boolean.FALSE;
-
     @DateTimeFormat(iso=ISO.DATE)
     private Date publishedDate;
 
@@ -111,14 +109,6 @@ public class Article extends IdEntity {
 
 	public void setCategories(Set<Category> categories) {
 		this.categories = categories;
-	}
-
-	public Boolean getShowOnFront() {
-		return showOnFront;
-	}
-
-	public void setShowOnFront(Boolean showOnFront) {
-		this.showOnFront = showOnFront;
 	}
 
 	public Date getPublishedDate() {

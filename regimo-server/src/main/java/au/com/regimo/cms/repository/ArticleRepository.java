@@ -7,8 +7,8 @@ import au.com.regimo.core.repository.GenericRepository;
 
 public interface ArticleRepository extends GenericRepository<Article> {
 
-	@Query("from Article a where a.showOnFront=true order by a.publishedDate desc")
-	Iterable<Article> findAllShowOnFront();
+	@Query("select a from Article a inner join a.categories as c where c.slug = ?1 order by a.publishedDate desc")
+	Iterable<Article> findByCategorySlug(String slug);
 
 	Article findByTitle(String title);
 
