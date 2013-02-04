@@ -4,6 +4,9 @@
 <h2><c:out value="${category.name}" escapeXml="false"/></h2>
 <c:forEach var="post" items="${category.articles}">
 	<c:url value="/content/article/${post.slug}" var="link" />
-	<a href="${link}" data-role="button" data-transition="slide"><c:out value="${post.title}" escapeXml="false"/></a><br/>
+	<b><c:out value="${post.title}" escapeXml="false"/></b></br></br>
+	<p><c:out value="${post.summary}" escapeXml="false"/></br></br>
+	<a href="${link}" data-role="button" data-transition="slide" class="button"></a><br/><br></br><hr><br>
+	</p>
 </c:forEach>
 </div>
