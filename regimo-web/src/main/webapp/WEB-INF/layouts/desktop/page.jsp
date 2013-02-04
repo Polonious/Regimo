@@ -35,6 +35,7 @@
 	</div>
 	<div id="content-container">
 		<tiles:insertAttribute name="content" />
+		<div class="push"></div>
 	</div>
 	<div id="footer">
 		<tiles:insertAttribute name="footer" />

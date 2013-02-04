@@ -64,5 +64,3 @@
    		</div>
 </div>
 </form>
-
-<div class="push"></div>

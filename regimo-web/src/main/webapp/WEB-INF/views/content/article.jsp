@@ -6,4 +6,3 @@
 	<c:out value="${article.detail}" escapeXml="false"/>
 </p>
 </div>
-<div class="push"></div>
