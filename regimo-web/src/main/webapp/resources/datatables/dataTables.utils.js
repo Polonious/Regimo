@@ -24,10 +24,10 @@ $(document).ready(function(){
 				isAjax?defaultOption.ajax:defaultOption.local);
 		if(isAjax){
 			$.each(customOption.columns.split(","), function(){
-				option.aoColumns.push({mDataProp:this});
+				option.aoColumns.push({"mData":this+""});
 			});
 			option.aoColumns.push({
-				"mDataProp":"id", 
+				"mData":"id", 
 				"bUseRendered": false,
             	"bSortable": false,
             	"fnRender":datatableActions[customOption.action]});

@@ -27,7 +27,7 @@ public class UserDashletController {
 	private UserDashletService service;
 
 	private final static DataTablesSearchCriteria datatable = new DataTablesSearchCriteria(
-			"dashboard,dashlet,columnIndex,displaySequence", "standardUpdate", Lists.newArrayList(
+			"dashboard.viewName,dashlet.title,columnIndex,displaySequence", "standardUpdate", Lists.newArrayList(
 			new DataTablesColumnDef("userDashlet.dashboard","35%"),
 			new DataTablesColumnDef("userDashlet.dashlet","30%"),
 			new DataTablesColumnDef("userDashlet.columnIndex","10%"),
