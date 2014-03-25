@@ -1,4 +1,4 @@
-div.demo {padding:12px; overflow:auto;}
+div.demo {padding:12px; overflow:auto; width:800px; margin:0 auto;}
 div.demo h3.docs { clear:left; font-size:12px; font-weight:normal; padding:0 0 1em; margin:0; }
 .column { width: 300px; float: left; padding-bottom: 10px; }
 .dashlet { margin: 0 1em 1em 0; }

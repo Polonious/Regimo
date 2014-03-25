@@ -10,13 +10,18 @@ import org.springframework.transaction.annotation.Transactional;
 import au.com.regimo.cms.domain.Category;
 import au.com.regimo.cms.service.CategoryService;
 import au.com.regimo.core.domain.Authority;
+import au.com.regimo.core.domain.Dashboard;
 import au.com.regimo.core.domain.Dashlet;
 import au.com.regimo.core.domain.Role;
 import au.com.regimo.core.domain.RowStatus;
+import au.com.regimo.core.domain.User;
 import au.com.regimo.core.form.ComboItem;
 import au.com.regimo.core.service.AuthorityService;
+import au.com.regimo.core.service.DashboardService;
+import au.com.regimo.core.service.DashletService;
 import au.com.regimo.core.service.RoleService;
 import au.com.regimo.core.service.RowStatusService;
+import au.com.regimo.core.service.UserService;
 
 import com.google.common.collect.Lists;
 
@@ -25,9 +30,12 @@ import com.google.common.collect.Lists;
 public class ReferenceData {
 
 	private RoleService roleService;
+	private UserService userService;
 	private AuthorityService authorityService;
 	private RowStatusService rowStatusService;
 	private CategoryService categoryService;
+	private DashboardService dashboardService;
+	private DashletService dashletService;
 
 	public List<ComboItem> getDashletTypeOptions() {
 		List<ComboItem> options = Lists.newArrayList();
@@ -39,6 +47,10 @@ public class ReferenceData {
 
 	public Iterable<Role> getRoles(){
 		return roleService.findAll();
+	}
+
+	public Iterable<User> getUsers(){
+		return userService.findAll();
 	}
 
 	public Iterable<Authority> getAuthorities(){
@@ -53,9 +65,22 @@ public class ReferenceData {
 		return rowStatusService.findByStatusObject(statusObject);
 	}
 
+	public Iterable<Dashboard> getDashboards(){
+		return dashboardService.findAll();
+	}
+
+	public Iterable<Dashlet> getDashlets(){
+		return dashletService.findAll();
+	}
+
 	@Inject
 	public void setRoleService(RoleService roleService) {
 		this.roleService = roleService;
+	}
+
+	@Inject
+	public void setUserService(UserService userService) {
+		this.userService = userService;
 	}
 
 	@Inject
@@ -71,6 +96,16 @@ public class ReferenceData {
 	@Inject
 	public void setCategoryService(CategoryService categoryService) {
 		this.categoryService = categoryService;
+	}
+
+	@Inject
+	public void setDashboardService(DashboardService dashboardService) {
+		this.dashboardService = dashboardService;
+	}
+
+	@Inject
+	public void setDashletService(DashletService dashletService) {
+		this.dashletService = dashletService;
 	}
 
 }

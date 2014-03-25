@@ -19,7 +19,7 @@
 			<div class="dashlet-header">${userDashlet.dashlet.title}</div>
 			<div class="dashlet-content" id="dashlet_content_${userDashlet.id}"></div>
 			<script type="text/javascript">
-		        $(document).ready(function() { $('#dashlet_content_${userDashlet.id}').load('contents/${userDashlet.id}'); });
+		        $(document).ready(function() { $('#dashlet_content_${userDashlet.id}').load('content/dashlet/${userDashlet.id}'); });
 		    </script>
 		</div>
 		</c:if></c:forEach>

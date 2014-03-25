@@ -12,25 +12,26 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.google.common.collect.Lists;
-
-import au.com.regimo.core.domain.Dashboard;
+import au.com.regimo.core.domain.UserDashlet;
 import au.com.regimo.core.form.DataTablesColumnDef;
 import au.com.regimo.core.form.DataTablesSearchCriteria;
 import au.com.regimo.core.form.DataTablesSearchResult;
-import au.com.regimo.core.service.DashboardService;
+import au.com.regimo.core.service.UserDashletService;
+
+import com.google.common.collect.Lists;
 
 @Controller
-@RequestMapping("/dashboard")
-public class DashboardController {
+@RequestMapping("/userDashlet")
+public class UserDashletController {
 
-	private DashboardService service;
+	private UserDashletService service;
 
 	private final static DataTablesSearchCriteria datatable = new DataTablesSearchCriteria(
-			"viewName,columnCount,columnWidth", "standardUpdate", Lists.newArrayList(
-			new DataTablesColumnDef("dashboard.viewName","55%"),
-			new DataTablesColumnDef("dashboard.columnCount","5%"),
-			new DataTablesColumnDef("dashboard.columnWidth","25%"),
+			"dashboard,dashlet,columnIndex,displaySequence", "standardUpdate", Lists.newArrayList(
+			new DataTablesColumnDef("userDashlet.dashboard","35%"),
+			new DataTablesColumnDef("userDashlet.dashlet","30%"),
+			new DataTablesColumnDef("userDashlet.columnIndex","10%"),
+			new DataTablesColumnDef("userDashlet.displaySequence","10%"),
 			new DataTablesColumnDef("label.action","15%")));
 
 	@RequestMapping(method=RequestMethod.GET)
@@ -58,7 +59,7 @@ public class DashboardController {
 
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
 	public String create(ModelMap modelMap,
-			@Valid Dashboard entity, BindingResult result) {
+			@Valid UserDashlet entity, BindingResult result) {
 		return service.saveModel(modelMap, entity, result) ?
 				"redirect:edit?id="+entity.getId() : null;
 	}
@@ -70,12 +71,12 @@ public class DashboardController {
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public void update(ModelMap modelMap,
-			@Valid Dashboard entity, BindingResult result) {
+			@Valid UserDashlet entity, BindingResult result) {
 		service.saveModel(modelMap, entity, result);
 	}
 
 	@Inject
-	public void setService(DashboardService service) {
+	public void setService(UserDashletService service) {
 		this.service = service;
 	}
 

@@ -2,8 +2,8 @@
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 
 <tiles-definitions>
-	<definition name="dashboard" extends="browse"/>
-	<definition name="dashboard/new" extends="new">
+	<definition name="userDashlet" extends="browse"/>
+	<definition name="userDashlet/new" extends="new">
 		<put-list-attribute name="styles">
 			<add-attribute value="/resources/jquery/select2/select2.css" />
 		</put-list-attribute>
@@ -11,7 +11,7 @@
 			<add-attribute value="/resources/jquery/select2/select2.min.js" />
 		</put-list-attribute>
 	</definition>
-	<definition name="dashboard/edit" extends="edit">
+	<definition name="userDashlet/edit" extends="edit">
 		<put-list-attribute name="styles">
 			<add-attribute value="/resources/jquery/select2/select2.css" />
 		</put-list-attribute>

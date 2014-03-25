@@ -17,7 +17,7 @@
 		var pageReady = [];
 	</script>
 
-	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script type="text/javascript" src="<c:url value="/resources/waterwheelCarousel/jquery.waterwheelCarousel.min.js" />"></script>
 	<script type="text/javascript" src="/resources/orbit/jquery.orbit-1.2.3.min.js"></script>
 
@@ -41,9 +41,9 @@
 		<tiles:insertAttribute name="footer" />
 	</div>
 
-	<script type="text/javascript" 
+	<script type="text/javascript"
 		src="<c:url value="/resources/dojo/1.8.1/dojo/dojo.js"/>"
-		data-dojo-config="async: true, 
+		data-dojo-config="async: true,
 			locale: '${pageContext.response.locale.toString().replace("_","-")}'"></script>
 
 	<tiles:useAttribute id="scripts" name="scripts" classname="java.util.List" ignore="true" /><c:forEach var="script" items="${scripts}">
@@ -54,7 +54,8 @@
 		$(document).ready(function(){
 			$("[data-type]").each(function(){
 				var $this = $(this);
-				$this[$this.attr("data-type")]();
+				var option = $this.attr("data-option");
+				$this[$this.attr("data-type")](option?eval(option):null);
 			});
 			$.each(pageReady,function(){this();});
 		});
