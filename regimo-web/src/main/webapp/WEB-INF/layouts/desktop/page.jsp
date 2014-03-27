@@ -54,8 +54,7 @@
 		$(document).ready(function(){
 			$("[data-type]").each(function(){
 				var $this = $(this);
-				var option = $this.attr("data-option");
-				$this[$this.attr("data-type")](option?eval(option):null);
+				$this[$this.attr("data-type")]();
 			});
 			$.each(pageReady,function(){this();});
 		});

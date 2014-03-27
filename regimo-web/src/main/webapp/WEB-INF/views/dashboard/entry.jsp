@@ -16,8 +16,10 @@
 	<form:label path="user">
 		<s:message code="dashboard.user"/> <form:errors path="user" cssClass="error" />
 	</form:label><br>
-	<form:select data-type="select2" path="user" items="${referenceData.users}" multiple="true" data-option="maximumSelectionSize: 1"
-		itemLabel="username" itemValue="id" cssStyle="width:300px" />
+	<form:select path="user">
+		<form:option value="">&nbsp;</form:option>
+		<form:options items="${referenceData.users}" itemLabel="username" itemValue="id" />
+	</form:select>
 
 	<form:hidden path="id" />
 
