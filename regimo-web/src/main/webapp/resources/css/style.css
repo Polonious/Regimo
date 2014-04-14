@@ -3,7 +3,7 @@
 @import url("form.css");
 
 * {
-margin: 0;
+//margin: 0;
 }
 
 html, body {
@@ -11,8 +11,8 @@ height: 100%;
 }
 
 #content-container {
-height: auto !important;
-height: 100%;
+//height: auto !important;
+//height: 100%;
 margin: 1em auto -6em;
 }
 
@@ -34,7 +34,7 @@ height: 6em;
 
 h1,h2,h3,h4,h5,h6 {
 	margin: 0px 0px 0px 0px;
-	color: #424242 !important;
+	color: #424242;
 }
 
 ul {
@@ -62,7 +62,6 @@ a:hover {
 }
 
 a, a:visited, .welcome {
-	color:#464646;
 	font-size:1.5em;
 	text-decoration: none;
 }
@@ -172,7 +171,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 	-moz-box-shadow: 0 0 5px 3px #737373;
 	box-shadow: 0 0 5px 3px #737373;
 	
-	padding-top: 5px;
+	//padding-top: 5px;
 }
 
 #page-content {
@@ -187,11 +186,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 	
 	font-size:1.3em;
 	
-	margin: 15px auto;
+	margin-top: 100px;
 	
 	padding: 25px 30px 30px;
 	
-	width: 890px;
+	width: auto;
+	min-width: 890px;
+	max-width: 1200px;
 }
 
 #page-content h2 {
@@ -264,7 +265,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 }
 
 .button {
-	float: right;
+	//float: right;
 	height: 34px;
 	width: 82px;
 	background: url(../images/button_more.png) top left no-repeat;

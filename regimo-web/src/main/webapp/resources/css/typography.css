@@ -1,0 +1,238 @@
+* {
+	-webkit-font-smoothing: antialiased !important;
+	font-smooth: always !important;
+	-webkit-text-size-adjust: 100%;
+	-moz-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%
+}
+
+html {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: lighter;
+	line-height: 1.5em;
+	color: #666
+}
+
+strong {
+	font-weight: bold
+}
+
+h1 {
+	font-size: 24px;
+	color: #000
+}
+
+h2 {
+	font-size: 14px;
+	margin-bottom: 10px;
+	color: #333
+}
+
+h3 {
+	font-weight: normal
+}
+
+p,blockquote,cite {
+	margin: 0.5em 0 1em 0;
+	line-height: 1.5em
+}
+
+em {
+	font-style: italic
+}
+
+blockquote {
+	color: #50545d;
+	margin-bottom: 0.5em
+}
+
+blockquote.tweet td blockquote {
+	font-style: italic
+}
+
+cite {
+	font-size: 12px;
+	margin-bottom: 1em
+}
+
+ul {
+	margin: 5px 10px 10px
+}
+
+ul li {
+	padding-left: 10px;
+	line-height: 1.5em
+}
+
+ul.blueDot,ol.blueDot {
+	margin: 5px 10px 10px 50px;
+	list-style-image: url("/images/bullet-blue-dot.gif")
+}
+
+ul.blueDot li,ol.blueDot li {
+	margin: 0 0 7px;
+	padding: 0 0 0 0px
+}
+
+a {
+	color: #00a3d3;
+	cursor: pointer;
+	text-decoration: none
+}
+
+a:hover {
+	color: #017095;
+	text-decoration: none
+}
+
+#hero a {
+	color: white
+}
+
+#hero a:hover {
+	text-decoration: none
+}
+
+.ir {
+	font: 0/0 a;
+	text-shadow: none;
+	color: transparent
+}
+
+@font-face {
+	font-family: 'Chevin-Demibold';
+	src: url('/fonts/eot/chevin-demibold.eot');
+	src: url('/fonts/eot/chevin-demibold.eot?#iefix')
+		format('embedded-opentype'), url('/fonts/woff/chevin-demibold.woff')
+		format('woff'), url('/fonts/ttf/chevin-demibold.ttf')
+		format('truetype'),
+		url('/fonts/svg/chevin-demibold.svg#Chevin-Demibold') format('svg')
+}
+
+@font-face {
+	font-family: 'Chevin-Medium';
+	src: url('/fonts/eot/chevin-medium.eot');
+	src: url('/fonts/eot/chevin-medium.eot?#iefix')
+		format('embedded-opentype'), url('/fonts/woff/chevin-medium.woff')
+		format('woff'), url('/fonts/ttf/chevin-medium.ttf') format('truetype'),
+		url('/fonts/svg/chevin-medium.svg#Chevin-Medium') format('svg')
+}
+
+@font-face {
+	font-family: 'Chevin-Light';
+	src: url('/fonts/eot/chevin-light.eot');
+	src: url('/fonts/eot/chevin-light.eot?#iefix')
+		format('embedded-opentype'), url('/fonts/woff/chevin-light.woff')
+		format('woff'), url('/fonts/ttf/chevin-light.ttf') format('truetype'),
+		url('/fonts/svg/chevin-light.svg#Chevin-Light') format('svg')
+}
+
+@font-face {
+	font-family: 'Chevin-Thin';
+	src: url('/fonts/eot/chevin-thin.eot');
+	src: url('/fonts/eot/chevin-thin.eot?#iefix')
+		format('embedded-opentype'), url('/fonts/woff/chevin-thin.woff')
+		format('woff'), url('/fonts/ttf/chevin-thin.ttf') format('truetype'),
+		url('/fonts/svg/chevin-thin.svg#Chevin-Thin') format('svg')
+}
+
+@font-face {
+	font-family: 'National';
+	src: url('/fonts/eot/NationalWeb-Regular.eot');
+	src: url('/fonts/eot/NationalWeb-Regular.eot?#iefix')
+		format('embedded-opentype'),
+		url('/fonts/woff/NationalWeb-Regular.woff') format('woff'),
+		url('/fonts/ttf/NationalWeb-Regular.ttf') format('truetype'),
+		url('/fonts/svg/NationalWeb-Regular.svg#National') format('svg')
+}
+
+@font-face {
+	font-family: 'National-SemiBold';
+	src: url('/fonts/eot/NationalWeb-Semibold.eot');
+	src: url('/fonts/eot/NationalWeb-Semibold.eot?#iefix')
+		format('embedded-opentype'),
+		url('/fonts/woff/NationalWeb-Semibold.woff') format('woff'),
+		url('/fonts/ttf/NationalWeb-Semibold.ttf') format('truetype'),
+		url('/fonts/svg/NationalWeb-Semibold.svg#font') format('svg')
+}
+
+@font-face {
+	font-family: 'National-Italic';
+	src: url('/fonts/eot/NationalWeb-Italic.eot');
+	src: url('/fonts/eot/NationalWeb-Italic.eot?#iefix')
+		format('embedded-opentype'),
+		url('/fonts/woff/NationalWeb-Italic.woff') format('woff'),
+		url('/fonts/ttf/NationalWeb-Italic.ttf') format('truetype'),
+		url('/fonts/svg/NationalWeb-Italic.svg#font') format('svg')
+}
+
+@font-face {
+	font-family: 'National-SemiBold-Italic';
+	src: url('/fonts/eot/NationalWeb-Semibold-Italic.eot');
+	src: url('/fonts/eot/NationalWeb-Semibold-Italic.eot?#iefix')
+		format('embedded-opentype'),
+		url('/fonts/woff/NationalWeb-Semibold-Italic.woff') format('woff'),
+		url('/fonts/ttf/NationalWeb-Semibold-Italic.ttf') format('truetype'),
+		url('/fonts/svg/NationalWeb-Semibold-Italic.svg#font') format('svg')
+}
+
+.wf-loading .chevin-thin,.wf-loading chevin-light,.wf-loading chevin-medium,.wf-loading chevin-demibold .national-book
+	{
+	visibility: hidden
+}
+
+.wf-active . .wf-inactive .chevin-thin,.wf-active . .wf-inactive .chevin-light,.wf-active
+	. .wf-inactive .chevin-medium,.wf-active . .wf-inactive chevin-demibold,.wf-active
+	. .wf-inactive .national-book {
+	visibility: visible
+}
+
+.chevin-demibold {
+	font-family: 'Chevin-Demibold'
+}
+
+.chevin-medium {
+	font-family: 'Chevin-Medium'
+}
+
+.chevin-light {
+	font-family: 'Chevin-Light'
+}
+
+.chevin-thin {
+	font-family: 'Chevin-Thin'
+}
+
+.national-book {
+	font-family: 'National';
+	font-weight: normal
+}
+
+.national {
+	font-family: 'National';
+	font-weight: normal
+}
+
+.national-sb {
+	font-family: 'National-SemiBold';
+	font-weight: normal
+}
+
+.national-i {
+	font-family: 'National-Italic';
+	font-weight: normal
+}
+
+.national-sbi {
+	font-family: 'National-SemiBold-Italic';
+	font-weight: normal
+}
+
+.small {
+	font-size: 0.8em
+}
+
+.nowrap {
+	white-space: nowrap
+}

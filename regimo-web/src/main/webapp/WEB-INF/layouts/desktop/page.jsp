@@ -7,12 +7,13 @@
 <head>
 	<title><tiles:insertAttribute name="title" defaultValue="Polonious" /></title>
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<link rel="stylesheet" href="<c:url value="/resources/css/form.css" />" type="text/css" media="screen" />
+	<link rel="stylesheet" href="<c:url value="/resources/css/style.css" />" type="text/css" media="screen" />
 	<link rel="stylesheet" href="<c:url value="/resources/wordpress.css" />" type="text/css" media="screen" />
-	<link rel="stylesheet" href="<c:url value="/resources/css/style.css" />" type="text/css" />
 	<link rel="stylesheet" href="<c:url value="/resources/css/dropdown-menu.css" />" type="text/css" />
-	<link rel="stylesheet" href="<c:url value="/resources/css/waterwheel-carousel.css" />" type="text/css" />
-	<link rel="stylesheet" href="<c:url value="/resources/orbit/orbit-1.2.3.css" />" type="text/css" />
-
+	<link rel="stylesheet" href="<c:url value="/resources/css/global-nav.css" />" type="text/css" />
+	<link rel="stylesheet" href="<c:url value="/resources/css/polonious.css" />" type="text/css" />
+	
 	<script type="text/javascript">
 		var pageReady = [];
 	</script>
